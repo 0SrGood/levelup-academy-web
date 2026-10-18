@@ -1,12 +1,13 @@
 /* Service worker da LevelUpAcademy.
- * - Página, manifesto e ícones: rede primeiro (sempre a versão publicada), cache só sem conexão.
+ * - Página: rede primeiro (sempre a versão publicada), cache só sem conexão.
+ * - Manifesto e ícones: nunca passam pelo service worker.
  * - Scripts e estilos com hash no nome: cache primeiro (o nome muda a cada publicação).
  * - Demais arquivos estáticos: cache imediato e atualização em segundo plano.
  * - Requisições de outros domínios (Supabase, YouTube, DevForum) não passam pelo cache.
  * __BUILD__ é trocado pelo empacotador a cada publicação, o que limpa os caches antigos. */
-const VERSION='7a75b3d17aca';
+const VERSION='ec65b628c02d';
 const CACHE='levelup-'+VERSION;
-const CORE=['./','./manifest.webmanifest','./icons/icon-192.png','./icons/apple-touch-icon.png','./logo.png'];
+const CORE=['./','./logo.png'];
 
 self.addEventListener('install',event=>{
  event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE.map(url=>new Request(url,{cache:'reload'})))).catch(()=>{}).then(()=>self.skipWaiting()));
@@ -37,7 +38,8 @@ self.addEventListener('fetch',event=>{
  if(request.mode==='navigate'){event.respondWith(networkFirst(request,'./').catch(()=>caches.match('./')));return}
  const path=url.pathname;
  if(/\/sw\.js$/.test(path))return;
- if(/\/manifest\.webmanifest$/.test(path)||/\/icons\//.test(path)){event.respondWith(networkFirst(request));return}
+ // Manifesto e ícones vão direto ao servidor, sem passar pelo service worker: é o que o iPhone e o Android leem ao instalar.
+ if(/\/manifest\.webmanifest$/.test(path)||/\/icons\//.test(path)||/apple-touch-icon/.test(path))return;
  if(/\/index-[\w-]+\.(js|css)$/.test(path)){event.respondWith(cacheFirst(request));return}
  if(/\.(png|webp|jpg|jpeg|gif|svg|js|css|woff2?)$/.test(path)){event.respondWith(staleWhileRevalidate(event));return}
 });
@@ -45,7 +47,7 @@ self.addEventListener('fetch',event=>{
 /* Notificações: prontas para receber envios do servidor (push) e abrir a plataforma ao tocar. */
 self.addEventListener('push',event=>{
  let data={};try{data=event.data?event.data.json():{}}catch{data={body:event.data&&event.data.text()}}
- event.waitUntil(self.registration.showNotification(data.title||'LevelUpAcademy',{body:data.body||'Há novidades na sua plataforma.',icon:'./icons/icon-192.png',badge:'./icons/icon-192.png',tag:data.tag||'levelup',data:{url:data.url||'./'}}));
+ event.waitUntil(self.registration.showNotification(data.title||'LevelUpAcademy',{body:data.body||'Há novidades na sua plataforma.',icon:'./icons/icon-192-v2.png',badge:'./icons/icon-192-v2.png',tag:data.tag||'levelup',data:{url:data.url||'./'}}));
 });
 self.addEventListener('notificationclick',event=>{
  event.notification.close();
