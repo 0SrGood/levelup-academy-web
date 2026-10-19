@@ -8749,6 +8749,8 @@ local function partProps() return {Anchored = true, CanCollide = true, CanTouch 
 local classInfo = {
   Part = {base = part, props = function() local p = partProps() p.Anchored = false return p end},
   SpawnLocation = {base = {"Part", "BasePart", "PVInstance"}, props = function() local p = partProps() p.Size = v3(12, 1, 12) return p end},
+  UnionOperation = {base = {"PartOperation", "BasePart", "PVInstance"}, props = function() local p = partProps() p.UsePartColor = false return p end},
+  NegateOperation = {base = {"PartOperation", "BasePart", "PVInstance"}, props = function() return partProps() end},
   Model = {base = {"PVInstance"}, props = function() return {} end},
   Folder = {base = {}, props = function() return {} end},
   IntValue = {base = {"ValueBase"}, props = function() return {Value = 0} end},
