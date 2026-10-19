@@ -5,7 +5,7 @@
  * - Demais arquivos estáticos: cache imediato e atualização em segundo plano.
  * - Requisições de outros domínios (Supabase, YouTube, DevForum) não passam pelo cache.
  * __BUILD__ é trocado pelo empacotador a cada publicação, o que limpa os caches antigos. */
-const VERSION='7b4739137c17';
+const VERSION='971570eda4cb';
 const CACHE='levelup-'+VERSION;
 const CORE=['./','./logo.png'];
 
