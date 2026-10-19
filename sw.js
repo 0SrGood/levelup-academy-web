@@ -1,11 +1,11 @@
-/* Service worker da LevelUpAcademy.
+/* Service worker da Level Up Academy.
  * - Página: rede primeiro (sempre a versão publicada), cache só sem conexão.
  * - Manifesto e ícones: nunca passam pelo service worker.
  * - Scripts e estilos com hash no nome: cache primeiro (o nome muda a cada publicação).
  * - Demais arquivos estáticos: cache imediato e atualização em segundo plano.
  * - Requisições de outros domínios (Supabase, YouTube, DevForum) não passam pelo cache.
  * __BUILD__ é trocado pelo empacotador a cada publicação, o que limpa os caches antigos. */
-const VERSION='1b31a2de7b63';
+const VERSION='7b4739137c17';
 const CACHE='levelup-'+VERSION;
 const CORE=['./','./logo.png'];
 
@@ -47,7 +47,7 @@ self.addEventListener('fetch',event=>{
 /* Notificações: prontas para receber envios do servidor (push) e abrir a plataforma ao tocar. */
 self.addEventListener('push',event=>{
  let data={};try{data=event.data?event.data.json():{}}catch{data={body:event.data&&event.data.text()}}
- event.waitUntil(self.registration.showNotification(data.title||'LevelUpAcademy',{body:data.body||'Há novidades na sua plataforma.',icon:'./icons/icon-192-v2.png',badge:'./icons/icon-192-v2.png',tag:data.tag||'levelup',data:{url:data.url||'./'}}));
+ event.waitUntil(self.registration.showNotification(data.title||'Level Up Academy',{body:data.body||'Há novidades na sua plataforma.',icon:'./icons/icon-192-v2.png',badge:'./icons/icon-192-v2.png',tag:data.tag||'levelup',data:{url:data.url||'./'}}));
 });
 self.addEventListener('notificationclick',event=>{
  event.notification.close();
