@@ -5,7 +5,7 @@
  * - Demais arquivos estáticos: cache imediato e atualização em segundo plano.
  * - Requisições de outros domínios (Supabase, YouTube, DevForum) não passam pelo cache.
  * __BUILD__ é trocado pelo empacotador a cada publicação, o que limpa os caches antigos. */
-const VERSION='971570eda4cb';
+const VERSION='218d66db88d9';
 const CACHE='levelup-'+VERSION;
 const CORE=['./','./logo.png'];
 
@@ -47,10 +47,21 @@ self.addEventListener('fetch',event=>{
 /* Notificações: prontas para receber envios do servidor (push) e abrir a plataforma ao tocar. */
 self.addEventListener('push',event=>{
  let data={};try{data=event.data?event.data.json():{}}catch{data={body:event.data&&event.data.text()}}
- event.waitUntil(self.registration.showNotification(data.title||'Level Up Academy',{body:data.body||'Há novidades na sua plataforma.',icon:'./icons/icon-192-v2.png',badge:'./icons/icon-192-v2.png',tag:data.tag||'levelup',data:{url:data.url||'./'}}));
+ const options={body:data.body||'Há novidades na sua plataforma.',icon:'./icons/icon-192-v2.png',badge:'./icons/icon-192-v2.png',tag:data.tag||'levelup',renotify:!!data.tag,timestamp:Date.now(),data:{url:data.url||'./'}};
+ // Imagem grande da novidade (Android/Chrome). O ícone continua sendo a logo oficial; o iPhone ignora "image".
+ if(typeof data.image==='string'&&/^https:\/\//.test(data.image))options.image=data.image;
+ event.waitUntil(self.registration.showNotification(data.title||'Level Up Academy',options));
 });
 self.addEventListener('notificationclick',event=>{
  event.notification.close();
  const target=new URL((event.notification.data&&event.notification.data.url)||'./',self.registration.scope).href;
- event.waitUntil(self.clients.matchAll({type:'window',includeUncontrolled:true}).then(list=>{for(const client of list){if(client.url.startsWith(self.registration.scope)&&'focus' in client)return client.focus()}return self.clients.openWindow(target)}));
+ event.waitUntil(self.clients.matchAll({type:'window',includeUncontrolled:true}).then(async list=>{
+  const client=list.find(c=>c.url.startsWith(self.registration.scope));
+  if(!client)return self.clients.openWindow(target);
+  // App já aberto: traz para frente e leva direto à novidade (sem recarregar). Se a página não responder, navega até ela.
+  try{await client.focus()}catch{}
+  const answered=await new Promise(resolve=>{const channel=new MessageChannel();const finish=ok=>{clearTimeout(timer);channel.port1.close();resolve(ok)};const timer=setTimeout(()=>finish(false),1500);channel.port1.onmessage=()=>finish(true);try{client.postMessage({type:'levelup-open',url:target},[channel.port2])}catch{finish(false)}});
+  if(!answered&&'navigate' in client)try{return await client.navigate(target)}catch{}
+  if(!answered)return self.clients.openWindow(target);
+ }));
 });
