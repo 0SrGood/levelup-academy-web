@@ -7,11 +7,11 @@
  * - Estudo offline: o app inteiro (página, scripts, estilos, marca) fica guardado ao instalar cada versão;
  *   a biblioteca offline (levelup-offline-*) guarda o laboratório e as capas baixadas e NUNCA é apagada nas atualizações.
  * __BUILD__ é trocado pelo empacotador a cada publicação, o que limpa os caches antigos. */
-const VERSION='d6e37d7804d5';
+const VERSION='2de1184767c8';
 const CACHE='levelup-'+VERSION;
 const CORE=['./','./logo.png'];
 // Lista preenchida pelo empacotador (scripts/package-pages.mjs) com os arquivos desta versão do app.
-const PRECACHE=["./index-CwXplXya.css","./index-DsMzoL24.js","./StudioLite-BvSMDNRq.js","./studio/pecas.json","./studio/personagem.glb","./brand/emblem-192.png","./brand/emblem-512.png","./brand/emblem-96.png","./brand/emblem-dark-192.png","./brand/emblem-dark-512.png","./brand/wordmark-dark.png","./brand/wordmark-light.png"];
+const PRECACHE=["./index-Bd6hgYJx.css","./index-Cenc1tZ1.js","./StudioLite-DTTEXguZ.js","./brand/emblem-192.png","./brand/emblem-512.png","./brand/emblem-96.png","./brand/emblem-dark-192.png","./brand/emblem-dark-512.png","./brand/wordmark-dark.png","./brand/wordmark-light.png"];
 const OFFLINE='levelup-offline-v1';
 
 self.addEventListener('install',event=>{
@@ -50,6 +50,8 @@ self.addEventListener('fetch',event=>{
  if(/\/manifest\.webmanifest$/.test(path)||/\/icons\//.test(path)||/apple-touch-icon/.test(path))return;
  if(/\/index-[\w-]+\.(js|css)$/.test(path)){event.respondWith(cacheFirst(request));return}
  if(/\.(png|webp|jpg|jpeg|gif|svg|js|css|woff2?)$/.test(path)){event.respondWith(staleWhileRevalidate(event));return}
+ // Laboratório 3D: personagem (.glb) e peças (.json) ficam guardados depois do primeiro uso (e na biblioteca offline).
+ if(/\/studio\/[\w.-]+\.(glb|json)$/.test(path)){event.respondWith(staleWhileRevalidate(event));return}
 });
 
 /* Notificações: prontas para receber envios do servidor (push) e abrir a plataforma ao tocar. */
