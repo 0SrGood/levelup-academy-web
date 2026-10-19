@@ -7,11 +7,11 @@
  * - Estudo offline: o app inteiro (página, scripts, estilos, marca) fica guardado ao instalar cada versão;
  *   a biblioteca offline (levelup-offline-*) guarda o laboratório e as capas baixadas e NUNCA é apagada nas atualizações.
  * __BUILD__ é trocado pelo empacotador a cada publicação, o que limpa os caches antigos. */
-const VERSION='5eb5612329c9';
+const VERSION='bda3d6a7e244';
 const CACHE='levelup-'+VERSION;
 const CORE=['./','./logo.png'];
 // Lista preenchida pelo empacotador (scripts/package-pages.mjs) com os arquivos desta versão do app.
-const PRECACHE=["./index-ApYx6SQl.css","./index-BxZ9FBTC.js","./brand/emblem-192.png","./brand/emblem-512.png","./brand/emblem-96.png","./brand/emblem-dark-192.png","./brand/emblem-dark-512.png","./brand/wordmark-dark.png","./brand/wordmark-light.png"];
+const PRECACHE=["./index-BuxuDvXw.js","./index-IheKLmYD.css","./brand/emblem-192.png","./brand/emblem-512.png","./brand/emblem-96.png","./brand/emblem-dark-192.png","./brand/emblem-dark-512.png","./brand/wordmark-dark.png","./brand/wordmark-light.png"];
 const OFFLINE='levelup-offline-v1';
 
 self.addEventListener('install',event=>{
