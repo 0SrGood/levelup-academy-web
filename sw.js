@@ -4,30 +4,38 @@
  * - Scripts e estilos com hash no nome: cache primeiro (o nome muda a cada publicação).
  * - Demais arquivos estáticos: cache imediato e atualização em segundo plano.
  * - Requisições de outros domínios (Supabase, YouTube, DevForum) não passam pelo cache.
+ * - Estudo offline: o app inteiro (página, scripts, estilos, marca) fica guardado ao instalar cada versão;
+ *   a biblioteca offline (levelup-offline-*) guarda o laboratório e as capas baixadas e NUNCA é apagada nas atualizações.
  * __BUILD__ é trocado pelo empacotador a cada publicação, o que limpa os caches antigos. */
-const VERSION='218d66db88d9';
+const VERSION='f2185d10ef38';
 const CACHE='levelup-'+VERSION;
 const CORE=['./','./logo.png'];
+// Lista preenchida pelo empacotador (scripts/package-pages.mjs) com os arquivos desta versão do app.
+const PRECACHE=["./index-CiH84FJk.css","./index-D7ZSnDiD.js","./brand/emblem-192.png","./brand/emblem-512.png","./brand/emblem-96.png","./brand/emblem-dark-192.png","./brand/emblem-dark-512.png","./brand/wordmark-dark.png","./brand/wordmark-light.png"];
+const OFFLINE='levelup-offline-v1';
 
 self.addEventListener('install',event=>{
- event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE.map(url=>new Request(url,{cache:'reload'})))).catch(()=>{}).then(()=>self.skipWaiting()));
+ // Um arquivo que falhe não impede os outros de ficarem guardados (addAll desistiria de todos).
+ event.waitUntil(caches.open(CACHE).then(cache=>Promise.allSettled([...CORE,...PRECACHE].map(url=>cache.add(new Request(url,{cache:'reload'}))))).catch(()=>{}).then(()=>self.skipWaiting()));
 });
 self.addEventListener('activate',event=>{
- event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('levelup-')&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim()));
+ event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('levelup-')&&key!==CACHE&&!key.startsWith('levelup-offline')).map(key=>caches.delete(key)))).then(()=>self.clients.claim()));
 });
 
 async function networkFirst(request,key){
  const cache=await caches.open(CACHE);
  try{const response=await fetch(request,{cache:'no-cache'});if(response.ok)cache.put(key||request,response.clone());return response}
- catch{const cached=await cache.match(key||request,{ignoreSearch:true});if(cached)return cached;throw new Error('offline')}
+ catch{const cached=await cache.match(key||request,{ignoreSearch:true})||await caches.match(key||request,{ignoreSearch:true});if(cached)return cached;throw new Error('offline')}
 }
 async function cacheFirst(request){
  const cache=await caches.open(CACHE),cached=await cache.match(request);if(cached)return cached;
- const response=await fetch(request);if(response.ok)cache.put(request,response.clone());return response;
+ try{const response=await fetch(request);if(response.ok)cache.put(request,response.clone());return response}
+ catch(error){const saved=await caches.match(request,{ignoreSearch:true});if(saved)return saved;throw error}
 }
 async function staleWhileRevalidate(event){
  const cache=await caches.open(CACHE),cached=await cache.match(event.request);
- const update=fetch(event.request).then(response=>{if(response.ok)cache.put(event.request,response.clone());return response}).catch(()=>cached);
+ // Sem internet e sem cópia nesta versão: procura na biblioteca offline (ex.: laboratório Lua baixado).
+ const update=fetch(event.request).then(response=>{if(response.ok)cache.put(event.request,response.clone());return response}).catch(async error=>cached||await caches.match(event.request,{ignoreSearch:true})||Promise.reject(error));
  if(cached){event.waitUntil(update);return cached}
  return update;
 }
