@@ -1,0 +1,1 @@
+Ícones do Roblox Studio instalado: Shared/InsertableObjects/{Dark,Light}/Standard, versão 4f087c32742644ab. © Roblox Corporation. Uso para identificação educacional das mesmas classes. IntValue, NumberValue e StringValue usam o ícone Value, como o conjunto original. Sem recoloração.
