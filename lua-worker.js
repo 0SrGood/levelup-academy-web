@@ -8703,7 +8703,7 @@ end
 EI.__tostring = function(e) return "Enum." .. e.EnumType .. "." .. e.Name end
 Enum = setmetatable({
   Material = enumType("Material", {"Plastic", "SmoothPlastic", "Neon", "Wood", "WoodPlanks", "Metal", "DiamondPlate", "Glass", "Grass", "Brick", "Concrete", "Ice", "Sand", "Slate", "Marble", "Granite", "Fabric", "ForceField"}),
-  PartType = enumType("PartType", {"Ball", "Block", "Cylinder"}),
+  PartType = enumType("PartType", {"Ball", "Block", "Cylinder", "Wedge", "CornerWedge"}),
   EasingStyle = enumType("EasingStyle", {"Linear", "Sine", "Quad", "Cubic", "Quart", "Quint", "Exponential", "Circular", "Back", "Bounce", "Elastic"}),
   EasingDirection = enumType("EasingDirection", {"In", "Out", "InOut"}),
   HumanoidStateType = enumType("HumanoidStateType", {"Running", "Jumping", "Freefall", "Dead"}),
