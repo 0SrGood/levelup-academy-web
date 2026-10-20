@@ -36,6 +36,25 @@ local function aviso(msg)
 	print("[Level Up] " .. msg)
 end
 
+-- Buraco (NegateOperation): volta a ser a peça original, com a forma certa (bloco, cilindro, esfera, cunha),
+-- marcada "[Negar] ". Se o buraco era uma união inteira, cada peça dela vira um buraco (dá o mesmo resultado).
+local function soPecas(obj, lista)
+	if obj:IsA("UnionOperation") or obj:IsA("NegateOperation") then
+		local ok, r = pcall(function() return plugin:Separate({ obj }) end)
+		if ok and r then for _, x in ipairs(r) do soPecas(x, lista) end end
+	elseif obj:IsA("BasePart") then
+		table.insert(lista, obj)
+	end
+	return lista
+end
+local function virarBuraco(neg, pasta)
+	local lista = soPecas(neg, {})
+	for _, p in ipairs(lista) do
+		p.Parent = pasta
+		if string.sub(p.Name, 1, #NEGAR) ~= NEGAR then p.Name = NEGAR .. p.Name end
+	end
+end
+
 -- Uniões mais "de dentro" primeiro? Não: separar a de fora devolve as de dentro, que entram na fila de novo.
 local function separarTudo(raiz)
 	local feitas = 0
@@ -69,13 +88,14 @@ local function separarTudo(raiz)
 		for _, p in ipairs(pecas) do
 			p.Parent = pasta
 			if corDaUniao and p:IsA("BasePart") then p.Color = corDaUniao end
+			if p:IsA("NegateOperation") then virarBuraco(p, pasta) end
 		end
 		feitas += 1
 	end
 	return feitas
 end
 
-btnPreparar.Click:Connect(function()
+local function preparar()
 	local sel = Selection:Get()
 	if #sel == 0 then aviso("Selecione um modelo (ou peças) primeiro.") return end
 	local rec = History:TryBeginRecording("Level Up: preparar")
@@ -90,7 +110,8 @@ btnPreparar.Click:Connect(function()
 	if rec then History:FinishRecording(rec, Enum.FinishRecordingOperation.Commit) end
 	Selection:Set({ copia })
 	aviso(("Pronto! %d união(ões) separada(s) em '%s'. Agora: botão direito na cópia → Salvar no arquivo... → .rbxmx, e importe no Laboratório. (O original não foi mexido.)"):format(n, copia.Name))
-end)
+end
+btnPreparar.Click:Connect(preparar)
 
 local function refazer(raiz)
 	-- pastas mais fundas primeiro (uniões dentro de uniões)
@@ -134,7 +155,7 @@ local function refazer(raiz)
 	return feitas
 end
 
-btnRefazer.Click:Connect(function()
+local function refazerSelecao()
 	local sel = Selection:Get()
 	if #sel == 0 then sel = { workspace } end
 	local rec = History:TryBeginRecording("Level Up: refazer uniões")
@@ -142,4 +163,5 @@ btnRefazer.Click:Connect(function()
 	for _, obj in ipairs(sel) do total += refazer(obj) end
 	if rec then History:FinishRecording(rec, Enum.FinishRecordingOperation.Commit) end
 	aviso(("%d união(ões) refeita(s)."):format(total))
-end)
+end
+btnRefazer.Click:Connect(refazerSelecao)
