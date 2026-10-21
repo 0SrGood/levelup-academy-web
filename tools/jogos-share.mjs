@@ -13,13 +13,13 @@ export async function run(site,key=KEY){
   if(!r.ok)throw new Error('Lista dos jogos: '+r.status);const d=await r.json();all.push(...d.games);if(!d.more||!d.games.length)break;offset+=d.games.length}
  const root=path.join(site,'jogos');await fs.mkdir(root,{recursive:true});const keep=new Set();
  for(const g of all){
-  if(!/^[\w-]{1,80}$/.test(g.id))continue;keep.add(g.id);const dir=path.join(root,g.id);await fs.mkdir(dir,{recursive:true});
+  if(!/^[\w-]{1,80}$/.test(g.id))continue;const code=g.id.replace(/-/g,'');keep.add(code);const dir=path.join(root,code);await fs.mkdir(dir,{recursive:true});
   const v=/-([a-f0-9]{10})$/.exec(g.thumb||'')?.[1];let image='';
   if(v){const have=(await fs.readdir(dir)).find(n=>n.startsWith('capa-'+v+'.'));
    if(have)image=have;else{const r=await fetch(API+g.thumb,{headers:headers(key)});
     if(r.ok){const ext={'image/jpeg':'jpg','image/png':'png','image/webp':'webp'}[r.headers.get('content-type')||'']||'jpg';image='capa-'+v+'.'+ext;
      for(const n of await fs.readdir(dir))if(n.startsWith('capa-'))await fs.rm(path.join(dir,n));await fs.writeFile(path.join(dir,image),new Uint8Array(await r.arrayBuffer()))}}}
-  const url=SITE+'jogos/'+g.id+'/',title=`${g.title} · Jogos dos alunos Level Up`,desc=(g.description||`Jogo criado por ${g.author} no Laboratório da Level Up. Jogue no navegador, sem instalar nada.`).replace(/\s+/g,' ').trim().slice(0,200);
+  const url=SITE+'jogos/'+code+'/',title=`${g.title} · Jogos dos alunos Level Up`,desc=(g.description||`Jogo criado por ${g.author} no Laboratório da Level Up. Jogue no navegador, sem instalar nada.`).replace(/\s+/g,' ').trim().slice(0,200);
   await fs.writeFile(path.join(dir,'index.html'),`<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${esc(title)}</title><meta name="description" content="${esc(desc)}">
 <meta property="og:type" content="website"><meta property="og:site_name" content="Level Up Academy"><meta property="og:url" content="${url}">
