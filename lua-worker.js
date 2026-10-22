@@ -9003,7 +9003,12 @@ local function newSignal()
   s.Connect = function(self, fn)
     if type(fn) ~= "function" then error("Connect espera uma função.", 2) end
     local c = {fn = fn, script = scriptNameOf(), Connected = true}
-    c.Disconnect = function(cc) cc.Connected = false end
+    c.Disconnect = function(cc)
+      if not cc.Connected then return end
+      cc.Connected = false
+      for i, entry in ipairs(self.conns) do if entry == cc then table.remove(self.conns, i) break end end
+      cc.fn = nil cc.script = nil
+    end
     table.insert(self.conns, c)
     return c
   end
