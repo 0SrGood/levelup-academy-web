@@ -1,0 +1,1 @@
+import{n as e}from"./StudioLite-CudWy8Dp.js";export{e as import3d};
