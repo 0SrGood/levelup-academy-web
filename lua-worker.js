@@ -9041,7 +9041,7 @@ local classInfo = {
   SpawnLocation = {base = {"Part", "BasePart", "PVInstance"}, props = function() local p = partProps() p.Size = v3(12, 1, 12) return p end},
   UnionOperation = {base = {"PartOperation", "BasePart", "PVInstance"}, props = function() local p = partProps() p.UsePartColor = false return p end},
   NegateOperation = {base = {"PartOperation", "BasePart", "PVInstance"}, props = function() return partProps() end},
-  MeshPart = {base = {"TriangleMeshPart", "BasePart", "PVInstance"}, props = function() local p = partProps() p.MeshId = "" p.TextureID = "" p.SurfaceAlphaMode = "" p.SurfaceColor = c3(1, 1, 1) p.MeshData = "" p.MeshKey = "" p.TextureData = "" p.TextureKey = "" return p end},
+  MeshPart = {base = {"TriangleMeshPart", "BasePart", "PVInstance"}, props = function() local p = partProps() p.MeshId = "" p.TextureID = "" p.LocalCharacterBaked = false p.SurfaceAlphaMode = "" p.SurfaceColor = c3(1, 1, 1) p.MeshData = "" p.MeshKey = "" p.TextureData = "" p.TextureKey = "" return p end},
   Model = {base = {"PVInstance"}, props = function() return {} end},
   Shirt = {base = {"Clothing"}, props = function() return {ShirtTemplate = "", Color3 = c3(1, 1, 1)} end},
   Pants = {base = {"Clothing"}, props = function() return {PantsTemplate = "", Color3 = c3(1, 1, 1)} end},
