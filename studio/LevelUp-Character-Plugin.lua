@@ -1,4 +1,4 @@
--- Level Up: exportador visual R6/R15 v3 para Studio Lite.
+-- Level Up: exportador visual R6/R15 v4 para Studio Lite.
 -- Cria uma cópia; nunca remove componentes do personagem original.
 -- Salve a cópia em .rbxmx/.rbxm. Texturas/malhas precisam de acesso no navegador.
 local Selection = game:GetService("Selection")
@@ -9,8 +9,10 @@ local button = toolbar:CreateButton("Preparar personagem", "Prepara corpo e aces
 button.ClickableWhenViewportHidden = true
 local r6 = {"HumanoidRootPart","Head","Torso","Left Arm","Right Arm","Left Leg","Right Leg"}
 local r15 = {"HumanoidRootPart","Head","UpperTorso","LowerTorso","LeftUpperArm","LeftLowerArm","LeftHand","RightUpperArm","RightLowerArm","RightHand","LeftUpperLeg","LeftLowerLeg","LeftFoot","RightUpperLeg","RightLowerLeg","RightFoot"}
+local exportButton = toolbar:CreateButton("Exportar personagem local", "Exporta OBJ e identificação RBXM para importar automaticamente no Studio Lite", "rbxasset://textures/StudioToolbox/AssetPreview/more.png")
+exportButton.ClickableWhenViewportHidden = true
 local busy = false
-button.Click:Connect(function()
+local function prepare(exportLocal)
  if busy then return end
  busy = true
  local copy
@@ -166,9 +168,21 @@ button.Click:Connect(function()
   copy.Parent = workspace
   Selection:Set({copy})
   History:SetWaypoint("Personagem Level Up preparado")
-  print("Level Up v3: cópia pronta com " .. count .. " peças. Salve em .rbxmx/.rbxm, importe no Studio Lite e mova o Model para ReplicatedStorage. Use humanoid:ApplyCharacterReset(modelo).")
+  print("Level Up v4: cópia pronta com " .. count .. " peças. Salve em .rbxmx/.rbxm, importe no Studio Lite e mova o Model para ReplicatedStorage. Use humanoid:ApplyCharacterReset(modelo).")
   for message, total in pairs(notes) do warn("Level Up: " .. message .. " (" .. total .. "). Original preservado.") end
   print("Level Up: malhas e texturas privadas ainda dependem das permissões da Roblox; não são desbloqueadas pelo plugin.")
+  if exportLocal then
+   print("Level Up: etapa 1/2 — salve o OBJ e mantenha o MTL e todas as imagens geradas.")
+   PluginManager():ExportSelection(copy.Name .. ".obj")
+   Selection:Set({copy})
+   print("Level Up: etapa 2/2 — salve também o RBXM de identificação. Ele permite reconhecer corpo e acessórios sem escolhas manuais.")
+   local saved = plugin:PromptSaveSelectionAsync(copy.Name .. "_identificacao.rbxm")
+   if saved then
+    print("Level Up: agora selecione juntos no Studio Lite o OBJ, MTL, todas as imagens e este RBXM. O RBXM identifica as peças; o OBJ guarda o visual.")
+   else
+    warn("Level Up: identificação não foi salva. Exporte novamente e conclua as duas etapas para não precisar identificar peças manualmente.")
+   end
+  end
  end)
  if not ok then
   for _, part in ipairs(allocated) do part:Destroy() end
@@ -176,4 +190,6 @@ button.Click:Connect(function()
   warn("Level Up: " .. tostring(err))
  end
  busy = false
-end)
+end
+button.Click:Connect(function() prepare(false) end)
+exportButton.Click:Connect(function() prepare(true) end)
