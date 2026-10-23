@@ -1,4 +1,4 @@
--- Level Up: exportador visual R6/R15 v2 para Studio Lite.
+-- Level Up: exportador visual R6/R15 v3 para Studio Lite.
 -- Cria uma cópia; nunca remove componentes do personagem original.
 -- Salve a cópia em .rbxmx/.rbxm. Texturas/malhas precisam de acesso no navegador.
 local Selection = game:GetService("Selection")
@@ -72,7 +72,16 @@ button.Click:Connect(function()
      end
     end
    end
-   cloned:ClearAllChildren() -- sem código, física, juntas, gaiolas ou controladores do Roblox
+   -- Preserve PBR e ossos estáticos da cabeça: TextureID não equivale a SurfaceAppearance.
+   local function clean(parent)
+    for _, child in ipairs(parent:GetChildren()) do
+     if child:IsA("SurfaceAppearance") then
+      child:ClearAllChildren()
+     elseif child:IsA("Bone") then clean(child)
+     else child:Destroy() end
+    end
+   end
+   clean(cloned) -- sem scripts, juntas, gaiolas ou controladores executáveis
    cloned.Name = name
    cloned.CFrame = part.CFrame * CFrame.new(special and special.Offset or Vector3.zero)
    cloned.Color = part.Color
@@ -81,8 +90,7 @@ button.Click:Connect(function()
    cloned.Reflectance = part.Reflectance
    local surface = part:FindFirstChildWhichIsA("SurfaceAppearance")
    if surface and cloned:IsA("MeshPart") then
-    if surface.ColorMap ~= "" then cloned.TextureID = surface.ColorMap end
-    note("SurfaceAppearance: cor principal preservada; PBR simplificado")
+    note("SurfaceAppearance preservado; Studio Lite usa cor principal e transparência")
    end
    if special then
     local v = special.VertexColor
@@ -100,6 +108,17 @@ button.Click:Connect(function()
   for _, name in ipairs(required) do visual(bodies[name], name) end
   local accessoryIndex = 0
   for _, obj in ipairs(source:GetChildren()) do
+   -- Humanoid conserva a composição das roupas na prévia do próprio Roblox Studio.
+   if obj:IsA("Shirt") or obj:IsA("Pants") or obj:IsA("BodyColors") or obj:IsA("Humanoid") then
+    local old = obj.Archivable
+    obj.Archivable = true
+    local clonedOk, cloned = pcall(function() return obj:Clone() end)
+    obj.Archivable = old
+    assert(clonedOk and cloned, "Não foi possível preservar " .. obj.ClassName)
+    keep(cloned)
+    cloned:ClearAllChildren()
+    cloned.Parent = copy
+   end
    if obj:IsA("Accessory") or obj:IsA("Hat") then
     if obj:FindFirstChildWhichIsA("WrapLayer", true) then
      note("Roupa em camadas removida: deformação não suportada")
@@ -137,7 +156,7 @@ button.Click:Connect(function()
    end
   end
   for _, obj in ipairs(source:GetDescendants()) do
-   if obj:IsA("Shirt") or obj:IsA("Pants") or obj:IsA("ShirtGraphic") then note("Roupa clássica removida: estampa não pode ser aplicada diretamente à malha")
+   if obj:IsA("ShirtGraphic") then note("ShirtGraphic removido: use Shirt para a estampa clássica")
    elseif obj:IsA("Decal") or obj:IsA("Texture") then note("Decal/Texture removido: sem equivalente na aparência")
    elseif obj:IsA("WrapTarget") then note("WrapTarget removido: gaiola desnecessária no Studio Lite")
    elseif obj:IsA("FaceControls") then note("Animação facial removida: cabeça permanece estática") end
@@ -147,7 +166,7 @@ button.Click:Connect(function()
   copy.Parent = workspace
   Selection:Set({copy})
   History:SetWaypoint("Personagem Level Up preparado")
-  print("Level Up v2: cópia pronta com " .. count .. " peças. Salve em .rbxmx/.rbxm, importe no Studio Lite e mova o Model para ReplicatedStorage. Use humanoid:ApplyCharacterReset(modelo).")
+  print("Level Up v3: cópia pronta com " .. count .. " peças. Salve em .rbxmx/.rbxm, importe no Studio Lite e mova o Model para ReplicatedStorage. Use humanoid:ApplyCharacterReset(modelo).")
   for message, total in pairs(notes) do warn("Level Up: " .. message .. " (" .. total .. "). Original preservado.") end
   print("Level Up: malhas e texturas privadas ainda dependem das permissões da Roblox; não são desbloqueadas pelo plugin.")
  end)
