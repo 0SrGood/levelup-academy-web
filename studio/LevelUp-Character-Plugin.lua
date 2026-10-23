@@ -1,4 +1,4 @@
--- Level Up: exportador visual R6/R15 v4 para Studio Lite.
+-- Level Up: exportador visual R6/R15 v5 para Studio Lite.
 -- Cria uma cópia; nunca remove componentes do personagem original.
 -- Salve a cópia em .rbxmx/.rbxm. Texturas/malhas precisam de acesso no navegador.
 local Selection = game:GetService("Selection")
@@ -110,6 +110,15 @@ local function prepare(exportLocal)
   for _, name in ipairs(required) do visual(bodies[name], name) end
   local accessoryIndex = 0
   for _, obj in ipairs(source:GetChildren()) do
+   -- Uma cópia já preparada guarda acessórios como peças diretas. Não os
+   -- descarte ao preparar/exportar essa cópia novamente.
+   if obj:IsA("BasePart") then
+    local bone = string.match(obj.Name, "^LUAccessory_(.-)_%d+$")
+    if bone and bodies[bone] and bone ~= "HumanoidRootPart" then
+     accessoryIndex += 1
+     visual(obj, "LUAccessory_" .. bone .. "_" .. accessoryIndex)
+    end
+   end
    -- Humanoid conserva a composição das roupas na prévia do próprio Roblox Studio.
    if obj:IsA("Shirt") or obj:IsA("Pants") or obj:IsA("BodyColors") or obj:IsA("Humanoid") then
     local old = obj.Archivable
@@ -168,7 +177,7 @@ local function prepare(exportLocal)
   copy.Parent = workspace
   Selection:Set({copy})
   History:SetWaypoint("Personagem Level Up preparado")
-  print("Level Up v4: cópia pronta com " .. count .. " peças. Salve em .rbxmx/.rbxm, importe no Studio Lite e mova o Model para ReplicatedStorage. Use humanoid:ApplyCharacterReset(modelo).")
+  print("Level Up v5: cópia pronta com " .. count .. " peças. Salve em .rbxmx/.rbxm, importe no Studio Lite e mova o Model para ReplicatedStorage. Use humanoid:ApplyCharacterReset(modelo).")
   for message, total in pairs(notes) do warn("Level Up: " .. message .. " (" .. total .. "). Original preservado.") end
   print("Level Up: malhas e texturas privadas ainda dependem das permissões da Roblox; não são desbloqueadas pelo plugin.")
   if exportLocal then
