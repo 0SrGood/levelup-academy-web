@@ -9438,7 +9438,10 @@ methods.ApplyCharacterReset = function(self, model)
   local required = names.UpperTorso and {"HumanoidRootPart","Head","UpperTorso","LowerTorso","LeftUpperArm","LeftLowerArm","LeftHand","RightUpperArm","RightLowerArm","RightHand","LeftUpperLeg","LeftLowerLeg","LeftFoot","RightUpperLeg","RightLowerLeg","RightFoot"} or {"HumanoidRootPart","Head","Torso","Left Arm","Right Arm","Left Leg","Right Leg"}
   for _, name in ipairs(required) do if not names[name] then error("ApplyCharacterReset: falta a peça " .. name .. " (rig R6/R15 completo obrigatório).", 2) end end
   local allowed = {} for _, name in ipairs(required) do allowed[name] = true end
-  for name in pairs(names) do if not allowed[name] then error("ApplyCharacterReset: peça sem osso compatível: " .. name .. ". Acessórios não são suportados.", 2) end end
+  for name in pairs(names) do
+    local bone = string.match(name, "^LUAccessory_(.+)_%d+$")
+    if not allowed[name] and not (bone and allowed[bone] and bone ~= "HumanoidRootPart") then error("ApplyCharacterReset: peça sem osso compatível: " .. name .. ". Prepare os acessórios com o plugin atualizado.", 2) end
+  end
   local rows = {}
   for _, obj in ipairs(parts) do
     local r = D[obj] local p = r.props

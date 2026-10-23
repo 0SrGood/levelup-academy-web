@@ -1,62 +1,160 @@
--- Level Up: personagem visual R6/R15 para o Studio Lite.
--- Instale na pasta Plugins do Roblox Studio e reinicie.
--- Selecione um character completo e clique em Preparar personagem.
--- Salve a cópia selecionada em .rbxmx ou .rbxm e importe no Studio Lite.
--- Malhas/texturas continuam sujeitas às permissões de acesso da Roblox.
+-- Level Up: exportador visual R6/R15 v2 para Studio Lite.
+-- Cria uma cópia; nunca remove componentes do personagem original.
+-- Salve a cópia em .rbxmx/.rbxm. Texturas/malhas precisam de acesso no navegador.
 local Selection = game:GetService("Selection")
 local History = game:GetService("ChangeHistoryService")
+local Assets = game:GetService("AssetService")
 local toolbar = plugin:CreateToolbar("Level Up")
-local button = toolbar:CreateButton("Preparar personagem", "Copia um rig R6/R15 para ApplyCharacterReset no Studio Lite", "rbxasset://textures/StudioToolbox/AssetPreview/more.png")
+local button = toolbar:CreateButton("Preparar personagem", "Prepara corpo e acessórios rígidos R6/R15 para Studio Lite", "rbxasset://textures/StudioToolbox/AssetPreview/more.png")
 button.ClickableWhenViewportHidden = true
 local r6 = {"HumanoidRootPart","Head","Torso","Left Arm","Right Arm","Left Leg","Right Leg"}
 local r15 = {"HumanoidRootPart","Head","UpperTorso","LowerTorso","LeftUpperArm","LeftLowerArm","LeftHand","RightUpperArm","RightLowerArm","RightHand","LeftUpperLeg","LeftLowerLeg","LeftFoot","RightUpperLeg","RightLowerLeg","RightFoot"}
+local busy = false
 button.Click:Connect(function()
+ if busy then return end
+ busy = true
  local copy
+ local allocated = {}
+ local function keep(part) table.insert(allocated, part) return part end
  local ok, err = pcall(function()
   local selected = Selection:Get()
-  assert(#selected == 1 and selected[1]:IsA("Model"), "Selecione um único Model de personagem completo.")
+  assert(#selected == 1, "Selecione um personagem completo ou uma peça dele.")
   local source = selected[1]
+  while source and not (source:IsA("Model") and source:FindFirstChild("HumanoidRootPart")) do source = source.Parent end
+  assert(source and source ~= workspace, "Selecione um Model de personagem completo (R6/R15).")
   local required = source:FindFirstChild("UpperTorso") and r15 or r6
-  local allowed, parts, names = {}, {}, {}
+  local bodies, notes, count = {}, {}, 0
+  local function note(text) notes[text] = (notes[text] or 0) + 1 end
   for _, name in ipairs(required) do
    local part = source:FindFirstChild(name)
    assert(part and part:IsA("BasePart"), "Falta a peça " .. name)
-   allowed[name] = true
+   bodies[name] = part
   end
-  for _, obj in ipairs(source:GetDescendants()) do
-   if obj:IsA("Shirt") or obj:IsA("Pants") or obj:IsA("ShirtGraphic") or obj:IsA("Decal") or obj:IsA("Texture") or obj:IsA("SpecialMesh") or obj:IsA("SurfaceAppearance") or obj:IsA("WrapLayer") or obj:IsA("WrapTarget") then
-    error("Aparência não exportável fielmente: " .. obj.ClassName .. " em " .. obj:GetFullName() .. ". Use peças Part/MeshPart com Color/TextureID; roupas em camadas, decals e SpecialMesh não são suportados.")
-   end
-   if obj:IsA("BasePart") then
-    assert(obj.ClassName == "Part" or obj.ClassName == "MeshPart", "Classe visual não suportada: " .. obj.ClassName)
-    assert(allowed[obj.Name] and obj.Parent == source, "Peça extra/acessório sem osso suportado: " .. obj:GetFullName())
-    assert(not names[obj.Name], "Peça duplicada: " .. obj.Name)
-    names[obj.Name] = true
-    table.insert(parts, obj)
-   end
-  end
-  assert(#parts <= 128, "Máximo de 128 peças.")
   copy = Instance.new("Model")
   copy.Name = source.Name .. "_Appearance"
-  for _, part in ipairs(parts) do
-   local old = part.Archivable
-   part.Archivable = true
-   local clonedOk, cloned = pcall(function() return part:Clone() end)
-   part.Archivable = old
-   assert(clonedOk and cloned, "Não foi possível copiar " .. part.Name)
-   cloned:ClearAllChildren() -- sem scripts, constraints, animações ou juntas executáveis
+  local function visual(part, name)
+   assert(count < 128, "Máximo de 128 peças visuais. Reduza os acessórios.")
+   local cloned
+   -- FileMesh usa o tamanho nativo da malha multiplicado por Scale, não o Size do Part.
+   local special = part:FindFirstChildWhichIsA("SpecialMesh")
+   if special and special.MeshType == Enum.MeshType.FileMesh and special.MeshId ~= "" then
+    local made, result = pcall(function() return Assets:CreateMeshPartAsync(Content.fromUri(special.MeshId), {CollisionFidelity = Enum.CollisionFidelity.Box}) end)
+    if made and result then
+     cloned = keep(result)
+     cloned.Size = Vector3.new(math.max(0.01, cloned.Size.X * math.abs(special.Scale.X)), math.max(0.01, cloned.Size.Y * math.abs(special.Scale.Y)), math.max(0.01, cloned.Size.Z * math.abs(special.Scale.Z)))
+     cloned.TextureID = special.TextureId
+    else
+     note("SpecialMesh sem permissão de conversão: substituído por forma simples")
+    end
+   end
+   if not cloned then
+    if part.ClassName == "Part" or part.ClassName == "MeshPart" then
+     local old = part.Archivable
+     part.Archivable = true
+     local worked, result = pcall(function() return part:Clone() end)
+     part.Archivable = old
+     assert(worked and result, "Não foi possível copiar " .. part.Name)
+     cloned = keep(result)
+    else
+     cloned = keep(Instance.new("Part"))
+     cloned.Size = part.Size
+     note("Peça " .. part.ClassName .. ": substituída por bloco")
+    end
+    if special and cloned:IsA("Part") then
+     if special.MeshType == Enum.MeshType.Sphere or special.MeshType == Enum.MeshType.Head then
+      cloned.Shape = Enum.PartType.Ball
+     elseif special.MeshType == Enum.MeshType.Cylinder then
+      cloned.Shape = Enum.PartType.Cylinder
+     end
+     if special.MeshType ~= Enum.MeshType.FileMesh then
+      cloned.Size = Vector3.new(math.max(0.01, part.Size.X * math.abs(special.Scale.X)), math.max(0.01, part.Size.Y * math.abs(special.Scale.Y)), math.max(0.01, part.Size.Z * math.abs(special.Scale.Z)))
+      note("SpecialMesh primitivo: forma aproximada")
+     end
+    end
+   end
+   cloned:ClearAllChildren() -- sem código, física, juntas, gaiolas ou controladores do Roblox
+   cloned.Name = name
+   cloned.CFrame = part.CFrame * CFrame.new(special and special.Offset or Vector3.zero)
+   cloned.Color = part.Color
+   cloned.Material = part.Material
+   cloned.Transparency = part.Transparency
+   cloned.Reflectance = part.Reflectance
+   local surface = part:FindFirstChildWhichIsA("SurfaceAppearance")
+   if surface and cloned:IsA("MeshPart") then
+    if surface.ColorMap ~= "" then cloned.TextureID = surface.ColorMap end
+    note("SurfaceAppearance: cor principal preservada; PBR simplificado")
+   end
+   if special then
+    local v = special.VertexColor
+    cloned.Color = Color3.new(part.Color.R * v.X, part.Color.G * v.Y, part.Color.B * v.Z)
+   end
    cloned.Anchored = true
    cloned.CanCollide = false
    cloned.CanTouch = false
+   cloned.CanQuery = false
+   if name == "HumanoidRootPart" then cloned.Transparency = 1 end
+   count += 1
+   assert(count <= 128, "Máximo de 128 peças visuais. Reduza os acessórios.")
    cloned.Parent = copy
   end
+  for _, name in ipairs(required) do visual(bodies[name], name) end
+  local accessoryIndex = 0
+  for _, obj in ipairs(source:GetChildren()) do
+   if obj:IsA("Accessory") or obj:IsA("Hat") then
+    if obj:FindFirstChildWhichIsA("WrapLayer", true) then
+     note("Roupa em camadas removida: deformação não suportada")
+    else
+     local handle = obj:FindFirstChild("Handle")
+     local bone
+     if handle and handle:IsA("BasePart") then
+      -- Weld conserva o ponto real de fixação, inclusive acessórios sem Attachment.
+      for _, joint in ipairs(handle:GetDescendants()) do
+       if joint:IsA("JointInstance") or joint:IsA("WeldConstraint") then
+        local other = joint.Part0 == handle and joint.Part1 or joint.Part1 == handle and joint.Part0
+        if other and bodies[other.Name] == other and other.Name ~= "HumanoidRootPart" then bone = other.Name break end
+       end
+      end
+      if not bone then
+       for _, att in ipairs(handle:GetChildren()) do
+        if att:IsA("Attachment") then
+         for _, name in ipairs(required) do
+          if name ~= "HumanoidRootPart" and bodies[name]:FindFirstChild(att.Name) then bone = name break end
+         end
+        end
+        if bone then break end
+       end
+      end
+     end
+     if bone then
+      for _, part in ipairs(obj:GetDescendants()) do
+       if part:IsA("BasePart") then
+        accessoryIndex += 1
+        visual(part, "LUAccessory_" .. bone .. "_" .. accessoryIndex)
+       end
+      end
+     else note("Acessório sem fixação reconhecida removido") end
+    end
+   end
+  end
+  for _, obj in ipairs(source:GetDescendants()) do
+   if obj:IsA("Shirt") or obj:IsA("Pants") or obj:IsA("ShirtGraphic") then note("Roupa clássica removida: estampa não pode ser aplicada diretamente à malha")
+   elseif obj:IsA("Decal") or obj:IsA("Texture") then note("Decal/Texture removido: sem equivalente na aparência")
+   elseif obj:IsA("WrapTarget") then note("WrapTarget removido: gaiola desnecessária no Studio Lite")
+   elseif obj:IsA("FaceControls") then note("Animação facial removida: cabeça permanece estática") end
+  end
   copy.PrimaryPart = copy:FindFirstChild("HumanoidRootPart")
-  copy.PrimaryPart.Transparency = 1
   History:SetWaypoint("Antes de preparar personagem Level Up")
   copy.Parent = workspace
   Selection:Set({copy})
   History:SetWaypoint("Personagem Level Up preparado")
-  print("Level Up: cópia pronta. Salve em .rbxmx/.rbxm; importe no Studio Lite e mova o Model para ReplicatedStorage. Use humanoid:ApplyCharacterReset(modelo). A animação usa os ossos R15 do Studio Lite, sem copiar scripts ou física. MeshId/TextureID precisam estar acessíveis no navegador.")
+  print("Level Up v2: cópia pronta com " .. count .. " peças. Salve em .rbxmx/.rbxm, importe no Studio Lite e mova o Model para ReplicatedStorage. Use humanoid:ApplyCharacterReset(modelo).")
+  for message, total in pairs(notes) do warn("Level Up: " .. message .. " (" .. total .. "). Original preservado.") end
+  print("Level Up: malhas e texturas privadas ainda dependem das permissões da Roblox; não são desbloqueadas pelo plugin.")
  end)
- if not ok then if copy then copy:Destroy() end warn("Level Up: " .. tostring(err)) end
+ if not ok then
+  for _, part in ipairs(allocated) do part:Destroy() end
+  if copy then copy:Destroy() end
+  warn("Level Up: " .. tostring(err))
+ end
+ busy = false
 end)

@@ -1,0 +1,1 @@
+import{n as e}from"./StudioLite-Bexa-6Ya.js";export{e as import3d};
