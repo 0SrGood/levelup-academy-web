@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; connect-src 'self' blob: data:; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; media-src 'self' blob:; object-src 'none'; base-uri 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Teste de travamento · Level Up</title>
+<link rel="stylesheet" href="./fonts/fonts.css">
+<style>
+ html,body{margin:0;background:#101015;color:#eef;font:17px system-ui,-apple-system,sans-serif}
+ #menu,#result{max-width:720px;margin:0 auto;padding:20px 16px 40px;box-sizing:border-box}
+ h1{font-size:26px;margin:8px 0 12px}
+ .lead{line-height:1.5;color:#cfd2e6}
+ .field{display:block;margin:14px 0;color:#cfd2e6;font-size:15px}
+ .field input,.field select{display:block;width:100%;box-sizing:border-box;margin-top:6px;padding:12px;font-size:17px;border-radius:10px;border:1px solid #444a66;background:#1b1d2a;color:#fff}
+ .tests{display:grid;gap:12px;margin-top:16px}
+ button.test{display:block;text-align:left;width:100%;padding:18px 16px;border-radius:14px;border:2px solid #2f4d80;background:#1d2e4f;color:#fff;font:inherit;cursor:pointer;min-height:64px}
+ button.test b{display:block;font-size:18px;margin-bottom:6px}
+ button.test span{display:block;color:#cfe0ff;font-size:15px;line-height:1.4}
+ button.test small{display:block;margin-top:8px;color:#9fb6dd}
+ button.test.hl{border-color:#73efb5;background:#173e31}
+ .warn{background:#4a2a12;border:2px solid #ffb35c;border-radius:12px;padding:12px 14px;line-height:1.45;margin:12px 0}
+ .next{background:#173e31;border-radius:10px;padding:10px 12px}
+ .foot{color:#8c90a8;font-size:13px;line-height:1.5;margin-top:24px}
+ #hud{position:fixed;top:max(6px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);z-index:100000;background:#000c;color:#fff;padding:6px 12px;border-radius:999px;font-size:13px;pointer-events:none;white-space:nowrap;max-width:94vw;overflow:hidden;text-overflow:ellipsis}
+ #result h1.good{color:#73efb5}#result h1.mid{color:#ffd75e}#result h1.bad{color:#ff7b7b}
+ #result p.good{color:#73efb5}#result p.bad,#result li.bad{color:#ff9b9b}
+ #result li{margin:6px 0;line-height:1.4}
+ button.big{display:block;width:100%;margin:14px 0;padding:18px;font:inherit;font-weight:700;border-radius:14px;border:0;background:#2f6bd8;color:#fff;cursor:pointer}
+ button.big.alt{background:#30313a}
+ .engine-host{position:fixed;inset:0;z-index:50;background:#000}
+ .notice{background:#232a3d;border:1px solid #3d4a6d;border-radius:10px;padding:10px 12px;font-size:14px;color:#dfe6ff;margin:4px 0 8px}
+ .photo{background:#fff;color:#111;border-radius:14px;padding:14px;margin:16px 0}
+ .photo .ph-head{font-size:22px;font-weight:800;margin-bottom:8px}
+ .photo table{width:100%;border-collapse:collapse;font-size:19px}
+ .photo th{text-align:left;font-weight:600;padding:6px 8px 6px 0;color:#333;width:48%;vertical-align:top}
+ .photo td{padding:6px 0;font-weight:800;overflow-wrap:anywhere}
+ .photo tr+tr{border-top:1px solid #ddd}
+ .share p{color:#cfd2e6;min-height:1.2em}
+ button.small{font:inherit;font-size:14px;padding:6px 10px;border-radius:8px;border:1px solid #556;background:#2b2e3d;color:#fff;cursor:pointer;margin-left:6px}
+ .saved{background:#1b1d2a;border-radius:12px;padding:10px 14px;margin-top:16px}
+ .saved li{margin:8px 0}
+</style>
+  <script type="module" crossorigin src="./lt/lagtest-index-DDqu-Ugr.js"></script>
+</head>
+<body>
+<div id="menu">Carregando…</div>
+<div id="result" hidden></div>
+<div id="hud" hidden></div>
+</body>
+</html>
