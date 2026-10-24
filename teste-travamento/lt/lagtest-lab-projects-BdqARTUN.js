@@ -1,5 +1,5 @@
-import { a as loadCode, c as saveLocal, o as loadLocal } from "./lagtest-offline-guard-Bgh6rVPp.js";
-import "./lagtest-index-DDqu-Ugr.js";
+import { a as loadCode, c as saveLocal, o as loadLocal } from "./lagtest-offline-guard-09XAK-Pr.js";
+import "./lagtest-index-BzqKvxjC.js";
 //#region lib/studio/lab-projects.ts
 /** Projetos do Laboratório guardados no aparelho (tela inicial, como a do Roblox Studio).
 *  - O projeto ABERTO fica na chave 'studio' (salva e sincroniza como sempre).

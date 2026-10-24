@@ -1,7 +1,7 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./lagtest-STLLoader-SuX0WMaM.js","./lagtest-index-DDqu-Ugr.js","./lagtest-OBJLoader-CI8DSHv8.js","./lagtest-MTLLoader-DkDiAMiT.js","./lagtest-FBXLoader-BiafpRMf.js","./lagtest-GLTFLoader-BkpQolpW.js","./lagtest-Toolbox-WzBkk_FG.js","./lagtest-offline-guard-Bgh6rVPp.js","./lagtest-offline-guard-DXashqPX.css","./lagtest-toolbox-compact-DjPES5hc.js","./lagtest-PublishGame-BRXGO-Pc.js","./lagtest-games-B1FdPLdk.js","./lagtest-ImportCharacter-vldo6sjN.js","./lagtest-CharacterImportGuide-DLLmIWhc.js","./lagtest-PluginHelp-r9hEsPh5.js","./lagtest-game-session-BbWHCZii.js","./lagtest-lab-projects-RNeTYQDF.js"])))=>i.map(i=>d[i]);
-import { E as require_react, S as loadPrivateImage, _ as createLucideIcon, d as robloxAsset, f as upload, g as RotateCw, h as WifiOff, l as LevelUpLoader, m as mediaIdOf, n as saveCode, p as isPublicGameMedia, t as loadCode, u as api, v as robloxIconClasses, w as require_jsx_runtime, x as acquirePublicImage, y as PrivateImage } from "./lagtest-offline-guard-Bgh6rVPp.js";
-import { $t as sanitize, At as byId, Bt as isText, C as Box3, D as Color, Dt as PROPS, Et as MATERIAL_TOKEN, F as Group$1, Ft as isGui, G as Matrix3, Gt as newId, H as LoadingManager, Ht as isWorldGui, It as isImage, Jt as orientationFromMatrix, Kt as newProject, Lt as isPart, Mt as defaults, Nt as descendants, Ot as SERVICES, Pt as duplicate, Qt as rotateParts, Rt as isScript, T as BufferGeometry, Tt as MATERIALS, Ut as make$1, Vt as isUiComponent, Wt as negate, X as MeshStandardMaterial, Xt as reparent, Yt as remove, Zt as rotMatrix, _ as ConvexHull, an as diagnosticEvent, cn as session, d as StudioEngine, en as separate, f as autoQuality, ft as Texture, g as assetIdOf, gt as Vector3, h as encodeMesh, ht as Vector2, in as attachGameDiagnostics, jt as children, kt as SHAPE_TOKEN, nn as unionChildrenWorld, on as setDiagnosticPhase, p as __vitePreload, q as Mesh, qt as nodeKidsWorld, rn as unite, sn as local, tn as setProp, w as BufferAttribute, wt as BODY_COLOR_PROPS, xt as fullName, y as mergeGeometries, zt as isService } from "./lagtest-index-DDqu-Ugr.js";
-import { t as currentBuild } from "./lagtest-mock-pwa-BHJj_hmx.js";
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./lagtest-STLLoader-CuGeDy0n.js","./lagtest-index-BzqKvxjC.js","./lagtest-OBJLoader-DjDIIeLc.js","./lagtest-MTLLoader-dyQHvdmv.js","./lagtest-FBXLoader-CK4qRWGa.js","./lagtest-GLTFLoader-CTSXvt7n.js","./lagtest-Toolbox-kuujqAEY.js","./lagtest-offline-guard-09XAK-Pr.js","./lagtest-offline-guard-DXashqPX.css","./lagtest-toolbox-compact-DGOnoN6A.js","./lagtest-PublishGame-CmgUgf47.js","./lagtest-games-uC_-X8gL.js","./lagtest-ImportCharacter-CknOy5ys.js","./lagtest-CharacterImportGuide-BETs03Nq.js","./lagtest-PluginHelp-CJLzA4mN.js","./lagtest-game-session-fa9jEbgX.js","./lagtest-lab-projects-BdqARTUN.js"])))=>i.map(i=>d[i]);
+import { E as require_react, S as loadPrivateImage, _ as createLucideIcon, d as robloxAsset, f as upload, g as RotateCw, h as WifiOff, l as LevelUpLoader, m as mediaIdOf, n as saveCode, p as isPublicGameMedia, t as loadCode, u as api, v as robloxIconClasses, w as require_jsx_runtime, x as acquirePublicImage, y as PrivateImage } from "./lagtest-offline-guard-09XAK-Pr.js";
+import { $t as sanitize, At as byId, Bt as isText, C as Box3, D as Color, Dt as PROPS, Et as MATERIAL_TOKEN, F as Group$1, Ft as isGui, G as Matrix3, Gt as newId, H as LoadingManager, Ht as isWorldGui, It as isImage, Jt as orientationFromMatrix, Kt as newProject, Lt as isPart, Mt as defaults, Nt as descendants, Ot as SERVICES, Pt as duplicate, Qt as rotateParts, Rt as isScript, T as BufferGeometry, Tt as MATERIALS, Ut as make$1, Vt as isUiComponent, Wt as negate, X as MeshStandardMaterial, Xt as reparent, Yt as remove, Zt as rotMatrix, _ as ConvexHull, an as diagnosticEvent, d as StudioEngine, en as separate, f as autoQuality, ft as Texture, g as assetIdOf, gt as Vector3, h as encodeMesh, ht as Vector2, in as attachGameDiagnostics, jt as children, kt as SHAPE_TOKEN, nn as unionChildrenWorld, p as __vitePreload, q as Mesh, qt as nodeKidsWorld, rn as unite, sn as setDiagnosticPhase, tn as setProp, w as BufferAttribute, wt as BODY_COLOR_PROPS, xt as fullName, y as mergeGeometries, zt as isService } from "./lagtest-index-BzqKvxjC.js";
+import { r as protectStudioReload, t as currentBuild } from "./lagtest-pwa-C-WYeuqi.js";
 //#region lib/lua-suggestions.ts
 var import_react = require_react();
 var import_jsx_runtime = require_jsx_runtime();
@@ -4105,33 +4105,6 @@ function LuaEditor({ code, onChange, scene }) {
 	});
 }
 //#endregion
-//#region lib/reload-guard.ts
-var STUDIO_RELOAD_CONFIRMATION = "Você tem certeza que quer recarregar a página?";
-var studios = /* @__PURE__ */ new Set();
-function warnBeforeUnload(event) {
-	if (!studios.size) return;
-	event.preventDefault();
-	event.returnValue = STUDIO_RELOAD_CONFIRMATION;
-}
-/** Only the mounted Studio Lite owns the native refresh/close warning. */
-function protectStudioReload() {
-	if (typeof window === "undefined") return () => {};
-	const scope = Symbol("StudioLite");
-	if (!studios.size) window.addEventListener("beforeunload", warnBeforeUnload);
-	studios.add(scope);
-	document.documentElement.dataset.studioOpen = "1";
-	let released = false;
-	return () => {
-		if (released) return;
-		released = true;
-		studios.delete(scope);
-		if (!studios.size) {
-			window.removeEventListener("beforeunload", warnBeforeUnload);
-			delete document.documentElement.dataset.studioOpen;
-		}
-	};
-}
-//#endregion
 //#region components/studio/GuiLayer.tsx
 /** Interface (GUI) do jogo desenhada por cima da cena 3D: ScreenGui, Frame, TextLabel, TextButton, ImageLabel, ImageButton, UICorner, UIStroke, UIGradient e UIListLayout.
 *  Editar: clique seleciona; arrastar move; as alças nos cantos e lados mudam o tamanho. Tudo em escala (fica igual em
@@ -5679,9 +5652,9 @@ var KEY = "levelup-lab-inbox";
 /** Pega (e apaga) o que a aula mandou. Ignora entregas com mais de 30 minutos. */
 function takeLabDelivery() {
 	try {
-		const raw = local.getItem(KEY);
+		const raw = localStorage.getItem(KEY);
 		if (!raw) return null;
-		local.removeItem(KEY);
+		localStorage.removeItem(KEY);
 		const d = JSON.parse(raw);
 		if (!d || !Array.isArray(d.insts) || Date.now() - d.at > 30 * 6e4) return null;
 		return d;
@@ -5862,7 +5835,7 @@ async function loadRoot(files, urls, strict, failures) {
 	const e = ext(main.name);
 	if (e === "stl") {
 		const { STLLoader } = await __vitePreload(async () => {
-			const { STLLoader } = await import("./lagtest-STLLoader-SuX0WMaM.js");
+			const { STLLoader } = await import("./lagtest-STLLoader-CuGeDy0n.js");
 			return { STLLoader };
 		}, __vite__mapDeps([0,1]), import.meta.url);
 		const g = new STLLoader(manager).parse(await main.arrayBuffer());
@@ -5879,7 +5852,7 @@ async function loadRoot(files, urls, strict, failures) {
 	}
 	if (e === "obj") {
 		const { OBJLoader } = await __vitePreload(async () => {
-			const { OBJLoader } = await import("./lagtest-OBJLoader-CI8DSHv8.js");
+			const { OBJLoader } = await import("./lagtest-OBJLoader-DjDIIeLc.js");
 			return { OBJLoader };
 		}, __vite__mapDeps([2,1]), import.meta.url);
 		const loader = new OBJLoader(manager);
@@ -5892,7 +5865,7 @@ async function loadRoot(files, urls, strict, failures) {
 		const mtl = files.find((f) => ext(f.name) === "mtl" && (!libraries.length || base(f.name) === base(libraries[0])));
 		if (mtl) {
 			const { MTLLoader } = await __vitePreload(async () => {
-				const { MTLLoader } = await import("./lagtest-MTLLoader-DkDiAMiT.js");
+				const { MTLLoader } = await import("./lagtest-MTLLoader-dyQHvdmv.js");
 				return { MTLLoader };
 			}, __vite__mapDeps([3,1]), import.meta.url);
 			const mats = new MTLLoader(manager).parse(await mtl.text(), "");
@@ -5934,7 +5907,7 @@ async function loadRoot(files, urls, strict, failures) {
 	}
 	if (e === "fbx") {
 		const { FBXLoader } = await __vitePreload(async () => {
-			const { FBXLoader } = await import("./lagtest-FBXLoader-BiafpRMf.js");
+			const { FBXLoader } = await import("./lagtest-FBXLoader-CK4qRWGa.js");
 			return { FBXLoader };
 		}, __vite__mapDeps([4,1]), import.meta.url);
 		return {
@@ -5944,7 +5917,7 @@ async function loadRoot(files, urls, strict, failures) {
 		};
 	}
 	const { GLTFLoader } = await __vitePreload(async () => {
-		const { GLTFLoader } = await import("./lagtest-GLTFLoader-BkpQolpW.js");
+		const { GLTFLoader } = await import("./lagtest-GLTFLoader-CTSXvt7n.js");
 		return { GLTFLoader };
 	}, __vite__mapDeps([5,1]), import.meta.url);
 	const data = e === "gltf" ? await main.text() : await main.arrayBuffer();
@@ -6302,7 +6275,7 @@ async function import3d(files, options = {}) {
 	}
 }
 //#endregion
-//#region ../../../levelup-academy/node_modules/fzstd/esm/index.mjs
+//#region ../../node_modules/fzstd/esm/index.mjs
 var ab = ArrayBuffer, u8 = Uint8Array, u16 = Uint16Array, i16 = Int16Array, i32 = Int32Array;
 var slc = function(v, s, e) {
 	if (u8.prototype.slice) return u8.prototype.slice.call(v, s, e);
@@ -8667,10 +8640,10 @@ function placeModel(insts, [x, , z]) {
 //#endregion
 //#region components/studio/StudioLite.tsx
 /** Laboratório (Studio Lite): cena 3D, Explorador, Propriedades editáveis, scripts em abas, Jogar e arquivos .rbxlx. */
-var Toolbox = (0, import_react.lazy)(() => __vitePreload(() => import("./lagtest-Toolbox-WzBkk_FG.js"), __vite__mapDeps([6,7,1,8,9]), import.meta.url));
-var PublishGame = (0, import_react.lazy)(() => __vitePreload(() => import("./lagtest-PublishGame-BRXGO-Pc.js"), __vite__mapDeps([10,7,1,8,11,9]), import.meta.url));
-var ImportCharacter = (0, import_react.lazy)(() => __vitePreload(() => import("./lagtest-ImportCharacter-vldo6sjN.js"), __vite__mapDeps([12,7,1,8,13]), import.meta.url));
-var PluginHelp = (0, import_react.lazy)(() => __vitePreload(() => import("./lagtest-PluginHelp-r9hEsPh5.js"), __vite__mapDeps([14,7,1,8,13]), import.meta.url));
+var Toolbox = (0, import_react.lazy)(() => __vitePreload(() => import("./lagtest-Toolbox-kuujqAEY.js"), __vite__mapDeps([6,7,8,1,9]), import.meta.url));
+var PublishGame = (0, import_react.lazy)(() => __vitePreload(() => import("./lagtest-PublishGame-CmgUgf47.js"), __vite__mapDeps([10,7,8,11,9]), import.meta.url));
+var ImportCharacter = (0, import_react.lazy)(() => __vitePreload(() => import("./lagtest-ImportCharacter-CknOy5ys.js"), __vite__mapDeps([12,7,8,1,13]), import.meta.url));
+var PluginHelp = (0, import_react.lazy)(() => __vitePreload(() => import("./lagtest-PluginHelp-CJLzA4mN.js"), __vite__mapDeps([14,7,8,13]), import.meta.url));
 var INSERTABLE = [
 	{
 		cls: "Part",
@@ -9271,7 +9244,7 @@ function StudioLite({ userId, playerName, avatar = null, onExit, onHome, onLeave
 					version: m.version
 				});
 				if (!admission.channel || admission.protocol !== 2) throw new Error("O servidor ainda precisa da atualização de salas compartilhadas.");
-				const [{ GameRoom }, { GameSession }] = await Promise.all([__vitePreload(() => import("./lagtest-multiplayer-D6VNTFuX.js"), [], import.meta.url), __vitePreload(() => import("./lagtest-game-session-BbWHCZii.js"), __vite__mapDeps([15,1]), import.meta.url)]);
+				const [{ GameRoom }, { GameSession }] = await Promise.all([__vitePreload(() => import("./lagtest-multiplayer-BDHZ6TWq.js"), [], import.meta.url), __vitePreload(() => import("./lagtest-game-session-fa9jEbgX.js"), __vite__mapDeps([15,1]), import.meta.url)]);
 				if (!alive || !engine.current) return;
 				const r = new GameRoom({
 					url: endpoint.replace(/^http/, "ws").replace(/\/functions\/v1\/.*$/, "") + "/realtime/v1/websocket?apikey=" + encodeURIComponent(publicKey) + "&vsn=1.0.0",
@@ -9369,7 +9342,7 @@ function StudioLite({ userId, playerName, avatar = null, onExit, onHome, onLeave
 	const [menuOpen, setMenuOpen] = (0, import_react.useState)(false), [boardHidden, setBoardHidden] = (0, import_react.useState)(false);
 	const [sens, setSens] = (0, import_react.useState)(() => {
 		try {
-			const v = Number(local.getItem("levelup-camera-sens"));
+			const v = Number(localStorage.getItem("levelup-camera-sens"));
 			return v > 0 ? v : 1;
 		} catch {
 			return 1;
@@ -9378,7 +9351,7 @@ function StudioLite({ userId, playerName, avatar = null, onExit, onHome, onLeave
 	(0, import_react.useEffect)(() => {
 		engine.current?.setCamSensitivity(sens);
 		try {
-			local.setItem("levelup-camera-sens", String(sens));
+			localStorage.setItem("levelup-camera-sens", String(sens));
 		} catch {}
 	}, [sens, play]);
 	(0, import_react.useEffect)(() => {
@@ -9475,7 +9448,7 @@ function StudioLite({ userId, playerName, avatar = null, onExit, onHome, onLeave
 	/** Gráficos: "auto" escolhe pelo aparelho; o aluno pode trocar em Exibir. */
 	const [gfx, setGfx] = (0, import_react.useState)(() => {
 		try {
-			const v = local.getItem("levelup-studio-graficos");
+			const v = localStorage.getItem("levelup-studio-graficos");
 			return v === "alta" || v === "leve" ? v : "auto";
 		} catch {
 			return "auto";
@@ -9485,8 +9458,8 @@ function StudioLite({ userId, playerName, avatar = null, onExit, onHome, onLeave
 	(0, import_react.useEffect)(() => {
 		let crashed = false;
 		try {
-			crashed = session.getItem("levelup-lab-aberto") === "1";
-			session.setItem("levelup-lab-aberto", "1");
+			crashed = sessionStorage.getItem("levelup-lab-aberto") === "1";
+			sessionStorage.setItem("levelup-lab-aberto", "1");
 		} catch {}
 		if (crashed && gfx !== "leve") {
 			setGfx("leve");
@@ -9494,7 +9467,7 @@ function StudioLite({ userId, playerName, avatar = null, onExit, onHome, onLeave
 		}
 		const clean = () => {
 			try {
-				session.removeItem("levelup-lab-aberto");
+				sessionStorage.removeItem("levelup-lab-aberto");
 			} catch {}
 		};
 		addEventListener("pagehide", clean);
@@ -9618,8 +9591,8 @@ function StudioLite({ userId, playerName, avatar = null, onExit, onHome, onLeave
 	(0, import_react.useEffect)(() => {
 		if (!mobile) return;
 		try {
-			if (local.getItem("levelup-studio-dica")) return;
-			local.setItem("levelup-studio-dica", "1");
+			if (localStorage.getItem("levelup-studio-dica")) return;
+			localStorage.setItem("levelup-studio-dica", "1");
 		} catch {
 			return;
 		}
@@ -9733,7 +9706,7 @@ function StudioLite({ userId, playerName, avatar = null, onExit, onHome, onLeave
 	}, [snap]);
 	(0, import_react.useEffect)(() => {
 		try {
-			local.setItem("levelup-studio-graficos", gfx);
+			localStorage.setItem("levelup-studio-graficos", gfx);
 		} catch {}
 	}, [quality, gfx]);
 	const setTool = (t) => {
@@ -10216,9 +10189,9 @@ function StudioLite({ userId, playerName, avatar = null, onExit, onHome, onLeave
 		let linked = null;
 		try {
 			linked = await (await __vitePreload(async () => {
-				const { currentGame } = await import("./lagtest-lab-projects-RNeTYQDF.js");
+				const { currentGame } = await import("./lagtest-lab-projects-BdqARTUN.js");
 				return { currentGame };
-			}, __vite__mapDeps([16,7,1,8]), import.meta.url)).currentGame(userId);
+			}, __vite__mapDeps([16,7,8,1]), import.meta.url)).currentGame(userId);
 		} catch {}
 		setPublishing({
 			snap,
@@ -10231,7 +10204,7 @@ function StudioLite({ userId, playerName, avatar = null, onExit, onHome, onLeave
 			...p,
 			name: title
 		});
-		__vitePreload(() => import("./lagtest-lab-projects-RNeTYQDF.js").then((m) => m.linkGame(userId, id, title)), __vite__mapDeps([16,7,1,8]), import.meta.url).catch(() => {});
+		__vitePreload(() => import("./lagtest-lab-projects-BdqARTUN.js").then((m) => m.linkGame(userId, id, title)), __vite__mapDeps([16,7,8,1]), import.meta.url).catch(() => {});
 	}
 	(0, import_react.useEffect)(() => {
 		if (play === "playing") setPlayed(true);
@@ -10254,7 +10227,7 @@ function StudioLite({ userId, playerName, avatar = null, onExit, onHome, onLeave
 		setImporting(true);
 		try {
 			const { import3d } = await __vitePreload(async () => {
-				const { import3d } = await import("./lagtest-import3d-CJpwNRge.js");
+				const { import3d } = await import("./lagtest-import3d-bxlntHp7.js");
 				return { import3d };
 			}, [], import.meta.url);
 			const r = await import3d(files);
@@ -11527,7 +11500,7 @@ function StudioLite({ userId, playerName, avatar = null, onExit, onHome, onLeave
 	const stick = (0, import_react.useRef)(null), knobRef = (0, import_react.useRef)(null), jump = (0, import_react.useRef)(false), jumpPointer = (0, import_react.useRef)(null), stickInput = (0, import_react.useRef)([0, 0]);
 	const [sideW, setSideW] = (0, import_react.useState)(() => {
 		try {
-			const v = Number(local.getItem("levelup-studio-side-w"));
+			const v = Number(localStorage.getItem("levelup-studio-side-w"));
 			return v >= 220 && v <= 640 ? v : 300;
 		} catch {
 			return 300;
@@ -11535,7 +11508,7 @@ function StudioLite({ userId, playerName, avatar = null, onExit, onHome, onLeave
 	});
 	const [split, setSplit] = (0, import_react.useState)(() => {
 		try {
-			const v = Number(local.getItem("levelup-studio-split"));
+			const v = Number(localStorage.getItem("levelup-studio-split"));
 			return v >= .15 && v <= .85 ? v : .46;
 		} catch {
 			return .46;
@@ -11543,7 +11516,7 @@ function StudioLite({ userId, playerName, avatar = null, onExit, onHome, onLeave
 	});
 	const [drawerW, setDrawerW] = (0, import_react.useState)(() => {
 		try {
-			const v = Number(local.getItem("levelup-studio-drawer-w"));
+			const v = Number(localStorage.getItem("levelup-studio-drawer-w"));
 			return v >= 200 && v <= 1200 ? v : 0;
 		} catch {
 			return 0;
@@ -11562,19 +11535,19 @@ function StudioLite({ userId, playerName, avatar = null, onExit, onHome, onLeave
 				const w = Math.round(Math.min(host.width * .85, Math.max(200, side.right - ev.clientX)));
 				setDrawerW(w);
 				try {
-					local.setItem("levelup-studio-drawer-w", String(w));
+					localStorage.setItem("levelup-studio-drawer-w", String(w));
 				} catch {}
 			} else if (kind === "w") {
 				const w = Math.round(Math.min(640, Math.max(220, side.right - ev.clientX)));
 				setSideW(w);
 				try {
-					local.setItem("levelup-studio-side-w", String(w));
+					localStorage.setItem("levelup-studio-side-w", String(w));
 				} catch {}
 			} else {
 				const s = Math.min(.85, Math.max(.15, (ev.clientY - side.top) / side.height));
 				setSplit(s);
 				try {
-					local.setItem("levelup-studio-split", s.toFixed(3));
+					localStorage.setItem("levelup-studio-split", s.toFixed(3));
 				} catch {}
 			}
 		};
@@ -12660,7 +12633,7 @@ function StudioLite({ userId, playerName, avatar = null, onExit, onHome, onLeave
 								onDoubleClick: () => {
 									setSideW(300);
 									try {
-										local.removeItem("levelup-studio-side-w");
+										localStorage.removeItem("levelup-studio-side-w");
 									} catch {}
 								}
 							}),
@@ -12675,7 +12648,7 @@ function StudioLite({ userId, playerName, avatar = null, onExit, onHome, onLeave
 								onDoubleClick: () => {
 									setSplit(.46);
 									try {
-										local.removeItem("levelup-studio-split");
+										localStorage.removeItem("levelup-studio-split");
 									} catch {}
 								}
 							}),
@@ -12742,7 +12715,7 @@ function StudioLite({ userId, playerName, avatar = null, onExit, onHome, onLeave
 								onDoubleClick: () => {
 									setDrawerW(0);
 									try {
-										local.removeItem("levelup-studio-drawer-w");
+										localStorage.removeItem("levelup-studio-drawer-w");
 									} catch {}
 								},
 								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("i", { "aria-hidden": "true" })

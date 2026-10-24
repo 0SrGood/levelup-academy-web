@@ -1,5 +1,5 @@
-import { B as Loader, D as Color, N as FileLoader, P as Float32BufferAttribute, T as BufferGeometry, gt as Vector3, st as SRGBColorSpace, w as BufferAttribute } from "./lagtest-index-DDqu-Ugr.js";
-//#region ../../../levelup-academy/node_modules/three/examples/jsm/loaders/STLLoader.js
+import { B as Loader, D as Color, N as FileLoader, P as Float32BufferAttribute, T as BufferGeometry, gt as Vector3, st as SRGBColorSpace, w as BufferAttribute } from "./lagtest-index-BzqKvxjC.js";
+//#region ../../node_modules/three/examples/jsm/loaders/STLLoader.js
 /**
 * A loader for the STL format, as created by Solidworks and other CAD programs.
 *

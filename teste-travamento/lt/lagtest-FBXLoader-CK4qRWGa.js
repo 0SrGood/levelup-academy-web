@@ -1,5 +1,5 @@
-import { $ as PerspectiveCamera, B as Loader, D as Color, E as ClampToEdgeWrapping, F as Group, G as Matrix3, I as Line, J as MeshLambertMaterial, K as Matrix4, L as LineBasicMaterial, M as Euler, N as FileLoader, O as ColorManagement, P as Float32BufferAttribute, Q as Object3D, S as Bone, T as BufferGeometry, V as LoaderUtils, W as MathUtils, Y as MeshPhongMaterial, Z as NumberKeyframeTrack, _t as Vector4, at as QuaternionKeyframeTrack, b as AmbientLight, ct as ShapeUtils, dt as SpotLight, et as PointLight, ft as Texture, gt as Vector3, ht as Vector2, it as Quaternion, j as DirectionalLight, k as Curve, lt as Skeleton, mt as Uint16BufferAttribute, ot as RepeatWrapping, pt as TextureLoader, q as Mesh, rt as PropertyBinding, st as SRGBColorSpace, ut as SkinnedMesh, vt as VectorKeyframeTrack, x as AnimationClip } from "./lagtest-index-DDqu-Ugr.js";
-//#region ../../../levelup-academy/node_modules/three/examples/jsm/libs/fflate.module.js
+import { $ as PerspectiveCamera, B as Loader, D as Color, E as ClampToEdgeWrapping, F as Group, G as Matrix3, I as Line, J as MeshLambertMaterial, K as Matrix4, L as LineBasicMaterial, M as Euler, N as FileLoader, O as ColorManagement, P as Float32BufferAttribute, Q as Object3D, S as Bone, T as BufferGeometry, V as LoaderUtils, W as MathUtils, Y as MeshPhongMaterial, Z as NumberKeyframeTrack, _t as Vector4, at as QuaternionKeyframeTrack, b as AmbientLight, ct as ShapeUtils, dt as SpotLight, et as PointLight, ft as Texture, gt as Vector3, ht as Vector2, it as Quaternion, j as DirectionalLight, k as Curve, lt as Skeleton, mt as Uint16BufferAttribute, ot as RepeatWrapping, pt as TextureLoader, q as Mesh, rt as PropertyBinding, st as SRGBColorSpace, ut as SkinnedMesh, vt as VectorKeyframeTrack, x as AnimationClip } from "./lagtest-index-BzqKvxjC.js";
+//#region ../../node_modules/three/examples/jsm/libs/fflate.module.js
 /*!
 fflate - fast JavaScript compression/decompression
 <https://101arrowz.github.io/fflate>
@@ -328,7 +328,7 @@ try {
 	td.decode(et, { stream: true });
 } catch (e) {}
 //#endregion
-//#region ../../../levelup-academy/node_modules/three/examples/jsm/curves/NURBSUtils.js
+//#region ../../node_modules/three/examples/jsm/curves/NURBSUtils.js
 /**
 * @module NURBSUtils
 * @three_import import * as NURBSUtils from 'three/addons/curves/NURBSUtils.js';
@@ -564,7 +564,7 @@ function calcNURBSDerivatives(p, U, P, u, nd) {
 	return calcRationalCurveDerivatives(calcBSplineDerivatives(p, U, P, u, nd));
 }
 //#endregion
-//#region ../../../levelup-academy/node_modules/three/examples/jsm/curves/NURBSCurve.js
+//#region ../../node_modules/three/examples/jsm/curves/NURBSCurve.js
 /**
 * This class represents a NURBS curve.
 *
@@ -670,7 +670,7 @@ var NURBSCurve = class extends Curve {
 	}
 };
 //#endregion
-//#region ../../../levelup-academy/node_modules/three/examples/jsm/loaders/FBXLoader.js
+//#region ../../node_modules/three/examples/jsm/loaders/FBXLoader.js
 var fbxTree;
 var connections;
 var sceneGraph;

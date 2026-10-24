@@ -1,5 +1,5 @@
-import { B as Loader, D as Color, N as FileLoader, O as ColorManagement, T as BufferGeometry, st as SRGBColorSpace, w as BufferAttribute, z as LinearSRGBColorSpace } from "./lagtest-index-DDqu-Ugr.js";
-//#region ../../../levelup-academy/node_modules/three/examples/jsm/loaders/DRACOLoader.js
+import { B as Loader, D as Color, N as FileLoader, O as ColorManagement, T as BufferGeometry, st as SRGBColorSpace, w as BufferAttribute, z as LinearSRGBColorSpace } from "./lagtest-index-BzqKvxjC.js";
+//#region ../../node_modules/three/examples/jsm/loaders/DRACOLoader.js
 var _taskCache = /* @__PURE__ */ new WeakMap();
 /**
 * A loader for the Draco format.

@@ -1,4 +1,4 @@
-import { Ct as toRuntime, St as parseChanges, bt as validRemote, yt as clientPhysics } from "./lagtest-index-DDqu-Ugr.js";
+import { Ct as toRuntime, St as parseChanges, bt as validRemote, yt as clientPhysics } from "./lagtest-index-BzqKvxjC.js";
 //#region lib/studio/game-session.ts
 var workerUrl = () => new URL("./lua-worker.js", document.baseURI).href;
 var GameSession = class {

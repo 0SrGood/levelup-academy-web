@@ -1,6 +1,6 @@
-import { E as require_react, T as require_profiling, n as saveCode, w as require_jsx_runtime } from "./lagtest-offline-guard-Bgh6rVPp.js";
-import { a as mountHost, c as pe, i as hud, l as rec, n as checkpoint, o as withTimeout, r as countdown, s as autoWalk, sn as local, t as SHORT, u as sleep } from "./lagtest-index-DDqu-Ugr.js";
-import StudioLite from "./lagtest-StudioLite-BG7bgRc1.js";
+import { E as require_react, T as require_profiling, n as saveCode, w as require_jsx_runtime } from "./lagtest-offline-guard-09XAK-Pr.js";
+import { a as mountHost, c as pe, i as hud, l as rec, n as checkpoint, o as withTimeout, r as countdown, s as autoWalk, t as SHORT, u as sleep } from "./lagtest-index-BzqKvxjC.js";
+import StudioLite from "./lagtest-StudioLite-BI-e8H4s.js";
 //#region ../../scripts/lag-test/page/editor-test.tsx
 var import_react = require_react();
 var import_profiling = require_profiling();
@@ -156,7 +156,7 @@ function snapshot() {
 }
 async function run(c, mode) {
 	try {
-		local.removeItem("levelup-studio-graficos");
+		localStorage.removeItem("levelup-studio-graficos");
 	} catch {}
 	await saveCode(USER, "studio", JSON.stringify(c.project));
 	const host = mountHost();
@@ -309,8 +309,6 @@ async function ciclos() {
 	hud("Teste 5 · esperando a memória baixar");
 	await sleep(4e3);
 	rec.extra.afterIdle = snapshot();
-	const failed = rec.cycles.find((c) => c.error);
-	if (failed || rec.cycles.length !== N) throw new Error(`Teste de ciclos incompleto: ${rec.cycles.filter((c) => !c.error).length}/${N}. ${failed?.error ?? "Nem todos os ciclos foram executados."}`);
 }
 //#endregion
 export { run };

@@ -1,5 +1,5 @@
-import { A as DefaultLoadingManager, B as Loader, D as Color, N as FileLoader, O as ColorManagement, V as LoaderUtils, Y as MeshPhongMaterial, ht as Vector2, ot as RepeatWrapping, pt as TextureLoader, st as SRGBColorSpace } from "./lagtest-index-DDqu-Ugr.js";
-//#region ../../../levelup-academy/node_modules/three/examples/jsm/loaders/MTLLoader.js
+import { A as DefaultLoadingManager, B as Loader, D as Color, N as FileLoader, O as ColorManagement, V as LoaderUtils, Y as MeshPhongMaterial, ht as Vector2, ot as RepeatWrapping, pt as TextureLoader, st as SRGBColorSpace } from "./lagtest-index-BzqKvxjC.js";
+//#region ../../node_modules/three/examples/jsm/loaders/MTLLoader.js
 /**
 * A loader for the MTL format.
 *

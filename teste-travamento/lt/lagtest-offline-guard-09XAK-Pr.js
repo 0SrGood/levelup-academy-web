@@ -1,4 +1,3 @@
-import "./lagtest-index-DDqu-Ugr.js";
 //#region \0rolldown/runtime.js
 var __defProp = Object.defineProperty;
 var __commonJSMin = (cb, mod) => () => (mod || (cb((mod = { exports: {} }).exports, mod), cb = null), mod.exports);
@@ -12,7 +11,7 @@ var __exportAll = (all, no_symbols) => {
 	return target;
 };
 //#endregion
-//#region ../../../levelup-academy/node_modules/react/cjs/react.production.js
+//#region ../../node_modules/react/cjs/react.production.js
 /**
 * @license React
 * react.production.js
@@ -372,12 +371,12 @@ var require_react_production = /* @__PURE__ */ __commonJSMin(((exports) => {
 	exports.version = "19.2.6";
 }));
 //#endregion
-//#region ../../../levelup-academy/node_modules/react/index.js
+//#region ../../node_modules/react/index.js
 var require_react = /* @__PURE__ */ __commonJSMin(((exports, module) => {
 	module.exports = require_react_production();
 }));
 //#endregion
-//#region ../../../levelup-academy/node_modules/scheduler/cjs/scheduler.production.js
+//#region ../../node_modules/scheduler/cjs/scheduler.production.js
 /**
 * @license React
 * scheduler.production.js
@@ -618,12 +617,12 @@ var require_scheduler_production = /* @__PURE__ */ __commonJSMin(((exports) => {
 	};
 }));
 //#endregion
-//#region ../../../levelup-academy/node_modules/scheduler/index.js
+//#region ../../node_modules/scheduler/index.js
 var require_scheduler = /* @__PURE__ */ __commonJSMin(((exports, module) => {
 	module.exports = require_scheduler_production();
 }));
 //#endregion
-//#region ../../../levelup-academy/node_modules/react-dom/cjs/react-dom.production.js
+//#region ../../node_modules/react-dom/cjs/react-dom.production.js
 /**
 * @license React
 * react-dom.production.js
@@ -764,7 +763,7 @@ var require_react_dom_production = /* @__PURE__ */ __commonJSMin(((exports) => {
 	exports.version = "19.2.6";
 }));
 //#endregion
-//#region ../../../levelup-academy/node_modules/react-dom/index.js
+//#region ../../node_modules/react-dom/index.js
 var require_react_dom = /* @__PURE__ */ __commonJSMin(((exports, module) => {
 	function checkDCE() {
 		if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === "undefined" || typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== "function") return;
@@ -778,7 +777,7 @@ var require_react_dom = /* @__PURE__ */ __commonJSMin(((exports, module) => {
 	module.exports = require_react_dom_production();
 }));
 //#endregion
-//#region ../../../levelup-academy/node_modules/react-dom/cjs/react-dom-profiling.profiling.js
+//#region ../../node_modules/react-dom/cjs/react-dom-profiling.profiling.js
 /**
 * @license React
 * react-dom-profiling.profiling.js
@@ -10476,7 +10475,7 @@ var require_react_dom_profiling_profiling = /* @__PURE__ */ __commonJSMin(((expo
 	"undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
 }));
 //#endregion
-//#region ../../../levelup-academy/node_modules/react-dom/profiling.js
+//#region ../../node_modules/react-dom/profiling.js
 var require_profiling = /* @__PURE__ */ __commonJSMin(((exports, module) => {
 	function checkDCE() {
 		if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === "undefined" || typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== "function") return;
@@ -10490,7 +10489,7 @@ var require_profiling = /* @__PURE__ */ __commonJSMin(((exports, module) => {
 	module.exports = require_react_dom_profiling_profiling();
 }));
 //#endregion
-//#region ../../../levelup-academy/node_modules/react/cjs/react-jsx-runtime.production.js
+//#region ../../node_modules/react/cjs/react-jsx-runtime.production.js
 /**
 * @license React
 * react-jsx-runtime.production.js
@@ -10524,7 +10523,7 @@ var require_react_jsx_runtime_production = /* @__PURE__ */ __commonJSMin(((expor
 	exports.jsxs = jsxProd;
 }));
 //#endregion
-//#region ../../../levelup-academy/node_modules/react/jsx-runtime.js
+//#region ../../node_modules/react/jsx-runtime.js
 var require_jsx_runtime = /* @__PURE__ */ __commonJSMin(((exports, module) => {
 	module.exports = require_react_jsx_runtime_production();
 }));
@@ -10616,7 +10615,7 @@ var robloxIconClasses = new Set([
 	"Property"
 ]);
 //#endregion
-//#region ../../../levelup-academy/node_modules/lucide-react/dist/esm/shared/src/utils/mergeClasses.mjs
+//#region ../../node_modules/lucide-react/dist/esm/shared/src/utils/mergeClasses.mjs
 /**
 * @license lucide-react v1.31.0 - ISC
 *
@@ -10627,7 +10626,7 @@ var mergeClasses = (...classes) => classes.filter((className, index, array) => {
 	return Boolean(className) && className.trim() !== "" && array.indexOf(className) === index;
 }).join(" ").trim();
 //#endregion
-//#region ../../../levelup-academy/node_modules/lucide-react/dist/esm/shared/src/utils/toKebabCase.mjs
+//#region ../../node_modules/lucide-react/dist/esm/shared/src/utils/toKebabCase.mjs
 /**
 * @license lucide-react v1.31.0 - ISC
 *
@@ -10636,7 +10635,7 @@ var mergeClasses = (...classes) => classes.filter((className, index, array) => {
 */
 var toKebabCase = (string) => string.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
 //#endregion
-//#region ../../../levelup-academy/node_modules/lucide-react/dist/esm/shared/src/utils/toCamelCase.mjs
+//#region ../../node_modules/lucide-react/dist/esm/shared/src/utils/toCamelCase.mjs
 /**
 * @license lucide-react v1.31.0 - ISC
 *
@@ -10645,7 +10644,7 @@ var toKebabCase = (string) => string.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLo
 */
 var toCamelCase = (string) => string.replace(/^([A-Z])|[\s-_]+(\w)/g, (match, p1, p2) => p2 ? p2.toUpperCase() : p1.toLowerCase());
 //#endregion
-//#region ../../../levelup-academy/node_modules/lucide-react/dist/esm/shared/src/utils/toPascalCase.mjs
+//#region ../../node_modules/lucide-react/dist/esm/shared/src/utils/toPascalCase.mjs
 /**
 * @license lucide-react v1.31.0 - ISC
 *
@@ -10657,7 +10656,7 @@ var toPascalCase = (string) => {
 	return camelCase.charAt(0).toUpperCase() + camelCase.slice(1);
 };
 //#endregion
-//#region ../../../levelup-academy/node_modules/lucide-react/dist/esm/defaultAttributes.mjs
+//#region ../../node_modules/lucide-react/dist/esm/defaultAttributes.mjs
 /**
 * @license lucide-react v1.31.0 - ISC
 *
@@ -10676,7 +10675,7 @@ var defaultAttributes = {
 	strokeLinejoin: "round"
 };
 //#endregion
-//#region ../../../levelup-academy/node_modules/lucide-react/dist/esm/shared/src/utils/hasA11yProp.mjs
+//#region ../../node_modules/lucide-react/dist/esm/shared/src/utils/hasA11yProp.mjs
 /**
 * @license lucide-react v1.31.0 - ISC
 *
@@ -10688,7 +10687,7 @@ var hasA11yProp = (props) => {
 	return false;
 };
 //#endregion
-//#region ../../../levelup-academy/node_modules/lucide-react/dist/esm/context.mjs
+//#region ../../node_modules/lucide-react/dist/esm/context.mjs
 /**
 * @license lucide-react v1.31.0 - ISC
 *
@@ -10698,7 +10697,7 @@ var hasA11yProp = (props) => {
 var LucideContext = (0, import_react.createContext)({});
 var useLucideContext = () => (0, import_react.useContext)(LucideContext);
 //#endregion
-//#region ../../../levelup-academy/node_modules/lucide-react/dist/esm/Icon.mjs
+//#region ../../node_modules/lucide-react/dist/esm/Icon.mjs
 /**
 * @license lucide-react v1.31.0 - ISC
 *
@@ -10721,7 +10720,7 @@ var Icon = (0, import_react.forwardRef)(({ color, size, strokeWidth, absoluteStr
 	}, [...iconNode.map(([tag, attrs]) => (0, import_react.createElement)(tag, attrs)), ...Array.isArray(children) ? children : [children]]);
 });
 //#endregion
-//#region ../../../levelup-academy/node_modules/lucide-react/dist/esm/createLucideIcon.mjs
+//#region ../../node_modules/lucide-react/dist/esm/createLucideIcon.mjs
 /**
 * @license lucide-react v1.31.0 - ISC
 *
@@ -10911,7 +10910,7 @@ var opening = null;
 function open() {
 	if (typeof indexedDB === "undefined") return Promise.reject(/* @__PURE__ */ new Error("Este navegador não permite guardar aulas no aparelho."));
 	return opening ??= new Promise((resolve, reject) => {
-		const r = indexedDB.open("levelup-lagtest-offline", 1);
+		const r = indexedDB.open("levelup-offline", 1);
 		r.onupgradeneeded = () => {
 			const d = r.result;
 			for (const s of [
@@ -10951,7 +10950,7 @@ var put = (store, value, key) => tx(store, "readwrite", (s) => key === void 0 ? 
 var del = (store, key) => tx(store, "readwrite", (s) => s.delete(key));
 /** Avisa a interface (contadores e selos) que algo mudou no armazenamento offline. */
 function changed() {
-	if (typeof window !== "undefined") window.dispatchEvent(new Event("levelup-lagtest-offline"));
+	if (typeof window !== "undefined") window.dispatchEvent(new Event("levelup-offline"));
 }
 /** Erro de rede (sem internet / servidor inalcançável), diferente de um erro respondido pelo servidor. */
 function isNetworkError(e) {

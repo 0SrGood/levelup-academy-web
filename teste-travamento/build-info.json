@@ -1,10 +1,10 @@
 {
   "kind": "levelup-lag-test-build",
   "mode": "publicado",
-  "sourceRoot": "work/lag-test-src-e368dd5652a3-1792862694763",
-  "generatedAt": "2026-10-24T17:24:58.710Z",
+  "sourceRoot": "work/lag-test-src",
+  "generatedAt": "2026-10-24T18:45:57.321Z",
   "sourceCommit": "e368dd5652a30eacea9bdcd9e738596a57154682",
-  "branch": "e368dd5",
+  "branch": "codex/offline-verification",
   "sourceDirty": false,
   "fingerprint": [
     {
@@ -54,18 +54,18 @@
     },
     {
       "file": "scripts/lag-test/page/editor-test.tsx",
-      "bytes": 9967,
-      "sha256": "a97f20f15111ae8e"
+      "bytes": 9680,
+      "sha256": "1b9009e6cfd3334b"
     },
     {
       "file": "scripts/lag-test/page/game-test.tsx",
-      "bytes": 2237,
-      "sha256": "a1f29d96dfb2f4fc"
+      "bytes": 2120,
+      "sha256": "802734ea3c5bb9d4"
     },
     {
       "file": "scripts/lag-test/page/harness.ts",
-      "bytes": 18466,
-      "sha256": "62c25d8b463ffed9"
+      "bytes": 18286,
+      "sha256": "3ad4e48ee812cd31"
     },
     {
       "file": "scripts/lag-test/page/index.html",
@@ -73,9 +73,14 @@
       "sha256": "109ceccfe94c2054"
     },
     {
+      "file": "scripts/lag-test/page/lagtest-env.d.ts",
+      "bytes": 220,
+      "sha256": "34984bde89c1d533"
+    },
+    {
       "file": "scripts/lag-test/page/main.ts",
-      "bytes": 23422,
-      "sha256": "c1383b975033a5d8"
+      "bytes": 22416,
+      "sha256": "f95fcbcc8d0bd993"
     },
     {
       "file": "scripts/lag-test/page/mock-client.ts",
@@ -88,11 +93,6 @@
       "sha256": "142ac1c16cea50f8"
     },
     {
-      "file": "scripts/lag-test/page/mock-pwa.ts",
-      "bytes": 239,
-      "sha256": "7133f7ce7dd3f08f"
-    },
-    {
       "file": "scripts/lag-test/page/mock-web-client.ts",
       "bytes": 882,
       "sha256": "1eb2e1e7ad35af1d"
@@ -103,24 +103,19 @@
       "sha256": "a351e79876083441"
     },
     {
-      "file": "scripts/lag-test/page/sandbox-storage.ts",
-      "bytes": 953,
-      "sha256": "a6e1a9cc41e8bbba"
-    },
-    {
       "file": "scripts/lag-test/page/shims.ts",
       "bytes": 2913,
       "sha256": "ba49c386a8682743"
     },
     {
       "file": "scripts/lag-test/page/storage-guard.ts",
-      "bytes": 310,
-      "sha256": "0233588292139520"
+      "bytes": 1751,
+      "sha256": "c08b61a32258122e"
     }
   ],
   "fixtures": {
     "sky-jump": {
-      "source": "scripts/lag-test/fixtures/sky-jump.json",
+      "source": "work/mobile-real-project.json",
       "sanitized": true,
       "bytes": 17710,
       "sha256": "0724813184c7ca053e3dd0f6927c5a9480ac179ab5588298f198bc777f929cea"
@@ -139,16 +134,15 @@
   },
   "archive": {
     "commit": "e368dd5652a30eacea9bdcd9e738596a57154682",
-    "branch": "e368dd5",
-    "how": "git archive of resolved commit (sem mudanças locais)",
-    "at": "2026-10-24T17:24:55.916Z"
+    "branch": "codex/offline-verification",
+    "how": "git archive e368dd5652a3 (sem mudanças locais)",
+    "at": "2026-10-24T18:45:55.112Z"
   },
   "notes": [
     "Cópia de teste. Mesmo código do site para motor, StudioLite e GamePlayer; cliente da API e imagens privadas trocados por versões locais.",
     "React em modo profiling; sem minificação (nomes legíveis nas tarefas longas)."
   ],
   "files": [
-    ".gitattributes",
     "brand/emblem-192.png",
     "brand/emblem-512.png",
     "brand/emblem-96.png",
@@ -173,30 +167,30 @@
     "fonts/rP2tp2ywxg089UriI5-g4vlH9VoD8CmcqZG40F9JadbnoEwAopxhTg.ttf",
     "index.html",
     "logo.png",
-    "lt/lagtest-CharacterImportGuide-DLLmIWhc.js",
-    "lt/lagtest-DRACOLoader-e_Aw3FUO.js",
-    "lt/lagtest-FBXLoader-BiafpRMf.js",
-    "lt/lagtest-GLTFLoader-BkpQolpW.js",
-    "lt/lagtest-ImportCharacter-vldo6sjN.js",
-    "lt/lagtest-MTLLoader-DkDiAMiT.js",
-    "lt/lagtest-OBJLoader-CI8DSHv8.js",
-    "lt/lagtest-PluginHelp-r9hEsPh5.js",
-    "lt/lagtest-PublishGame-BRXGO-Pc.js",
-    "lt/lagtest-STLLoader-SuX0WMaM.js",
-    "lt/lagtest-StudioLite-BG7bgRc1.js",
-    "lt/lagtest-Toolbox-WzBkk_FG.js",
-    "lt/lagtest-editor-test-CKXGftXq.js",
-    "lt/lagtest-game-session-BbWHCZii.js",
-    "lt/lagtest-game-test-D6-npVXQ.js",
-    "lt/lagtest-games-B1FdPLdk.js",
-    "lt/lagtest-import3d-CJpwNRge.js",
-    "lt/lagtest-index-DDqu-Ugr.js",
-    "lt/lagtest-lab-projects-RNeTYQDF.js",
-    "lt/lagtest-mock-pwa-BHJj_hmx.js",
-    "lt/lagtest-multiplayer-D6VNTFuX.js",
-    "lt/lagtest-offline-guard-Bgh6rVPp.js",
+    "lt/lagtest-CharacterImportGuide-BETs03Nq.js",
+    "lt/lagtest-DRACOLoader-BpRrhUVI.js",
+    "lt/lagtest-FBXLoader-CK4qRWGa.js",
+    "lt/lagtest-GLTFLoader-CTSXvt7n.js",
+    "lt/lagtest-ImportCharacter-CknOy5ys.js",
+    "lt/lagtest-MTLLoader-dyQHvdmv.js",
+    "lt/lagtest-OBJLoader-DjDIIeLc.js",
+    "lt/lagtest-PluginHelp-CJLzA4mN.js",
+    "lt/lagtest-PublishGame-CmgUgf47.js",
+    "lt/lagtest-STLLoader-CuGeDy0n.js",
+    "lt/lagtest-StudioLite-BI-e8H4s.js",
+    "lt/lagtest-Toolbox-kuujqAEY.js",
+    "lt/lagtest-editor-test-bR8nBfdr.js",
+    "lt/lagtest-game-session-fa9jEbgX.js",
+    "lt/lagtest-game-test-CjkGfRUu.js",
+    "lt/lagtest-games-uC_-X8gL.js",
+    "lt/lagtest-import3d-bxlntHp7.js",
+    "lt/lagtest-index-BzqKvxjC.js",
+    "lt/lagtest-lab-projects-BdqARTUN.js",
+    "lt/lagtest-multiplayer-BDHZ6TWq.js",
+    "lt/lagtest-offline-guard-09XAK-Pr.js",
     "lt/lagtest-offline-guard-DXashqPX.css",
-    "lt/lagtest-toolbox-compact-DjPES5hc.js",
+    "lt/lagtest-pwa-C-WYeuqi.js",
+    "lt/lagtest-toolbox-compact-DGOnoN6A.js",
     "lua-worker.js",
     "placeholder.png",
     "studio/icons/Dark/Backpack.png",

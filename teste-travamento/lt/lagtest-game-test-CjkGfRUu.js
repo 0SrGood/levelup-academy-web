@@ -1,9 +1,11 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./lagtest-StudioLite-BG7bgRc1.js","./lagtest-offline-guard-Bgh6rVPp.js","./lagtest-index-DDqu-Ugr.js","./lagtest-offline-guard-DXashqPX.css","./lagtest-mock-pwa-BHJj_hmx.js"])))=>i.map(i=>d[i]);
-import { E as require_react, T as require_profiling, g as RotateCw, l as LevelUpLoader, u as api, w as require_jsx_runtime } from "./lagtest-offline-guard-Bgh6rVPp.js";
-import { a as mountHost, cn as session, i as hud, l as rec, n as checkpoint, p as __vitePreload, r as countdown, s as autoWalk, sn as local, u as sleep } from "./lagtest-index-DDqu-Ugr.js";
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./lagtest-StudioLite-BI-e8H4s.js","./lagtest-offline-guard-09XAK-Pr.js","./lagtest-offline-guard-DXashqPX.css","./lagtest-index-BzqKvxjC.js","./lagtest-pwa-C-WYeuqi.js"])))=>i.map(i=>d[i]);
+import { E as require_react, T as require_profiling, g as RotateCw, l as LevelUpLoader, u as api, w as require_jsx_runtime } from "./lagtest-offline-guard-09XAK-Pr.js";
+import { a as mountHost, i as hud, l as rec, n as checkpoint, p as __vitePreload, r as countdown, s as autoWalk, u as sleep } from "./lagtest-index-BzqKvxjC.js";
 //#region lib/game-downloads.ts
 var import_react = require_react();
 var import_profiling = require_profiling();
+//#endregion
+//#region components/BrandLogo.tsx
 var import_jsx_runtime = require_jsx_runtime();
 //#endregion
 //#region components/GamesPage.tsx
@@ -11,12 +13,12 @@ var import_jsx_runtime = require_jsx_runtime();
 *  Com login (aba Jogos da plataforma): votar 👍/👎 e "Meus jogos". Sem login (link …/jogos/): jogar e baixar.
 *  Leve para a franquia grátis: 24 jogos por vez, miniaturas pequenas, cada jogo baixado só ao jogar ou ao baixar,
 *  e jogos baixados rodam sem internet (nada do servidor). */
-var StudioLite = (0, import_react.lazy)(() => __vitePreload(() => import("./lagtest-StudioLite-BG7bgRc1.js"), __vite__mapDeps([0,1,2,3,4]), import.meta.url));
+var StudioLite = (0, import_react.lazy)(() => __vitePreload(() => import("./lagtest-StudioLite-BI-e8H4s.js"), __vite__mapDeps([0,1,2,3,4]), import.meta.url));
 (() => {
 	try {
-		const back = session.getItem("levelup-resume-game");
+		const back = sessionStorage.getItem("levelup-resume-game");
 		if (back) {
-			session.removeItem("levelup-resume-game");
+			sessionStorage.removeItem("levelup-resume-game");
 			if (/^[\w-]{1,80}$/.test(back)) return back;
 		}
 		const q = new URLSearchParams(location.search);
@@ -43,10 +45,10 @@ function GamePlayer({ game, playerName, userId, onClose, offline = false }) {
 		d.busy = "game";
 		return () => {
 			if (d.busy === "game") delete d.busy;
-			__vitePreload(() => import("./lagtest-mock-pwa-BHJj_hmx.js").then((n) => n.n).then((m) => {
+			__vitePreload(() => import("./lagtest-pwa-C-WYeuqi.js").then((n) => n.n).then((m) => {
 				if (m.isUpdatePending()) {
 					try {
-						session.setItem("levelup-resume-game", game.id);
+						sessionStorage.setItem("levelup-resume-game", game.id);
 					} catch {}
 					m.updateNow();
 				}
@@ -144,7 +146,7 @@ async function waitFor(fn, ms, msg) {
 }
 async function run(c) {
 	try {
-		local.removeItem("levelup-studio-graficos");
+		localStorage.removeItem("levelup-studio-graficos");
 	} catch {}
 	const host = mountHost();
 	const root = (0, import_profiling.createRoot)(host);
@@ -157,40 +159,36 @@ async function run(c) {
 	rec.setPhase("carregando-jogo");
 	hud("Carregando o jogo…");
 	const t = performance.now();
-	let walk = null;
-	try {
-		root.render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_react.Profiler, {
-			id: "GamePlayer",
-			onRender: rec.onRender,
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(GamePlayer, {
-				game,
-				playerName: "Aluno",
-				userId: "lagtest-aluno",
-				onClose: () => {}
-			})
-		}));
-		await waitFor(() => !!rec.engine, 3e4, "O motor não apareceu em 30 s");
-		rec.startup.engineVisibleMs = Math.round(performance.now() - t);
-		await waitFor(() => !!rec.engine?.playing && rec.workers.some((w) => w.readyAt != null), 4e4, "O jogo não ficou pronto em 40 s");
-		rec.startup.openToReadyMs = Math.round(performance.now() - t);
-		rec.extra.engineAtPlay = rec.engineInfo();
-		checkpoint("jogo-pronto");
-		await sleep(500);
-		rec.setPhase("jogando");
-		rec.resetRenderClock();
-		walk = autoWalk("touch");
-		await countdown(45, "Teste 3", (s) => {
-			rec.extra.inputMode = walk.mode;
-			checkpoint("jogando-" + s + "s");
-		});
-		rec.extra.inputMode = walk.mode === "touch" ? "controle de toque (.sl-stick)" : "engine.setInput (sem controle de toque na tela)";
-		rec.extra.engineAtEnd = rec.engineInfo();
-		rec.extra.domNodes = document.getElementsByTagName("*").length;
-	} finally {
-		walk?.stop();
-		root.unmount();
-		host.remove();
-	}
+	root.render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_react.Profiler, {
+		id: "GamePlayer",
+		onRender: rec.onRender,
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(GamePlayer, {
+			game,
+			playerName: "Aluno",
+			userId: "lagtest-aluno",
+			onClose: () => {}
+		})
+	}));
+	await waitFor(() => !!rec.engine, 3e4, "O motor não apareceu em 30 s");
+	rec.startup.engineVisibleMs = Math.round(performance.now() - t);
+	await waitFor(() => !!rec.engine?.playing && rec.workers.some((w) => w.readyAt != null), 4e4, "O jogo não ficou pronto em 40 s");
+	rec.startup.openToReadyMs = Math.round(performance.now() - t);
+	rec.extra.engineAtPlay = rec.engineInfo();
+	checkpoint("jogo-pronto");
+	await sleep(500);
+	rec.setPhase("jogando");
+	rec.resetRenderClock();
+	const walk = autoWalk("touch");
+	await countdown(45, "Teste 3", (s) => {
+		rec.extra.inputMode = walk.mode;
+		checkpoint("jogando-" + s + "s");
+	});
+	rec.extra.inputMode = walk.mode === "touch" ? "controle de toque (.sl-stick)" : "engine.setInput (sem controle de toque na tela)";
+	walk.stop();
+	rec.extra.engineAtEnd = rec.engineInfo();
+	rec.extra.domNodes = document.getElementsByTagName("*").length;
+	root.unmount();
+	host.remove();
 }
 //#endregion
 export { run };

@@ -1,5 +1,5 @@
-import { B as Loader, D as Color, F as Group, L as LineBasicMaterial, N as FileLoader, P as Float32BufferAttribute, R as LineSegments, T as BufferGeometry, U as Material, Y as MeshPhongMaterial, gt as Vector3, nt as PointsMaterial, q as Mesh, st as SRGBColorSpace, tt as Points } from "./lagtest-index-DDqu-Ugr.js";
-//#region ../../../levelup-academy/node_modules/three/examples/jsm/loaders/OBJLoader.js
+import { B as Loader, D as Color, F as Group, L as LineBasicMaterial, N as FileLoader, P as Float32BufferAttribute, R as LineSegments, T as BufferGeometry, U as Material, Y as MeshPhongMaterial, gt as Vector3, nt as PointsMaterial, q as Mesh, st as SRGBColorSpace, tt as Points } from "./lagtest-index-BzqKvxjC.js";
+//#region ../../node_modules/three/examples/jsm/loaders/OBJLoader.js
 var _object_pattern = /^[og]\s*(.+)?/;
 var _material_library_pattern = /^mtllib /;
 var _material_use_pattern = /^usemtl /;

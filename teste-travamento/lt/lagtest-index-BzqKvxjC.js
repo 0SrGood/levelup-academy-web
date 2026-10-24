@@ -1,4 +1,4 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./lagtest-game-test-D6-npVXQ.js","./lagtest-offline-guard-Bgh6rVPp.js","./lagtest-offline-guard-DXashqPX.css","./lagtest-editor-test-CKXGftXq.js","./lagtest-StudioLite-BG7bgRc1.js","./lagtest-mock-pwa-BHJj_hmx.js"])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./lagtest-game-test-CjkGfRUu.js","./lagtest-offline-guard-09XAK-Pr.js","./lagtest-offline-guard-DXashqPX.css","./lagtest-editor-test-bR8nBfdr.js","./lagtest-StudioLite-BI-e8H4s.js","./lagtest-pwa-C-WYeuqi.js"])))=>i.map(i=>d[i]);
 //#region \0vite/modulepreload-polyfill.js
 (function polyfill() {
 	const relList = document.createElement("link").relList;
@@ -123,49 +123,8 @@ Element.prototype.releasePointerCapture = function(id) {
 };
 shimsApplied.push("pointerCapture-tolerante");
 //#endregion
-//#region ../../scripts/lag-test/page/sandbox-storage.ts
-function memoryStorage() {
-	const data = /* @__PURE__ */ new Map();
-	return new Proxy({
-		get length() {
-			return data.size;
-		},
-		clear() {
-			data.clear();
-		},
-		key(n) {
-			return [...data.keys()][n] ?? null;
-		},
-		getItem(k) {
-			return data.get(String(k)) ?? null;
-		},
-		setItem(k, v) {
-			data.set(String(k), String(v));
-		},
-		removeItem(k) {
-			data.delete(String(k));
-		}
-	}, {
-		ownKeys: () => [...data.keys()],
-		getOwnPropertyDescriptor: (_t, k) => typeof k === "string" && data.has(k) ? {
-			configurable: true,
-			enumerable: true,
-			value: data.get(k),
-			writable: true
-		} : void 0,
-		get: (t, k) => k in t ? Reflect.get(t, k) : typeof k === "string" ? data.get(k) : void 0,
-		set: (_t, k, v) => {
-			if (typeof k === "string") data.set(k, String(v));
-			return true;
-		},
-		deleteProperty: (_t, k) => {
-			if (typeof k === "string") data.delete(k);
-			return true;
-		}
-	});
-}
-var local = memoryStorage();
-var session = memoryStorage(), PREFIX = "levelup-game-diagnostic:", slot = "", current = null, probe = null;
+//#region lib/game-diagnostics.ts
+var PREFIX = "levelup-game-diagnostic:", slot = "", current = null, probe = null;
 var now = () => (/* @__PURE__ */ new Date()).toISOString();
 function diagnosticText(value) {
 	return String(value ?? "").replace(/Bearer\s+\S+/gi, "[credencial omitida]").replace(/https?:\/\/[^\s)]+/gi, (url) => {
@@ -180,7 +139,7 @@ function persist() {
 	if (!current || !slot) return;
 	current.updated = now();
 	try {
-		local.setItem(PREFIX + slot, JSON.stringify(current));
+		localStorage.setItem(PREFIX + slot, JSON.stringify(current));
 	} catch {
 		current.storageAvailable = false;
 	}
@@ -200,6 +159,12 @@ function diagnosticEvent(kind, message = "") {
 	const important = (e) => /error|fatal|timeout|webgl/.test(e.kind);
 	current.events = [...current.events.filter(important).slice(-6), ...current.events.filter((e) => !important(e)).slice(-6)].sort((a, b) => a.at.localeCompare(b.at));
 	persist();
+}
+function markDiagnosticReload(reason) {
+	if (current) {
+		current.reloadReason = diagnosticText(reason);
+		diagnosticEvent("app-reload", reason);
+	}
 }
 function setDiagnosticPhase(phase, mode = "solo") {
 	if (!current) return;
@@ -29629,7 +29594,7 @@ if (typeof __THREE_DEVTOOLS__ !== "undefined") __THREE_DEVTOOLS__.dispatchEvent(
 if (typeof window !== "undefined") if (window.__THREE__) console.warn("WARNING: Multiple instances of Three.js being imported.");
 else window.__THREE__ = "180";
 //#endregion
-//#region ../../../levelup-academy/node_modules/three/build/three.module.js
+//#region ../../node_modules/three/build/three.module.js
 /**
 * @license
 * Copyright 2010-2025 Three.js Authors
@@ -47922,7 +47887,7 @@ var rightAtlas = {
 	]
 };
 //#endregion
-//#region ../../../levelup-academy/node_modules/three/examples/jsm/controls/OrbitControls.js
+//#region ../../node_modules/three/examples/jsm/controls/OrbitControls.js
 /**
 * Fires when the camera has been transformed by the controls.
 *
@@ -48974,7 +48939,7 @@ function interceptControlUp(event) {
 	}
 }
 //#endregion
-//#region ../../../levelup-academy/node_modules/three/examples/jsm/controls/TransformControls.js
+//#region ../../node_modules/three/examples/jsm/controls/TransformControls.js
 var _raycaster = new Raycaster();
 var _tempVector = new Vector3();
 var _tempVector2 = new Vector3();
@@ -50692,7 +50657,7 @@ var TransformControlsPlane = class extends Mesh {
 	}
 };
 //#endregion
-//#region ../../../levelup-academy/node_modules/three/examples/jsm/utils/BufferGeometryUtils.js
+//#region ../../node_modules/three/examples/jsm/utils/BufferGeometryUtils.js
 /**
 * Merges a set of geometries into a single instance. All geometries must have compatible attributes.
 *
@@ -50897,7 +50862,7 @@ function toTrianglesDrawMode(geometry, drawMode) {
 	}
 }
 //#endregion
-//#region ../../../levelup-academy/node_modules/three/examples/jsm/loaders/GLTFLoader.js
+//#region ../../node_modules/three/examples/jsm/loaders/GLTFLoader.js
 /**
 * A loader for the glTF 2.0 format.
 *
@@ -53354,7 +53319,7 @@ function addPrimitiveAttributes(geometry, primitiveDef, parser) {
 	});
 }
 //#endregion
-//#region ../../../levelup-academy/node_modules/three/examples/jsm/utils/SkeletonUtils.js
+//#region ../../node_modules/three/examples/jsm/utils/SkeletonUtils.js
 /**
 * Clones the given 3D object and its descendants, ensuring that any `SkinnedMesh` instances are
 * correctly associated with their bones. Bones are also cloned, and must be descendants of the
@@ -53410,7 +53375,7 @@ function cloneCharacter(source) {
 	return root;
 }
 //#endregion
-//#region ../../../levelup-academy/node_modules/three/examples/jsm/math/ConvexHull.js
+//#region ../../node_modules/three/examples/jsm/math/ConvexHull.js
 var Visible = 0;
 var Deleted = 1;
 var _v1 = new Vector3();
@@ -54352,7 +54317,7 @@ var VertexList = class {
 	}
 };
 //#endregion
-//#region ../../../levelup-academy/node_modules/three/examples/jsm/geometries/ConvexGeometry.js
+//#region ../../node_modules/three/examples/jsm/geometries/ConvexGeometry.js
 /**
 * This class can be used to generate a convex hull for a given array of 3D points.
 * The average time complexity for this task is considered to be O(nlog(n)).
@@ -54393,7 +54358,7 @@ var ConvexGeometry = class extends BufferGeometry {
 	}
 };
 //#endregion
-//#region ../../../levelup-academy/node_modules/three/examples/jsm/environments/RoomEnvironment.js
+//#region ../../node_modules/three/examples/jsm/environments/RoomEnvironment.js
 /**
 * This class represents a scene with a basic room setup that can be used as
 * input for {@link PMREMGenerator#fromScene}. The resulting PMREM represents the room's
@@ -56814,7 +56779,7 @@ var StudioEngine = class {
 	async dracoDecode(bytes) {
 		if (!this.draco) {
 			const { DRACOLoader } = await __vitePreload(async () => {
-				const { DRACOLoader } = await import("./lagtest-DRACOLoader-e_Aw3FUO.js");
+				const { DRACOLoader } = await import("./lagtest-DRACOLoader-BpRrhUVI.js");
 				return { DRACOLoader };
 			}, [], import.meta.url);
 			const l = new DRACOLoader();
@@ -59767,7 +59732,6 @@ var Recorder = class {
 		};
 		const el = r.domElement;
 		el.addEventListener("webglcontextlost", () => {
-			if (e.disposed || !this.active) return;
 			this.event("webgl-contexto-perdido");
 			this.error("webgl", "contexto WebGL perdido");
 		});
@@ -59967,8 +59931,8 @@ var CountingWorker = class extends NativeWorker {
 	}
 };
 window.Worker = CountingWorker;
-addEventListener("error", (e) => rec.error("janela", e.message || "erro"));
-addEventListener("unhandledrejection", (e) => rec.error("promessa", String(e.reason?.message ?? e.reason)));
+window.addEventListener("error", (e) => rec.error("janela", e.message || "erro"));
+window.addEventListener("unhandledrejection", (e) => rec.error("promessa", String(e.reason?.message ?? e.reason)));
 {
 	const ce = console.error.bind(console);
 	console.error = (...a) => {
@@ -60114,11 +60078,63 @@ function autoWalk(prefer) {
 var sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 //#endregion
 //#region ../../scripts/lag-test/page/storage-guard.ts
-function guardStorage() {
-	return () => "Preferências isoladas na memória; armazenamento do site preservado";
+var OURS = /^levelup-lagtest-/;
+var SNAP = "levelup-lagtest-storage-snapshot";
+function read(s) {
+	const o = {};
+	for (let i = 0; i < s.length; i++) {
+		const k = s.key(i);
+		if (k && !OURS.test(k)) o[k] = s.getItem(k) ?? "";
+	}
+	return o;
 }
+function apply(s, o) {
+	let changed = 0;
+	for (const k of Object.keys(read(s))) if (!(k in o)) {
+		s.removeItem(k);
+		changed++;
+	}
+	for (const [k, v] of Object.entries(o)) if (s.getItem(k) !== v) {
+		s.setItem(k, v);
+		changed++;
+	}
+	return changed;
+}
+function guardStorage() {
+	let snap = null;
+	try {
+		snap = {
+			local: read(localStorage),
+			session: read(sessionStorage)
+		};
+		localStorage.setItem(SNAP, JSON.stringify(snap.local));
+	} catch {}
+	return () => {
+		if (!snap) return "sem acesso ao armazenamento";
+		try {
+			const n = apply(localStorage, snap.local);
+			let m = 0;
+			try {
+				m = apply(sessionStorage, snap.session);
+			} catch {}
+			localStorage.removeItem(SNAP);
+			return `${n} item(ns) do localStorage e ${m} do sessionStorage devolvidos`;
+		} catch (e) {
+			return "falha ao devolver: " + String(e);
+		}
+	};
+}
+/** Ao abrir o menu: se um teste anterior morreu antes de devolver o armazenamento, devolve agora. */
 function restorePending() {
-	return null;
+	try {
+		const raw = localStorage.getItem(SNAP);
+		if (!raw) return null;
+		const n = apply(localStorage, JSON.parse(raw));
+		localStorage.removeItem(SNAP);
+		return n;
+	} catch {
+		return null;
+	}
 }
 //#endregion
 //#region ../../scripts/lag-test/page/main.ts
@@ -60152,7 +60168,7 @@ var esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({
 })[c]);
 /** ?curto=1: versão rápida só para provar que funciona (15 s por fase, 3 ciclos). Não serve para medir. */
 var SHORT = new URLSearchParams(location.search).has("curto");
-var keep = "&lu-download=1" + (SHORT ? "&curto=1" : "");
+var keep = SHORT ? "&curto=1" : "";
 var coarse = () => matchMedia("(pointer: coarse)").matches;
 var TESTS = [
 	{
@@ -60186,7 +60202,7 @@ var TESTS = [
 		what: "Aperta Jogar e Parar 15 vezes seguidas (cada vez cria um motor de scripts novo). Mede se a memória volta."
 	}
 ];
-var ctx = null, starting = false;
+var ctx = null;
 function sum(p) {
 	return p ? {
 		frameP50: p.frameIntervalMs?.p50,
@@ -60337,15 +60353,10 @@ async function countdown(seconds, title, every) {
 		await sleep(500);
 	}
 }
-async function withTimeout(p, ms, msg) {
-	let timer;
-	try {
-		return await Promise.race([p, new Promise((_, reject) => {
-			timer = setTimeout(() => reject(new Error(msg)), ms);
-		})]);
-	} finally {
-		clearTimeout(timer);
-	}
+function withTimeout(p, ms, msg) {
+	return Promise.race([p, sleep(ms).then(() => {
+		throw new Error(msg);
+	})]);
 }
 function mountHost() {
 	const d = document.createElement("div");
@@ -60414,28 +60425,11 @@ function menu(build) {
 	};
 }
 async function start(id, build) {
-	if (starting || ctx) return;
-	starting = true;
 	const t = TESTS.find((x) => x.id === id);
 	const fixture = $("#fixture").value;
 	$("#menu").hidden = true;
 	hud("Preparando o teste " + id + "…");
-	let raw;
-	try {
-		const response = await fetch("fixtures/" + fixture + ".json");
-		if (!response.ok) throw new Error("HTTP " + response.status);
-		raw = await response.text();
-		JSON.parse(raw);
-	} catch (e) {
-		starting = false;
-		$("#menu").hidden = false;
-		$("#hud").hidden = true;
-		const message = document.createElement("p");
-		message.className = "warn";
-		message.textContent = "Não foi possível preparar o teste: " + String(e?.message ?? e) + ". Recarregue e tente novamente.";
-		$("#menu").appendChild(message);
-		return;
-	}
+	const raw = await (await fetch("fixtures/" + fixture + ".json")).text();
 	const rand = crypto.getRandomValues(new Uint32Array(2));
 	ctx = {
 		runId: (/* @__PURE__ */ new Date()).toISOString().replace(/[:.]/g, "-") + "-t" + id + "-" + rand[0].toString(36) + rand[1].toString(36),
@@ -60461,26 +60455,18 @@ async function start(id, build) {
 	try {
 		if (id === 1 || id === 2) await engineTest(id === 1 ? "leve" : "alta");
 		else if (id === 3) await (await __vitePreload(async () => {
-			const { run } = await import("./lagtest-game-test-D6-npVXQ.js");
+			const { run } = await import("./lagtest-game-test-CjkGfRUu.js");
 			return { run };
 		}, __vite__mapDeps([0,1,2]), import.meta.url)).run(ctx);
 		else await (await __vitePreload(async () => {
-			const { run } = await import("./lagtest-editor-test-CKXGftXq.js");
+			const { run } = await import("./lagtest-editor-test-bR8nBfdr.js");
 			return { run };
 		}, __vite__mapDeps([3,1,2,4,5]), import.meta.url)).run(ctx, id === 5 ? "ciclos" : "uso");
 	} catch (e) {
 		status = "falhou";
 		rec.error("teste", e?.message ?? String(e));
 		rec.event("falhou", String(e?.message ?? e));
-	} finally {
-		try {
-			rec.engine?.dispose();
-		} catch (e) {
-			status = "falhou";
-			rec.error("limpeza", String(e));
-		}
 	}
-	if (rec.errors.length) status = "falhou";
 	const hidden = rec.phases.reduce((a, p) => a + p.hiddenMs, 0);
 	if (hidden > 2e3) rec.extra.aviso = "A tela ficou escondida por " + Math.round(hidden / 1e3) + " s: resultado menos confiável.";
 	rec.extra.visibilityAtEnd = document.visibilityState;
@@ -60532,7 +60518,7 @@ async function start(id, build) {
  ${id < 5 ? `<button class="big" id="next">Próximo: Teste ${id + 1}</button>` : ""}<button class="big alt" id="back">Voltar aos testes</button>`;
 	bindShare(report);
 	$("#back").onclick = () => {
-		location.href = location.pathname + "?lu-download=1" + (SHORT ? "&curto=1" : "");
+		location.href = location.pathname + (SHORT ? "?curto=1" : "");
 	};
 	const n = document.getElementById("next");
 	if (n) n.onclick = () => {
@@ -60618,13 +60604,12 @@ function ua(u) {
 	return name + " · " + os;
 }
 function photo(r, v) {
-	const main = [...r.phases].reverse().find((p) => String(p.name).startsWith("jogando")) ?? r.phases.at(-1), f = main?.frameIntervalMs, d = r.device || {}, w = r.workers?.find((x) => x.readyMs != null);
-	const frames = main?.renderIntervalMs;
-	const fps = frames?.mean ? Math.round(1e3 / frames.mean) : null, eng = r.engineAtPlay ?? r.engine;
+	const f = ([...r.phases].reverse().find((p) => String(p.name).startsWith("jogando")) ?? r.phases.at(-1))?.frameIntervalMs, d = r.device || {}, w = r.workers?.find((x) => x.readyMs != null);
+	const fps = f?.mean ? Math.round(1e3 / f.mean) : null, eng = r.engineAtPlay ?? r.engine;
 	const row = (k, val) => `<tr><th>${esc(k)}</th><td>${esc(val ?? "?")}</td></tr>`;
 	const gpu = d.gpu?.unmaskedRenderer && d.gpu.unmaskedRenderer !== "indisponível" ? d.gpu.unmaskedRenderer : d.gpu?.renderer;
 	return `<div class="photo"><div class="ph-head">Teste ${esc(r.test.id)} · ${esc(v)}</div><table>
- ${row("Desenhos por segundo", fps)}${row("p95 entre quadros do navegador", f ? f.p95 + " ms" : null)}${row("Travadas acima de 200 ms", f?.over200)}${row("Engasgos acima de 50 ms", f?.over50)}
+ ${row("Quadros por segundo", fps)}${row("p95 entre quadros", f ? f.p95 + " ms" : null)}${row("Travadas acima de 200 ms", f?.over200)}${row("Engasgos acima de 50 ms", f?.over50)}
  ${row("Scripts prontos em", w ? Math.round(w.readyMs) + " ms" : null)}${row("Gráficos", eng ? eng.quality + " · nitidez " + eng.pixelRatio + "x" : null)}
  ${row("Placa de vídeo", gpu)}${row("Memória (RAM)", typeof d.deviceMemoryGB === "number" ? d.deviceMemoryGB + " GB" : "não informada")}
  ${row("Núcleos", d.hardwareConcurrency)}${row("Navegador", ua(String(d.userAgent || "")))}${row("Aparelho", r.label)}${row("Data", new Date(r.startedAt).toLocaleString("pt-BR"))}${row("Versão", r.build?.sourceCommit?.slice(0, 12))}
@@ -60684,7 +60669,10 @@ function bindShare(r) {
 		t.readOnly = true;
 		t.value = JSON.stringify(r);
 		t.style.cssText = "width:100%;height:140px;font-size:12px";
-		document.getElementById("share-msg")?.parentNode?.appendChild(t);
+		{
+			const m = document.getElementById("share-msg");
+			m?.parentNode?.insertBefore(t, m.nextSibling);
+		}
 		t.focus();
 		t.select();
 	};
@@ -60729,4 +60717,4 @@ loadBuild().then((b) => {
 	menu(b);
 });
 //#endregion
-export { PerspectiveCamera as $, sanitize as $t, DefaultLoadingManager as A, byId as At, Loader as B, isText as Bt, Box3 as C, toRuntime as Ct, Color as D, PROPS as Dt, ClampToEdgeWrapping as E, MATERIAL_TOKEN as Et, Group as F, isGui as Ft, Matrix3 as G, newId as Gt, LoadingManager as H, isWorldGui as Ht, Line as I, isImage as It, MeshLambertMaterial as J, orientationFromMatrix as Jt, Matrix4 as K, newProject as Kt, LineBasicMaterial as L, isPart as Lt, Euler as M, defaults as Mt, FileLoader as N, descendants as Nt, ColorManagement as O, SERVICES as Ot, Float32BufferAttribute as P, duplicate as Pt, Object3D as Q, rotateParts as Qt, LineSegments as R, isScript as Rt, Bone as S, parseChanges as St, BufferGeometry as T, MATERIALS as Tt, Material as U, make as Ut, LoaderUtils as V, isUiComponent as Vt, MathUtils as W, negate as Wt, MeshStandardMaterial as X, reparent as Xt, MeshPhongMaterial as Y, remove as Yt, NumberKeyframeTrack as Z, rotMatrix as Zt, ConvexHull as _, Vector4 as _t, mountHost as a, diagnosticEvent as an, QuaternionKeyframeTrack as at, AmbientLight as b, validRemote as bt, pe as c, session as cn, ShapeUtils as ct, StudioEngine as d, SpotLight as dt, separate as en, PointLight as et, autoQuality as f, Texture as ft, assetIdOf as g, Vector3 as gt, encodeMesh as h, Vector2 as ht, hud as i, attachGameDiagnostics as in, Quaternion as it, DirectionalLight as j, children as jt, Curve as k, SHAPE_TOKEN as kt, rec as l, Skeleton as lt, decodeMesh as m, Uint16BufferAttribute as mt, checkpoint as n, unionChildrenWorld as nn, PointsMaterial as nt, withTimeout as o, setDiagnosticPhase as on, RepeatWrapping as ot, __vitePreload as p, TextureLoader as pt, Mesh as q, nodeKidsWorld as qt, countdown as r, unite as rn, PropertyBinding as rt, autoWalk as s, local as sn, SRGBColorSpace as st, SHORT as t, setProp as tn, Points as tt, sleep as u, SkinnedMesh as ut, GLTFLoader as v, VectorKeyframeTrack as vt, BufferAttribute as w, BODY_COLOR_PROPS as wt, AnimationClip as x, fullName as xt, mergeGeometries as y, clientPhysics as yt, LinearSRGBColorSpace as z, isService as zt };
+export { PerspectiveCamera as $, sanitize as $t, DefaultLoadingManager as A, byId as At, Loader as B, isText as Bt, Box3 as C, toRuntime as Ct, Color as D, PROPS as Dt, ClampToEdgeWrapping as E, MATERIAL_TOKEN as Et, Group as F, isGui as Ft, Matrix3 as G, newId as Gt, LoadingManager as H, isWorldGui as Ht, Line as I, isImage as It, MeshLambertMaterial as J, orientationFromMatrix as Jt, Matrix4 as K, newProject as Kt, LineBasicMaterial as L, isPart as Lt, Euler as M, defaults as Mt, FileLoader as N, descendants as Nt, ColorManagement as O, SERVICES as Ot, Float32BufferAttribute as P, duplicate as Pt, Object3D as Q, rotateParts as Qt, LineSegments as R, isScript as Rt, Bone as S, parseChanges as St, BufferGeometry as T, MATERIALS as Tt, Material as U, make as Ut, LoaderUtils as V, isUiComponent as Vt, MathUtils as W, negate as Wt, MeshStandardMaterial as X, reparent as Xt, MeshPhongMaterial as Y, remove as Yt, NumberKeyframeTrack as Z, rotMatrix as Zt, ConvexHull as _, Vector4 as _t, mountHost as a, diagnosticEvent as an, QuaternionKeyframeTrack as at, AmbientLight as b, validRemote as bt, pe as c, ShapeUtils as ct, StudioEngine as d, SpotLight as dt, separate as en, PointLight as et, autoQuality as f, Texture as ft, assetIdOf as g, Vector3 as gt, encodeMesh as h, Vector2 as ht, hud as i, attachGameDiagnostics as in, Quaternion as it, DirectionalLight as j, children as jt, Curve as k, SHAPE_TOKEN as kt, rec as l, Skeleton as lt, decodeMesh as m, Uint16BufferAttribute as mt, checkpoint as n, unionChildrenWorld as nn, PointsMaterial as nt, withTimeout as o, markDiagnosticReload as on, RepeatWrapping as ot, __vitePreload as p, TextureLoader as pt, Mesh as q, nodeKidsWorld as qt, countdown as r, unite as rn, PropertyBinding as rt, autoWalk as s, setDiagnosticPhase as sn, SRGBColorSpace as st, SHORT as t, setProp as tn, Points as tt, sleep as u, SkinnedMesh as ut, GLTFLoader as v, VectorKeyframeTrack as vt, BufferAttribute as w, BODY_COLOR_PROPS as wt, AnimationClip as x, fullName as xt, mergeGeometries as y, clientPhysics as yt, LinearSRGBColorSpace as z, isService as zt };
