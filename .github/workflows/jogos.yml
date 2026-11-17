@@ -1,7 +1,7 @@
 name: Páginas de compartilhar jogos
 on:
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "17 */6 * * *"
   workflow_dispatch:
 permissions:
   contents: write
