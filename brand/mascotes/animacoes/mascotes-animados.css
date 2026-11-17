@@ -1,0 +1,776 @@
+/*
+ * Mascotes animados da Level Up Academy (trilhas).
+ * Tudo é feito movendo e deformando a imagem original (sem redesenhar o mascote).
+ * Reações: espera, estudo (contínuas) e acerto, erro, conclusao (tocam uma vez e voltam).
+ * Veja README.md nesta pasta.
+ */
+
+.lu-mascote {
+  --lu-tamanho: 180px;
+  --lu-cor: #2563eb;
+  --lu-cor2: #facc15;
+  --lu-ritmo: 1;          /* >1 = mais lento, <1 = mais rápido */
+  --lu-balanco: 1.6deg;   /* inclinação da respiração */
+  --lu-pulo: -16%;        /* altura do pulo do acerto */
+  position: relative;
+  display: inline-block;
+  width: var(--lu-tamanho);
+  aspect-ratio: 1;
+  isolation: isolate;
+  perspective: 800px;
+  vertical-align: bottom;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.lu-mascote__sombra {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 56%;
+  height: 7%;
+  margin-left: -28%;
+  border-radius: 50%;
+  background: rgb(15 23 42 / .16);
+  filter: blur(2px);
+  z-index: -1;
+  transform-origin: 50% 50%;
+}
+
+.lu-mascote__corpo {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 100%;
+}
+
+.lu-mascote__corpo > img, .lu-mascote__corpo > picture img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: 50% 100%;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+.lu-mascote__fx {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* ---------- Personalidade de cada mascote (só ritmo, cores e intensidade) ---------- */
+.lu-mascote[data-mascote='roblox-studio'] { --lu-cor: #0a45e8; --lu-cor2: #00d8ea; --lu-ritmo: 1.1; --lu-balanco: 1.2deg; --lu-pulo: -13%; }
+.lu-mascote[data-mascote='programacao-luau'] { --lu-cor: #5148f5; --lu-cor2: #6bc0ff; --lu-ritmo: .92; --lu-balanco: 2deg; --lu-pulo: -18%; }
+.lu-mascote[data-mascote='criacao-modelagem-3d'] { --lu-cor: #ef7d3c; --lu-cor2: #fbb93b; --lu-ritmo: 1; --lu-balanco: 1.8deg; --lu-pulo: -15%; }
+.lu-mascote[data-mascote='ui-design'] { --lu-cor: #e5336f; --lu-cor2: #7fdca4; --lu-ritmo: .86; --lu-balanco: 1deg; --lu-pulo: -15%; }
+.lu-mascote[data-mascote='animacao'] { --lu-cor: #12a88f; --lu-cor2: #8ff0c4; --lu-ritmo: .95; --lu-balanco: 2.2deg; --lu-pulo: -20%; }
+
+/* ---------- Espera (idle): respira, balança e de vez em quando dá uma olhadinha ---------- */
+.lu-mascote[data-reacao='espera'] .lu-mascote__corpo {
+  animation: lu-respirar calc(3.4s * var(--lu-ritmo)) ease-in-out infinite;
+}
+.lu-mascote[data-reacao='espera'] .lu-mascote__sombra {
+  animation: lu-sombra-respirar calc(3.4s * var(--lu-ritmo)) ease-in-out infinite;
+}
+.lu-mascote[data-reacao='espera'][data-gesto='olhar'] .lu-mascote__corpo {
+  animation: lu-olhar calc(1.3s * var(--lu-ritmo)) cubic-bezier(.3, .7, .3, 1) both;
+}
+.lu-mascote[data-reacao='espera'][data-gesto='pulinho'] .lu-mascote__corpo {
+  animation: lu-pulinho calc(.9s * var(--lu-ritmo)) cubic-bezier(.3, .7, .3, 1) both;
+}
+
+@keyframes lu-respirar {
+  0%, 100% { transform: rotate(0) scale(1, 1); }
+  25% { transform: rotate(calc(var(--lu-balanco) * -1)) scale(1.012, .986); }
+  50% { transform: rotate(0) scale(.992, 1.022); }
+  75% { transform: rotate(var(--lu-balanco)) scale(1.012, .986); }
+}
+@keyframes lu-sombra-respirar {
+  0%, 100%, 50% { transform: scale(1, 1); }
+  25%, 75% { transform: scale(1.04, 1); }
+}
+@keyframes lu-olhar {
+  0% { transform: rotate(0); }
+  18% { transform: rotate(-6deg) translateX(-2%); }
+  45% { transform: rotate(-6deg) translateX(-2%); }
+  60% { transform: rotate(5deg) translateX(2%); }
+  82% { transform: rotate(5deg) translateX(2%); }
+  100% { transform: rotate(0); }
+}
+@keyframes lu-pulinho {
+  0%, 100% { transform: translateY(0) scale(1, 1); }
+  18% { transform: translateY(0) scale(1.06, .92); }
+  40% { transform: translateY(-6%) scale(.97, 1.04); }
+  65% { transform: translateY(0) scale(1.04, .96); }
+  82% { transform: translateY(0) scale(.99, 1.01); }
+}
+
+/* ---------- Estudo: inclinado para a frente, "lendo" e pensando ---------- */
+.lu-mascote[data-reacao='estudo'] .lu-mascote__corpo {
+  animation: lu-estudar calc(2.8s * var(--lu-ritmo)) ease-in-out infinite;
+}
+@keyframes lu-estudar {
+  0%, 100% { transform: rotate(-3deg) scale(1, .99); }
+  18% { transform: rotate(-4.5deg) translateY(1%) scale(1.012, .972); }
+  34% { transform: rotate(-3deg) scale(1, .99); }
+  56% { transform: rotate(-1.5deg) translateX(1.5%) scale(1, .996); }
+  76% { transform: rotate(-4.5deg) translateY(1%) scale(1.012, .972); }
+}
+.lu-fx-balao {
+  position: absolute;
+  right: -4%;
+  top: 2%;
+  display: flex;
+  gap: 5%;
+  align-items: center;
+  justify-content: center;
+  width: 32%;
+  height: 17%;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 2px 0 rgb(15 23 42 / .08), 0 6px 14px rgb(15 23 42 / .12);
+  animation: lu-balao-entrar .35s cubic-bezier(.3, 1.5, .5, 1) both;
+  transform-origin: 15% 100%;
+}
+.lu-fx-balao::after {
+  content: '';
+  position: absolute;
+  left: 12%;
+  bottom: -18%;
+  width: 18%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #fff;
+}
+.lu-fx-balao i {
+  width: 14%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--lu-cor);
+  animation: lu-ponto calc(1.2s * var(--lu-ritmo)) ease-in-out infinite;
+}
+.lu-fx-balao i:nth-child(2) { animation-delay: calc(.15s * var(--lu-ritmo)); }
+.lu-fx-balao i:nth-child(3) { animation-delay: calc(.3s * var(--lu-ritmo)); }
+@keyframes lu-balao-entrar { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes lu-ponto { 0%, 60%, 100% { transform: translateY(0); opacity: .45; } 30% { transform: translateY(-35%); opacity: 1; } }
+
+/* ---------- Acerto: agacha, pula esticado e cai com brilhos ---------- */
+.lu-mascote[data-reacao='acerto'] .lu-mascote__corpo {
+  animation: lu-acerto calc(1.25s * var(--lu-ritmo)) linear both;
+}
+.lu-mascote[data-reacao='acerto'] .lu-mascote__sombra {
+  animation: lu-sombra-pulo calc(1.25s * var(--lu-ritmo)) linear both;
+}
+@keyframes lu-acerto {
+  0% { transform: translateY(0) scale(1, 1); animation-timing-function: ease-out; }
+  12% { transform: translateY(0) scale(1.12, .86); animation-timing-function: cubic-bezier(.2, .7, .4, 1); }
+  32% { transform: translateY(var(--lu-pulo)) rotate(-3deg) scale(.93, 1.09); animation-timing-function: ease-out; }
+  44% { transform: translateY(calc(var(--lu-pulo) * 1.12)) rotate(3deg) scale(1, 1); animation-timing-function: ease-in; }
+  60% { transform: translateY(0) scale(1.1, .9); animation-timing-function: ease-out; }
+  72% { transform: translateY(0) scale(.97, 1.04); }
+  86% { transform: translateY(0) scale(1.015, .99); }
+  100% { transform: translateY(0) scale(1, 1); }
+}
+@keyframes lu-sombra-pulo {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  12%, 60% { transform: scale(1.12, 1); }
+  44% { transform: scale(.65); opacity: .55; }
+}
+.lu-fx-brilho {
+  position: absolute;
+  left: 50%;
+  top: 38%;
+  width: 11%;
+  aspect-ratio: 1;
+  margin: -5.5% 0 0 -5.5%;
+  background: var(--lu-cor-fx, var(--lu-cor2));
+  clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+  opacity: 0;
+  animation: lu-brilho calc(.8s * var(--lu-ritmo)) cubic-bezier(.2, .8, .3, 1) both;
+  animation-delay: calc(.32s * var(--lu-ritmo) + var(--lu-atraso, 0s));
+}
+@keyframes lu-brilho {
+  0% { transform: translate(0, 0) scale(.2) rotate(0); opacity: 0; }
+  20% { opacity: 1; }
+  60% { transform: translate(var(--x), var(--y)) scale(var(--s, 1)) rotate(90deg); opacity: 1; }
+  100% { transform: translate(var(--x), calc(var(--y) - 8%)) scale(0) rotate(140deg); opacity: 0; }
+}
+
+/* ---------- Erro acolhedor: murcha um pouco, "tudo bem", e se levanta de novo ---------- */
+.lu-mascote[data-reacao='erro'] .lu-mascote__corpo {
+  animation: lu-erro calc(1.8s * var(--lu-ritmo)) ease-in-out both;
+}
+@keyframes lu-erro {
+  0% { transform: rotate(0) scale(1, 1); }
+  14% { transform: rotate(-2deg) scale(1.03, .93); }
+  28% { transform: rotate(-5deg) scale(1.03, .92); }
+  44% { transform: rotate(4deg) scale(1.02, .94); }
+  58% { transform: rotate(-2deg) scale(1.01, .96); }
+  72% { transform: translateY(-4%) rotate(0) scale(.97, 1.05); }
+  84% { transform: translateY(0) scale(1.03, .97); }
+  100% { transform: translateY(0) scale(1, 1); }
+}
+.lu-fx-abraco {
+  position: absolute;
+  left: 50%;
+  bottom: 4%;
+  width: 90%;
+  aspect-ratio: 1;
+  margin-left: -45%;
+  border-radius: 50%;
+  border: 3px solid var(--lu-cor2);
+  opacity: 0;
+  animation: lu-abraco calc(1.2s * var(--lu-ritmo)) ease-out both;
+  animation-delay: calc(.95s * var(--lu-ritmo));
+}
+@keyframes lu-abraco {
+  0% { transform: scale(.6); opacity: 0; }
+  30% { opacity: .7; }
+  100% { transform: scale(1.12); opacity: 0; }
+}
+.lu-fx-bolha {
+  position: absolute;
+  left: 50%;
+  bottom: 30%;
+  width: 7%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--lu-cor2);
+  opacity: 0;
+  animation: lu-bolha calc(1.1s * var(--lu-ritmo)) ease-out both;
+  animation-delay: calc(1.05s * var(--lu-ritmo) + var(--lu-atraso, 0s));
+}
+@keyframes lu-bolha {
+  0% { transform: translate(0, 0) scale(.4); opacity: 0; }
+  25% { opacity: .9; }
+  100% { transform: translate(var(--x), var(--y)) scale(1); opacity: 0; }
+}
+
+/* ---------- Conclusão: agacha, salta comemorando e solta confete ---------- */
+.lu-mascote[data-reacao='conclusao'] .lu-mascote__corpo {
+  animation: lu-concluir calc(2.6s * var(--lu-ritmo)) linear both;
+}
+.lu-mascote[data-reacao='conclusao'] .lu-mascote__sombra {
+  animation: lu-sombra-concluir calc(2.6s * var(--lu-ritmo)) linear both;
+}
+/* Bisel (3D) dá um giro completo; Flipa (Animação) vira como página de flipbook. */
+.lu-mascote[data-mascote='criacao-modelagem-3d'][data-reacao='conclusao'] .lu-mascote__corpo { animation-name: lu-concluir-giro; transform-origin: 50% 55%; }
+.lu-mascote[data-mascote='animacao'][data-reacao='conclusao'] .lu-mascote__corpo { animation-name: lu-concluir-virar; }
+
+@keyframes lu-concluir {
+  0% { transform: translateY(0) scale(1, 1); animation-timing-function: ease-out; }
+  10% { transform: translateY(0) scale(1.14, .84); animation-timing-function: cubic-bezier(.2, .7, .4, 1); }
+  26% { transform: translateY(-22%) rotate(-8deg) scale(.92, 1.1); animation-timing-function: ease-in; }
+  40% { transform: translateY(0) rotate(0) scale(1.1, .9); animation-timing-function: cubic-bezier(.2, .7, .4, 1); }
+  54% { transform: translateY(-16%) rotate(8deg) scale(.95, 1.06); animation-timing-function: ease-in; }
+  66% { transform: translateY(0) rotate(0) scale(1.08, .92); }
+  76% { transform: translateY(0) scale(1.05, 1.05); }
+  88% { transform: translateY(0) scale(1.06, 1.04) rotate(-2deg); }
+  100% { transform: translateY(0) scale(1, 1); }
+}
+@keyframes lu-concluir-giro {
+  0% { transform: translateY(0) rotate(0) scale(1, 1); animation-timing-function: ease-out; }
+  10% { transform: translateY(0) rotate(0) scale(1.14, .84); animation-timing-function: cubic-bezier(.2, .7, .4, 1); }
+  30% { transform: translateY(-26%) rotate(180deg) scale(.95, 1.05); animation-timing-function: ease-in; }
+  46% { transform: translateY(0) rotate(360deg) scale(1.1, .9); }
+  58% { transform: translateY(0) rotate(360deg) scale(.97, 1.04); }
+  76% { transform: translateY(0) rotate(360deg) scale(1.05, 1.05); }
+  100% { transform: translateY(0) rotate(360deg) scale(1, 1); }
+}
+@keyframes lu-concluir-virar {
+  0% { transform: translateY(0) rotateY(0) scale(1, 1); animation-timing-function: ease-out; }
+  10% { transform: translateY(0) rotateY(0) scale(1.14, .84); animation-timing-function: cubic-bezier(.2, .7, .4, 1); }
+  28% { transform: translateY(-24%) rotateY(180deg) scale(.94, 1.08); animation-timing-function: ease-in; }
+  44% { transform: translateY(0) rotateY(360deg) scale(1.1, .9); }
+  56% { transform: translateY(-8%) rotateY(360deg) scale(.97, 1.04); animation-timing-function: ease-in; }
+  66% { transform: translateY(0) rotateY(360deg) scale(1.05, .95); }
+  80% { transform: translateY(0) rotateY(360deg) scale(1.05, 1.05); }
+  100% { transform: translateY(0) rotateY(360deg) scale(1, 1); }
+}
+@keyframes lu-sombra-concluir {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  10%, 40%, 66% { transform: scale(1.14, 1); opacity: 1; }
+  26% { transform: scale(.55); opacity: .5; }
+  54% { transform: scale(.7); opacity: .6; }
+}
+.lu-fx-confete {
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  width: 6%;
+  height: 10%;
+  margin: -5% 0 0 -3%;
+  border-radius: 2px;
+  background: var(--lu-cor-fx, var(--lu-cor));
+  opacity: 0;
+  animation: lu-confete calc(1.6s * var(--lu-ritmo)) linear both;
+  animation-delay: calc(.3s * var(--lu-ritmo) + var(--lu-atraso, 0s));
+}
+@keyframes lu-confete {
+  0% { transform: translate(0, 0) rotate(0) scale(.3); opacity: 0; animation-timing-function: cubic-bezier(.1, .7, .3, 1); }
+  8% { opacity: 1; }
+  40% { transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(1); animation-timing-function: cubic-bezier(.5, 0, .9, .5); }
+  85% { opacity: 1; }
+  100% { transform: translate(calc(var(--x) * 1.25), calc(var(--y) + 95%)) rotate(calc(var(--r) * 3)) scale(.9); opacity: 0; }
+}
+
+/* ---------- Toque/hover: um pequeno "pop" de resposta ---------- */
+.lu-mascote[data-tocavel] { cursor: pointer; }
+.lu-mascote[data-tocavel]:focus-visible { outline: 3px solid var(--lu-cor); outline-offset: 4px; border-radius: 16px; }
+
+/* ---------- Sem movimento: preferências do sistema, modo estático ou sem JS ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .lu-mascote, .lu-mascote * { animation: none !important; transition: none !important; }
+  .lu-mascote__fx { display: none; }
+}
+.lu-mascote--estatico, .lu-mascote--estatico *,
+.lu-mascote--sem-movimento, .lu-mascote--sem-movimento * { animation: none !important; transition: none !important; }
+.lu-mascote--estatico .lu-mascote__fx, .lu-mascote--sem-movimento .lu-mascote__fx { display: none; }
+
+/* =====================================================================
+ * Ações extras (tocam uma vez e voltam): ola, animado, carinho, danca,
+ * pensar, surpresa, determinado, triste, sono.
+ * ===================================================================== */
+.lu-mascote[data-reacao='ola'] .lu-mascote__corpo { animation: lu-ola calc(1.8s * var(--lu-ritmo)) ease-in-out both; }
+@keyframes lu-ola {
+  0%, 100% { transform: rotate(0) scale(1, 1); }
+  10% { transform: translateY(-5%) rotate(-7deg) scale(.97, 1.04); }
+  22% { transform: translateY(0) rotate(7deg) scale(1.02, .98); }
+  34% { transform: rotate(-7deg); }
+  46% { transform: rotate(7deg); }
+  58% { transform: rotate(-5deg); }
+  70% { transform: rotate(3deg) scale(1.02, .98); }
+  84% { transform: rotate(0) scale(.99, 1.01); }
+}
+
+.lu-mascote[data-reacao='animado'] .lu-mascote__corpo { animation: lu-animado calc(1.6s * var(--lu-ritmo)) linear both; }
+.lu-mascote[data-reacao='animado'] .lu-mascote__sombra { animation: lu-sombra-saltos calc(1.6s * var(--lu-ritmo)) linear both; }
+@keyframes lu-animado {
+  0%, 100% { transform: translateY(0) scale(1, 1); }
+  8%, 36%, 64% { transform: translateY(0) scale(1.08, .9); }
+  22% { transform: translateY(-9%) rotate(-4deg) scale(.96, 1.05); }
+  50% { transform: translateY(-9%) rotate(4deg) scale(.96, 1.05); }
+  78% { transform: translateY(-11%) rotate(0) scale(.95, 1.06); }
+  90% { transform: translateY(0) scale(1.05, .95); }
+}
+@keyframes lu-sombra-saltos {
+  0%, 8%, 36%, 64%, 90%, 100% { transform: scale(1); opacity: 1; }
+  22%, 50%, 78% { transform: scale(.8); opacity: .7; }
+}
+
+.lu-mascote[data-reacao='carinho'] .lu-mascote__corpo { animation: lu-carinho calc(2s * var(--lu-ritmo)) ease-in-out both; }
+@keyframes lu-carinho {
+  0%, 100% { transform: rotate(0) scale(1, 1); }
+  15% { transform: rotate(-4deg) scale(1.07, .93); }
+  35% { transform: rotate(4deg) scale(1.07, .93); }
+  55% { transform: rotate(-4deg) scale(1.07, .93); }
+  75% { transform: rotate(2deg) scale(1.02, .98); }
+  88% { transform: rotate(0) scale(.98, 1.02); }
+}
+
+.lu-mascote[data-reacao='danca'] .lu-mascote__corpo { animation: lu-danca calc(2.4s * var(--lu-ritmo)) ease-in-out both; }
+@keyframes lu-danca {
+  0%, 100% { transform: translateX(0) rotate(0) scale(1, 1); }
+  12.5% { transform: translateX(-4%) rotate(-9deg) scale(1.03, .96); }
+  25% { transform: translateX(0) translateY(-4%) rotate(0) scale(.97, 1.04); }
+  37.5% { transform: translateX(4%) rotate(9deg) scale(1.03, .96); }
+  50% { transform: translateX(0) translateY(-4%) rotate(0) scale(.97, 1.04); }
+  62.5% { transform: translateX(-4%) rotate(-9deg) scale(1.03, .96); }
+  75% { transform: translateX(0) translateY(-4%) rotate(0) scale(.97, 1.04); }
+  87.5% { transform: translateX(4%) rotate(9deg) scale(1.03, .96); }
+}
+
+.lu-mascote[data-reacao='pensar'] .lu-mascote__corpo { animation: lu-pensar calc(2.6s * var(--lu-ritmo)) ease-in-out both; }
+@keyframes lu-pensar {
+  0%, 100% { transform: rotate(0) scale(1, 1); }
+  15%, 45% { transform: rotate(8deg) translateX(2%) scale(.99, 1.01); }
+  55%, 82% { transform: rotate(-6deg) translateX(-2%) translateY(-2%) scale(.98, 1.02); }
+}
+
+.lu-mascote[data-reacao='surpresa'] .lu-mascote__corpo { animation: lu-surpresa calc(1.2s * var(--lu-ritmo)) linear both; }
+@keyframes lu-surpresa {
+  0% { transform: translateY(0) scale(1, 1); }
+  8% { transform: translateY(0) scale(1.06, .92); }
+  20% { transform: translateY(-10%) scale(.9, 1.14); }
+  55% { transform: translateY(-8%) scale(.93, 1.1); }
+  70% { transform: translateY(0) scale(1.08, .92); }
+  84% { transform: translateY(0) scale(.98, 1.02); }
+  100% { transform: translateY(0) scale(1, 1); }
+}
+
+.lu-mascote[data-reacao='determinado'] .lu-mascote__corpo { animation: lu-determinado calc(1.8s * var(--lu-ritmo)) ease-in-out both; }
+@keyframes lu-determinado {
+  0%, 100% { transform: translateX(0) scale(1, 1); }
+  14% { transform: scale(1.08, .9); }
+  20%, 30%, 40%, 50% { transform: translateX(-1.5%) scale(1.08, .9); }
+  25%, 35%, 45%, 55% { transform: translateX(1.5%) scale(1.08, .9); }
+  68% { transform: translateY(-4%) scale(.96, 1.06); }
+  82% { transform: scale(1.03, .97); }
+}
+
+.lu-mascote[data-reacao='triste'] .lu-mascote__corpo { animation: lu-triste calc(2.4s * var(--lu-ritmo)) ease-in-out both; }
+@keyframes lu-triste {
+  0%, 100% { transform: rotate(0) scale(1, 1); }
+  20% { transform: rotate(-3deg) scale(1.05, .9); }
+  40% { transform: rotate(2deg) scale(1.05, .89); }
+  60% { transform: rotate(-2deg) scale(1.05, .9); }
+  80% { transform: rotate(0) scale(1.03, .94); }
+}
+
+.lu-mascote[data-reacao='sono'] .lu-mascote__corpo { animation: lu-sono calc(3.2s * var(--lu-ritmo)) ease-in-out both; }
+@keyframes lu-sono {
+  0%, 100% { transform: rotate(0) scale(1, 1); }
+  15% { transform: rotate(6deg) scale(1.02, .97); }
+  35% { transform: rotate(7deg) scale(1.05, .93); }
+  55% { transform: rotate(6deg) scale(1.01, .99); }
+  75% { transform: rotate(7deg) scale(1.05, .93); }
+  90% { transform: translateY(-3%) rotate(0) scale(.97, 1.04); }
+}
+
+/* Símbolos flutuantes (corações, notas, ?, !, Z) e gotas/fumacinha. */
+.lu-fx-simbolo {
+  position: absolute;
+  left: var(--px, 50%);
+  top: var(--py, 18%);
+  font: 800 calc(var(--lu-tamanho) * .16 * var(--s, 1)) / 1 system-ui, sans-serif;
+  color: var(--lu-cor-fx, var(--lu-cor));
+  text-shadow: 0 2px 0 rgb(255 255 255 / .9);
+  opacity: 0;
+  animation: lu-simbolo calc(var(--dur, 1.4s) * var(--lu-ritmo)) ease-out both;
+  animation-delay: calc(var(--lu-atraso, 0s) * var(--lu-ritmo));
+}
+@keyframes lu-simbolo {
+  0% { transform: translate(-50%, 0) scale(.3) rotate(0); opacity: 0; }
+  20% { transform: translate(-50%, -20%) scale(1.15) rotate(calc(var(--r, 0deg) * .5)); opacity: 1; }
+  35% { transform: translate(-50%, -35%) scale(1) rotate(calc(var(--r, 0deg) * .6)); }
+  80% { opacity: 1; }
+  100% { transform: translate(calc(-50% + var(--x, 0%)), var(--y, -160%)) scale(.9) rotate(var(--r, 0deg)); opacity: 0; }
+}
+.lu-fx-simbolo--pop { animation-name: lu-simbolo-pop; }
+@keyframes lu-simbolo-pop {
+  0% { transform: translate(-50%, 0) scale(0); opacity: 0; }
+  25% { transform: translate(-50%, -10%) scale(1.3); opacity: 1; }
+  40%, 80% { transform: translate(-50%, -10%) scale(1); opacity: 1; }
+  100% { transform: translate(-50%, -10%) scale(.6); opacity: 0; }
+}
+.lu-fx-gota {
+  position: absolute;
+  left: var(--px, 50%);
+  top: var(--py, 35%);
+  width: 5%;
+  aspect-ratio: 1;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  background: #7cc4ff;
+  opacity: 0;
+  animation: lu-gota calc(.9s * var(--lu-ritmo)) ease-in both;
+  animation-delay: calc(var(--lu-atraso, 0s) * var(--lu-ritmo));
+}
+@keyframes lu-gota {
+  0% { transform: translate(0, 0) rotate(-45deg) scale(.4); opacity: 0; }
+  20% { opacity: .95; transform: translate(calc(var(--x) * .3), -40%) rotate(-45deg) scale(1); }
+  100% { transform: translate(var(--x), 260%) rotate(-45deg) scale(.8); opacity: 0; }
+}
+.lu-fx-fumaca {
+  position: absolute;
+  left: var(--px, 50%);
+  top: 6%;
+  width: 9%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgb(148 163 184 / .75);
+  opacity: 0;
+  animation: lu-fumaca calc(1s * var(--lu-ritmo)) ease-out both;
+  animation-delay: calc(var(--lu-atraso, 0s) * var(--lu-ritmo));
+}
+@keyframes lu-fumaca {
+  0% { transform: translate(-50%, 0) scale(.3); opacity: 0; }
+  30% { opacity: .9; }
+  100% { transform: translate(calc(-50% + var(--x, 0%)), -180%) scale(1.4); opacity: 0; }
+}
+
+/* =====================================================================
+ * RIG: mascote recortado em peças (braços, pernas, olhos, pupilas,
+ * sobrancelhas e boca). Gerado por gerar-rig.mjs; montado pelo JS.
+ * Sem o rig (ou no modo estático) aparece a imagem inteira.
+ * ===================================================================== */
+.lu-rig { position: absolute; left: 50%; bottom: 0; translate: -50% 0; display: none; }
+.lu-mascote--rig .lu-rig { display: block; }
+.lu-mascote--rig > .lu-mascote__corpo > img, .lu-mascote--rig > .lu-mascote__corpo > picture { visibility: hidden; }
+.lu-mascote--estatico .lu-rig { display: none !important; }
+.lu-mascote--estatico > .lu-mascote__corpo > img, .lu-mascote--estatico > .lu-mascote__corpo > picture { visibility: visible !important; }
+
+.lu-rig .lu-p, .lu-pupila { position: absolute; display: block; }
+.lu-rig img { display: block; width: 100%; height: 100%; pointer-events: none; user-select: none; -webkit-user-drag: none; }
+.lu-rosto { position: absolute; inset: 0; transform-origin: 50% 60%; }
+.lu-olho__aberto { position: absolute; inset: 0; transform-origin: 50% 50%; }
+.lu-olho__fechado, .lu-olho__feliz {
+  position: absolute; left: 14%; width: 72%; height: 26%; opacity: 0; box-sizing: border-box;
+  border: 0 solid var(--lu-escuro, #3a2a28); border-radius: 0 0 50% 50% / 0 0 100% 100%;
+  border-bottom-width: calc(var(--lu-tamanho) * .022); top: 40%;
+}
+.lu-olho__feliz { border-bottom-width: 0; border-top-width: calc(var(--lu-tamanho) * .024); border-radius: 50% 50% 0 0 / 100% 100% 0 0; top: 38%; }
+.lu-p-boca > img { transform-origin: 50% 40%; }
+.lu-boca__aberta {
+  position: absolute; left: 50%; top: 55%; width: 78%; aspect-ratio: 1 / .85; translate: -50% -50%; scale: 0;
+  border-radius: 46% 46% 50% 50% / 40% 40% 60% 60%;
+  background: radial-gradient(60% 45% at 50% 85%, #e86a7a 0 70%, transparent 72%), var(--lu-escuro, #3a2a28);
+}
+
+/* Duração de cada reação (mesma do corpo) */
+.lu-mascote[data-reacao='espera'] { --d: calc(3.4s * var(--lu-ritmo)); }
+.lu-mascote[data-reacao='estudo'] { --d: calc(2.8s * var(--lu-ritmo)); }
+.lu-mascote[data-reacao='acerto'] { --d: calc(1.25s * var(--lu-ritmo)); }
+.lu-mascote[data-reacao='erro'] { --d: calc(1.8s * var(--lu-ritmo)); }
+.lu-mascote[data-reacao='conclusao'] { --d: calc(2.6s * var(--lu-ritmo)); }
+.lu-mascote[data-reacao='ola'] { --d: calc(1.8s * var(--lu-ritmo)); }
+.lu-mascote[data-reacao='animado'] { --d: calc(1.6s * var(--lu-ritmo)); }
+.lu-mascote[data-reacao='carinho'] { --d: calc(2s * var(--lu-ritmo)); }
+.lu-mascote[data-reacao='danca'] { --d: calc(2.4s * var(--lu-ritmo)); }
+.lu-mascote[data-reacao='pensar'] { --d: calc(2.6s * var(--lu-ritmo)); }
+.lu-mascote[data-reacao='surpresa'] { --d: calc(1.2s * var(--lu-ritmo)); }
+.lu-mascote[data-reacao='determinado'] { --d: calc(1.8s * var(--lu-ritmo)); }
+.lu-mascote[data-reacao='triste'] { --d: calc(2.4s * var(--lu-ritmo)); }
+.lu-mascote[data-reacao='sono'] { --d: calc(3.2s * var(--lu-ritmo)); }
+
+/* --s = 1 no lado esquerdo e -1 no direito (espelha braços, pernas e sobrancelhas). */
+
+/* ---------- ESPERA: braços balançam, pisca, olha em volta ---------- */
+.lu-mascote[data-reacao='espera'] .lu-p-braco { animation: lu-r-braco-respira var(--d) ease-in-out infinite; }
+.lu-mascote[data-reacao='espera'] .lu-olho__aberto { animation: lu-r-piscar calc(4.6s * var(--lu-ritmo)) linear infinite; }
+.lu-mascote[data-reacao='espera'] .lu-olho__fechado { animation: lu-r-piscar-linha calc(4.6s * var(--lu-ritmo)) linear infinite; }
+.lu-mascote[data-reacao='espera'][data-gesto='olhar'] .lu-pupila { animation: lu-r-pupila-olhar calc(1.3s * var(--lu-ritmo)) ease-in-out both; }
+.lu-mascote[data-reacao='espera'][data-gesto='olhar'] .lu-rosto { animation: lu-r-rosto-olhar calc(1.3s * var(--lu-ritmo)) ease-in-out both; }
+.lu-mascote[data-reacao='espera'][data-gesto='olhar'] .lu-p-sobrancelha-d { animation: lu-r-sobr-curiosa calc(1.3s * var(--lu-ritmo)) ease-in-out both; }
+.lu-mascote[data-reacao='espera'][data-gesto='piscar'] .lu-olho__aberto { animation: lu-r-piscar-duplo calc(.9s * var(--lu-ritmo)) linear both; }
+.lu-mascote[data-reacao='espera'][data-gesto='piscar'] .lu-olho__fechado { animation: lu-r-piscar-duplo-linha calc(.9s * var(--lu-ritmo)) linear both; }
+.lu-mascote[data-reacao='espera'][data-gesto='pulinho'] .lu-p-braco { animation: lu-r-braco-sacode calc(.9s * var(--lu-ritmo)) ease-out both; }
+.lu-mascote[data-reacao='espera'][data-gesto='pulinho'] .lu-p-sobrancelha { animation: lu-r-sobr-pulo calc(.9s * var(--lu-ritmo)) ease-out both; }
+
+@keyframes lu-r-braco-respira { 0%, 50%, 100% { transform: rotate(0); } 25% { transform: rotate(calc(var(--s) * 5deg)); } 75% { transform: rotate(calc(var(--s) * -3deg)); } }
+@keyframes lu-r-piscar { 0%, 90%, 100% { transform: scaleY(1); } 92.5%, 94.5% { transform: scaleY(.08); } }
+@keyframes lu-r-piscar-linha { 0%, 91.5%, 95.5%, 100% { opacity: 0; } 92.5%, 94.5% { opacity: 1; } }
+@keyframes lu-r-piscar-duplo { 0%, 100%, 30%, 55% { transform: scaleY(1); } 12%, 18%, 70%, 78% { transform: scaleY(.08); } }
+@keyframes lu-r-piscar-duplo-linha { 0%, 8%, 24%, 64%, 84%, 100% { opacity: 0; } 12%, 18%, 70%, 78% { opacity: 1; } }
+@keyframes lu-r-pupila-olhar { 0%, 100% { transform: translate(0, 0); } 18%, 45% { transform: translate(-28%, -6%); } 60%, 82% { transform: translate(28%, -6%); } }
+@keyframes lu-r-rosto-olhar { 0%, 100% { transform: translateX(0); } 18%, 45% { transform: translateX(-2.5%); } 60%, 82% { transform: translateX(2.5%); } }
+@keyframes lu-r-sobr-curiosa { 0%, 100%, 50% { transform: translateY(0); } 65%, 80% { transform: translateY(-30%) rotate(-6deg); } }
+@keyframes lu-r-braco-sacode { 0%, 100% { transform: rotate(0); } 40% { transform: rotate(calc(var(--s) * 45deg)); } 70% { transform: rotate(calc(var(--s) * -8deg)); } }
+@keyframes lu-r-sobr-pulo { 0%, 100% { transform: translateY(0); } 40% { transform: translateY(-35%); } }
+
+/* ---------- ESTUDO: lê (pupilas correm a linha), escreve com um braço ---------- */
+.lu-mascote[data-reacao='estudo'] .lu-pupila { animation: lu-r-ler var(--d) linear infinite; }
+.lu-mascote[data-reacao='estudo'] .lu-p-sobrancelha { animation: lu-r-sobr-foco var(--d) ease-in-out infinite; }
+.lu-mascote[data-reacao='estudo'] .lu-p-boca > img { animation: lu-r-boca-foco var(--d) ease-in-out infinite; }
+.lu-mascote[data-reacao='estudo'] .lu-p-braco-d { animation: lu-r-escrever calc(.7s * var(--lu-ritmo)) ease-in-out infinite; }
+.lu-mascote[data-reacao='estudo'] .lu-p-braco-e { animation: lu-r-segurar var(--d) ease-in-out infinite; }
+.lu-mascote[data-reacao='estudo'] .lu-olho__aberto { animation: lu-r-piscar-estudo var(--d) linear infinite; }
+.lu-mascote[data-reacao='estudo'] .lu-olho__fechado { animation: lu-r-piscar-estudo-linha var(--d) linear infinite; }
+@keyframes lu-r-ler {
+  0% { transform: translate(-22%, 20%); } 40% { transform: translate(22%, 20%); } 46% { transform: translate(-22%, 26%); }
+  86% { transform: translate(22%, 26%); } 92%, 100% { transform: translate(-22%, 20%); }
+}
+@keyframes lu-r-sobr-foco { 0%, 48%, 64%, 100% { transform: translateY(10%); } 52%, 58% { transform: translateY(-18%); } }
+@keyframes lu-r-boca-foco { 0%, 100% { transform: scale(.8, .8); } 50% { transform: scale(.75, .6) translateX(8%); } }
+@keyframes lu-r-escrever { 0%, 100% { transform: rotate(-38deg); } 50% { transform: rotate(-28deg); } }
+@keyframes lu-r-segurar { 0%, 100% { transform: rotate(22deg); } 50% { transform: rotate(26deg); } }
+@keyframes lu-r-piscar-estudo { 0%, 66%, 74%, 100% { transform: scaleY(1); } 69%, 71% { transform: scaleY(.08); } }
+@keyframes lu-r-piscar-estudo-linha { 0%, 67.5%, 72.5%, 100% { opacity: 0; } 69%, 71% { opacity: 1; } }
+
+/* ---------- ACERTO: olhos felizes, boca grande, braços pra cima, pernas no ar ---------- */
+.lu-mascote[data-reacao='acerto'] .lu-p-braco { animation: lu-r-acerto-braco var(--d) ease-out both; }
+.lu-mascote[data-reacao='acerto'] .lu-p-perna { animation: lu-r-acerto-perna var(--d) ease-out both; }
+.lu-mascote[data-reacao='acerto'] .lu-olho__aberto { animation: lu-r-fecha-feliz var(--d) linear both; }
+.lu-mascote[data-reacao='acerto'] .lu-olho__feliz { animation: lu-r-mostra-feliz var(--d) linear both; }
+.lu-mascote[data-reacao='acerto'] .lu-p-boca > img { animation: lu-r-sorrisao var(--d) ease-out both; }
+.lu-mascote[data-reacao='acerto'] .lu-p-sobrancelha { animation: lu-r-sobr-alegre var(--d) ease-out both; }
+@keyframes lu-r-acerto-braco {
+  0%, 100% { transform: rotate(0); } 12% { transform: rotate(calc(var(--s) * -12deg)); } 32% { transform: rotate(calc(var(--s) * 125deg)); }
+  44% { transform: rotate(calc(var(--s) * 105deg)); } 60% { transform: rotate(calc(var(--s) * 130deg)); } 78% { transform: rotate(calc(var(--s) * 60deg)); }
+}
+@keyframes lu-r-acerto-perna { 0%, 24%, 60%, 100% { transform: translateY(0) rotate(0); } 34%, 46% { transform: translateY(-10%) rotate(calc(var(--s) * 14deg)); } }
+@keyframes lu-r-fecha-feliz { 0%, 18%, 80%, 100% { transform: scaleY(1); } 24%, 74% { transform: scaleY(0); } }
+@keyframes lu-r-mostra-feliz { 0%, 20%, 78%, 100% { opacity: 0; } 25%, 73% { opacity: 1; } }
+@keyframes lu-r-sorrisao { 0%, 100% { transform: scale(1); } 28%, 70% { transform: scale(1.45, 1.7); } 84% { transform: scale(1.1, 1.15); } }
+@keyframes lu-r-sobr-alegre { 0%, 100% { transform: translateY(0); } 28%, 70% { transform: translateY(-38%); } }
+
+/* ---------- ERRO ACOLHEDOR: sobrancelhas preocupadas, boquinha triste, depois sorri e anima ---------- */
+.lu-mascote[data-reacao='erro'] .lu-p-sobrancelha { animation: lu-r-erro-sobr var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='erro'] .lu-p-boca > img { animation: lu-r-erro-boca var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='erro'] .lu-pupila { animation: lu-r-erro-pupila var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='erro'] .lu-olho__aberto { animation: lu-r-erro-olho var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='erro'] .lu-olho__fechado { animation: lu-r-erro-olho-linha var(--d) linear both; }
+.lu-mascote[data-reacao='erro'] .lu-p-braco { animation: lu-r-erro-braco var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='erro'] .lu-p-braco-d { animation-name: lu-r-erro-braco-d; }
+@keyframes lu-r-erro-sobr {
+  0%, 100% { transform: translateY(0) rotate(0); } 12%, 58% { transform: translateY(8%) rotate(calc(var(--s) * -16deg)); }
+  74% { transform: translateY(-22%) rotate(0); } 88% { transform: translateY(-10%); }
+}
+@keyframes lu-r-erro-boca { 0%, 100% { transform: scale(1); } 12%, 58% { transform: scale(.8, -.75); } 66% { transform: scale(.9, .3); } 76%, 90% { transform: scale(1.2, 1.3); } }
+@keyframes lu-r-erro-pupila { 0%, 100% { transform: translate(0, 0); } 14%, 55% { transform: translate(0, 24%); } 72% { transform: translate(0, -6%); } }
+@keyframes lu-r-erro-olho { 0%, 100% { transform: scaleY(1); } 14%, 58% { transform: scaleY(.86) translateY(5%); } 62%, 64% { transform: scaleY(.08); } 68% { transform: scaleY(1); } }
+@keyframes lu-r-erro-olho-linha { 0%, 61%, 65.5%, 100% { opacity: 0; } 62%, 64% { opacity: 1; } }
+@keyframes lu-r-erro-braco { 0%, 100% { transform: rotate(0); } 14%, 58% { transform: rotate(calc(var(--s) * -10deg)); } }
+@keyframes lu-r-erro-braco-d {
+  0%, 100% { transform: rotate(0); } 14%, 58% { transform: rotate(10deg); } 70% { transform: rotate(-95deg); }
+  77% { transform: rotate(-75deg); } 84% { transform: rotate(-100deg); } 92% { transform: rotate(-60deg); }
+}
+
+/* ---------- CONCLUSÃO: olhos felizes, grito de alegria, braços e pernas comemorando ---------- */
+.lu-mascote[data-reacao='conclusao'] .lu-p-braco { animation: lu-r-fim-braco var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='conclusao'] .lu-p-perna { animation: lu-r-fim-perna var(--d) ease-out both; }
+.lu-mascote[data-reacao='conclusao'] .lu-olho__aberto { animation: lu-r-fim-olho var(--d) linear both; }
+.lu-mascote[data-reacao='conclusao'] .lu-olho__feliz { animation: lu-r-fim-feliz var(--d) linear both; }
+.lu-mascote[data-reacao='conclusao'] .lu-p-boca > img { animation: lu-r-esconde-boca var(--d) linear both; }
+.lu-mascote[data-reacao='conclusao'] .lu-boca__aberta { animation: lu-r-fim-grito var(--d) ease-out both; }
+.lu-mascote[data-reacao='conclusao'] .lu-p-sobrancelha { animation: lu-r-fim-sobr var(--d) ease-out both; }
+@keyframes lu-r-fim-braco {
+  0%, 100% { transform: rotate(0); } 10% { transform: rotate(calc(var(--s) * -12deg)); } 26% { transform: rotate(calc(var(--s) * 140deg)); }
+  40% { transform: rotate(calc(var(--s) * 105deg)); } 54% { transform: rotate(calc(var(--s) * 140deg)); } 66% { transform: rotate(calc(var(--s) * 110deg)); }
+  74% { transform: rotate(calc(var(--s) * 135deg)); } 80% { transform: rotate(calc(var(--s) * 100deg)); } 86% { transform: rotate(calc(var(--s) * 135deg)); } 93% { transform: rotate(calc(var(--s) * 40deg)); }
+}
+@keyframes lu-r-fim-perna { 0%, 18%, 40%, 46%, 66%, 100% { transform: translateY(0) rotate(0); } 26% { transform: translateY(-12%) rotate(calc(var(--s) * 18deg)); } 54% { transform: translateY(-10%) rotate(calc(var(--s) * -12deg)); } }
+@keyframes lu-r-fim-olho { 0%, 6%, 94%, 100% { transform: scaleY(1); } 10%, 90% { transform: scaleY(0); } }
+@keyframes lu-r-fim-feliz { 0%, 8%, 92%, 100% { opacity: 0; } 11%, 89% { opacity: 1; } }
+@keyframes lu-r-esconde-boca { 0%, 9%, 93%, 100% { opacity: 1; } 12%, 90% { opacity: 0; } }
+@keyframes lu-r-fim-grito { 0%, 8%, 96%, 100% { scale: 0; } 14% { scale: 1; } 26% { scale: 1.25; } 40% { scale: .85; } 54% { scale: 1.25; } 66% { scale: .9; } 80% { scale: 1.1; } 90% { scale: .7; } }
+@keyframes lu-r-fim-sobr { 0%, 100% { transform: translateY(0); } 12%, 88% { transform: translateY(-40%); } 26%, 54% { transform: translateY(-50%); } }
+
+/* ---------- OLÁ: acena com o braço direito ---------- */
+.lu-mascote[data-reacao='ola'] .lu-p-braco-d { animation: lu-r-acenar var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='ola'] .lu-p-braco-e { animation: lu-r-ola-braco-e var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='ola'] .lu-olho__aberto { animation: lu-r-ola-olho var(--d) linear both; }
+.lu-mascote[data-reacao='ola'] .lu-olho__feliz { animation: lu-r-ola-feliz var(--d) linear both; }
+.lu-mascote[data-reacao='ola'] .lu-p-boca > img { animation: lu-r-ola-boca var(--d) ease-out both; }
+.lu-mascote[data-reacao='ola'] .lu-p-sobrancelha { animation: lu-r-ola-sobr var(--d) ease-out both; }
+@keyframes lu-r-acenar {
+  0%, 100% { transform: rotate(0); } 12% { transform: rotate(-130deg); } 22% { transform: rotate(-100deg); } 32% { transform: rotate(-135deg); }
+  42% { transform: rotate(-100deg); } 52% { transform: rotate(-135deg); } 62% { transform: rotate(-100deg); } 72% { transform: rotate(-125deg); } 86% { transform: rotate(-20deg); }
+}
+@keyframes lu-r-ola-braco-e { 0%, 100% { transform: rotate(0); } 20%, 70% { transform: rotate(14deg); } }
+@keyframes lu-r-ola-olho { 0%, 6%, 34%, 72%, 78%, 100% { transform: scaleY(1); } 10%, 30% { transform: scaleY(0); } 74.5%, 76% { transform: scaleY(.08); } }
+@keyframes lu-r-ola-feliz { 0%, 8%, 32%, 100% { opacity: 0; } 11%, 29% { opacity: 1; } }
+@keyframes lu-r-ola-boca { 0%, 100% { transform: scale(1); } 12%, 80% { transform: scale(1.35, 1.5); } }
+@keyframes lu-r-ola-sobr { 0%, 100% { transform: translateY(0); } 10%, 80% { transform: translateY(-30%); } }
+
+/* ---------- ANIMADO: olhos arregalados, boca aberta, braços e pernas no ritmo dos pulos ---------- */
+.lu-mascote[data-reacao='animado'] .lu-p-braco { animation: lu-r-animado-braco var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='animado'] .lu-p-perna { animation: lu-r-animado-perna var(--d) ease-out both; }
+.lu-mascote[data-reacao='animado'] .lu-olho__aberto { animation: lu-r-arregala var(--d) ease-out both; }
+.lu-mascote[data-reacao='animado'] .lu-p-boca > img { animation: lu-r-esconde-boca-curta var(--d) linear both; }
+.lu-mascote[data-reacao='animado'] .lu-boca__aberta { animation: lu-r-animado-boca var(--d) ease-out both; }
+.lu-mascote[data-reacao='animado'] .lu-p-sobrancelha { animation: lu-r-animado-sobr var(--d) ease-out both; }
+@keyframes lu-r-animado-braco {
+  0%, 100% { transform: rotate(0); } 8% { transform: rotate(calc(var(--s) * 20deg)); } 22% { transform: rotate(calc(var(--s) * 115deg)); } 36% { transform: rotate(calc(var(--s) * 30deg)); }
+  50% { transform: rotate(calc(var(--s) * 115deg)); } 64% { transform: rotate(calc(var(--s) * 30deg)); } 78% { transform: rotate(calc(var(--s) * 125deg)); } 90% { transform: rotate(calc(var(--s) * 20deg)); }
+}
+@keyframes lu-r-animado-perna { 0%, 8%, 36%, 64%, 90%, 100% { transform: translateY(0) rotate(0); } 22%, 50%, 78% { transform: translateY(-8%) rotate(calc(var(--s) * 10deg)); } }
+@keyframes lu-r-arregala { 0%, 100% { transform: scale(1); } 10%, 85% { transform: scale(1.1); } }
+@keyframes lu-r-esconde-boca-curta { 0%, 8%, 90%, 100% { opacity: 1; } 12%, 86% { opacity: 0; } }
+@keyframes lu-r-animado-boca { 0%, 8%, 92%, 100% { scale: 0; } 14% { scale: .9; } 22%, 50%, 78% { scale: 1.1; } 36%, 64% { scale: .8; } 86% { scale: .6; } }
+@keyframes lu-r-animado-sobr { 0%, 100% { transform: translateY(0); } 10%, 88% { transform: translateY(-34%); } 22%, 50%, 78% { transform: translateY(-44%); } }
+
+/* ---------- CARINHO: olhos felizes, braços se fechando num abraço, perninha pra trás ---------- */
+.lu-mascote[data-reacao='carinho'] .lu-p-braco { animation: lu-r-abraco var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='carinho'] .lu-p-perna-d { animation: lu-r-perninha var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='carinho'] .lu-olho__aberto { animation: lu-r-carinho-olho var(--d) linear both; }
+.lu-mascote[data-reacao='carinho'] .lu-olho__feliz { animation: lu-r-carinho-feliz var(--d) linear both; }
+.lu-mascote[data-reacao='carinho'] .lu-p-boca > img { animation: lu-r-carinho-boca var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='carinho'] .lu-p-sobrancelha { animation: lu-r-carinho-sobr var(--d) ease-in-out both; }
+@keyframes lu-r-abraco { 0%, 100% { transform: rotate(0); } 15%, 80% { transform: rotate(calc(var(--s) * -28deg)); } 35%, 60% { transform: rotate(calc(var(--s) * -22deg)); } }
+@keyframes lu-r-perninha { 0%, 20%, 80%, 100% { transform: translateY(0) rotate(0); } 32%, 68% { transform: translateY(-9%) rotate(-28deg); } 50% { transform: translateY(-9%) rotate(-18deg); } }
+@keyframes lu-r-carinho-olho { 0%, 6%, 94%, 100% { transform: scaleY(1); } 10%, 90% { transform: scaleY(0); } }
+@keyframes lu-r-carinho-feliz { 0%, 8%, 92%, 100% { opacity: 0; } 11%, 89% { opacity: 1; } }
+@keyframes lu-r-carinho-boca { 0%, 100% { transform: scale(1); } 12%, 88% { transform: scale(1.3, 1.4); } }
+@keyframes lu-r-carinho-sobr { 0%, 100% { transform: translateY(0) rotate(0); } 12%, 88% { transform: translateY(-18%) rotate(calc(var(--s) * -8deg)); } }
+
+/* ---------- DANÇA: braços e pernas alternados no compasso, cantando ---------- */
+.lu-mascote[data-reacao='danca'] .lu-p-braco-e { animation: lu-r-danca-braco-e var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='danca'] .lu-p-braco-d { animation: lu-r-danca-braco-d var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='danca'] .lu-p-perna-e { animation: lu-r-danca-perna-e var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='danca'] .lu-p-perna-d { animation: lu-r-danca-perna-d var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='danca'] .lu-olho__aberto { animation: lu-r-fim-olho var(--d) linear both; }
+.lu-mascote[data-reacao='danca'] .lu-olho__feliz { animation: lu-r-fim-feliz var(--d) linear both; }
+.lu-mascote[data-reacao='danca'] .lu-p-boca > img { animation: lu-r-esconde-boca var(--d) linear both; }
+.lu-mascote[data-reacao='danca'] .lu-boca__aberta { animation: lu-r-cantar var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='danca'] .lu-p-sobrancelha { animation: lu-r-danca-sobr var(--d) ease-in-out both; }
+@keyframes lu-r-danca-braco-e { 0%, 100% { transform: rotate(0); } 12.5%, 62.5% { transform: rotate(115deg); } 37.5%, 87.5% { transform: rotate(15deg); } 25%, 50%, 75% { transform: rotate(60deg); } }
+@keyframes lu-r-danca-braco-d { 0%, 100% { transform: rotate(0); } 12.5%, 62.5% { transform: rotate(-15deg); } 37.5%, 87.5% { transform: rotate(-115deg); } 25%, 50%, 75% { transform: rotate(-60deg); } }
+@keyframes lu-r-danca-perna-e { 0%, 25%, 50%, 75%, 100% { transform: translateY(0) rotate(0); } 12.5%, 62.5% { transform: translateY(-9%) rotate(14deg); } }
+@keyframes lu-r-danca-perna-d { 0%, 25%, 50%, 75%, 100% { transform: translateY(0) rotate(0); } 37.5%, 87.5% { transform: translateY(-9%) rotate(-14deg); } }
+@keyframes lu-r-cantar { 0%, 8%, 96%, 100% { scale: 0; } 12.5%, 37.5%, 62.5%, 87.5% { scale: 1; } 25%, 50%, 75% { scale: .45; } }
+@keyframes lu-r-danca-sobr { 0%, 25%, 50%, 75%, 100% { transform: translateY(-10%); } 12.5%, 37.5%, 62.5%, 87.5% { transform: translateY(-34%); } }
+
+/* ---------- PENSAR: olha pra cima, uma sobrancelha sobe, mão no "queixo", boca de lado ---------- */
+.lu-mascote[data-reacao='pensar'] .lu-pupila { animation: lu-r-pensar-pupila var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='pensar'] .lu-p-sobrancelha-d { animation: lu-r-pensar-sobr-d var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='pensar'] .lu-p-sobrancelha-e { animation: lu-r-pensar-sobr-e var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='pensar'] .lu-p-boca > img { animation: lu-r-pensar-boca var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='pensar'] .lu-p-braco-d { animation: lu-r-queixo var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='pensar'] .lu-olho__aberto { animation: lu-r-pensar-olho var(--d) linear both; }
+@keyframes lu-r-pensar-pupila { 0%, 100% { transform: translate(0, 0); } 12%, 48% { transform: translate(24%, -28%); } 56%, 86% { transform: translate(-24%, -28%); } }
+@keyframes lu-r-pensar-sobr-d { 0%, 100% { transform: translateY(0) rotate(0); } 12%, 86% { transform: translateY(-36%) rotate(-8deg); } }
+@keyframes lu-r-pensar-sobr-e { 0%, 100% { transform: translateY(0) rotate(0); } 12%, 86% { transform: translateY(10%) rotate(8deg); } }
+@keyframes lu-r-pensar-boca { 0%, 100% { transform: translateX(0) scale(1); } 12%, 86% { transform: translateX(22%) scale(.65, .5) rotate(-8deg); } }
+@keyframes lu-r-queixo {
+  0%, 100% { transform: rotate(0); } 15% { transform: rotate(-75deg); } 30% { transform: rotate(-65deg); } 38% { transform: rotate(-75deg); }
+  46% { transform: rotate(-65deg); } 54% { transform: rotate(-75deg); } 70% { transform: rotate(-65deg); } 86% { transform: rotate(-70deg); }
+}
+@keyframes lu-r-pensar-olho { 0%, 50%, 54%, 100% { transform: scaleY(1); } 51.5%, 52.5% { transform: scaleY(.08); } }
+
+/* ---------- SURPRESA: olhos arregalados, pupilas pequenas, sobrancelhas no alto, boca em "o" ---------- */
+.lu-mascote[data-reacao='surpresa'] .lu-olho__aberto { animation: lu-r-surpresa-olho var(--d) ease-out both; }
+.lu-mascote[data-reacao='surpresa'] .lu-pupila { animation: lu-r-surpresa-pupila var(--d) ease-out both; }
+.lu-mascote[data-reacao='surpresa'] .lu-p-sobrancelha { animation: lu-r-surpresa-sobr var(--d) ease-out both; }
+.lu-mascote[data-reacao='surpresa'] .lu-p-boca > img { animation: lu-r-surpresa-esconde var(--d) linear both; }
+.lu-mascote[data-reacao='surpresa'] .lu-boca__aberta { animation: lu-r-surpresa-boca var(--d) ease-out both; }
+.lu-mascote[data-reacao='surpresa'] .lu-p-braco { animation: lu-r-surpresa-braco var(--d) ease-out both; }
+@keyframes lu-r-surpresa-olho { 0%, 100% { transform: scale(1); } 15%, 62% { transform: scale(1.18); } }
+@keyframes lu-r-surpresa-pupila { 0%, 100% { transform: scale(1); } 15%, 62% { transform: scale(.78); } }
+@keyframes lu-r-surpresa-sobr { 0%, 100% { transform: translateY(0); } 15% { transform: translateY(-55%); } 62% { transform: translateY(-48%); } }
+@keyframes lu-r-surpresa-esconde { 0%, 10%, 72%, 100% { opacity: 1; } 14%, 68% { opacity: 0; } }
+@keyframes lu-r-surpresa-boca { 0%, 10%, 72%, 100% { scale: 0; } 18% { scale: .85 1.05; } 62% { scale: .75 .9; } }
+@keyframes lu-r-surpresa-braco { 0%, 100% { transform: rotate(0); } 18% { transform: rotate(calc(var(--s) * 70deg)); } 62% { transform: rotate(calc(var(--s) * 60deg)); } }
+
+/* ---------- DETERMINADO: sobrancelhas franzidas, olhos apertados, punhos pra cima ---------- */
+.lu-mascote[data-reacao='determinado'] .lu-p-sobrancelha { animation: lu-r-det-sobr var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='determinado'] .lu-olho__aberto { animation: lu-r-det-olho var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='determinado'] .lu-p-boca > img { animation: lu-r-det-boca var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='determinado'] .lu-p-braco { animation: lu-r-det-braco var(--d) ease-in-out both; }
+@keyframes lu-r-det-sobr { 0%, 100% { transform: translateY(0) rotate(0); } 10%, 84% { transform: translateY(18%) rotate(calc(var(--s) * 16deg)); } }
+@keyframes lu-r-det-olho { 0%, 100% { transform: scaleY(1); } 10%, 84% { transform: scaleY(.76) translateY(6%); } }
+@keyframes lu-r-det-boca { 0%, 100% { transform: scale(1); } 10%, 60% { transform: scale(.9, .45); } 70%, 90% { transform: scale(1.2, 1.25); } }
+@keyframes lu-r-det-braco {
+  0%, 100% { transform: rotate(0); } 14% { transform: rotate(calc(var(--s) * 35deg)); } 30% { transform: rotate(calc(var(--s) * 70deg)); }
+  40% { transform: rotate(calc(var(--s) * 50deg)); } 55% { transform: rotate(calc(var(--s) * 80deg)); } 68% { transform: rotate(calc(var(--s) * 135deg)); } 84% { transform: rotate(calc(var(--s) * 95deg)); }
+}
+
+/* ---------- TRISTE: sobrancelhas caídas, olhos baixos, boquinha virada ---------- */
+.lu-mascote[data-reacao='triste'] .lu-p-sobrancelha { animation: lu-r-triste-sobr var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='triste'] .lu-olho__aberto { animation: lu-r-triste-olho var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='triste'] .lu-pupila { animation: lu-r-triste-pupila var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='triste'] .lu-p-boca > img { animation: lu-r-triste-boca var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='triste'] .lu-p-braco { animation: lu-r-triste-braco var(--d) ease-in-out both; }
+@keyframes lu-r-triste-sobr { 0%, 100% { transform: translateY(0) rotate(0); } 12%, 88% { transform: translateY(12%) rotate(calc(var(--s) * -18deg)); } }
+@keyframes lu-r-triste-olho { 0%, 100% { transform: scaleY(1); } 12%, 88% { transform: scaleY(.86) translateY(6%); } }
+@keyframes lu-r-triste-pupila { 0%, 100% { transform: translate(0, 0); } 12%, 88% { transform: translate(0, 26%); } 50% { transform: translate(-10%, 28%); } }
+@keyframes lu-r-triste-boca { 0%, 100% { transform: scale(1); } 12%, 88% { transform: scale(.8, -.8); } }
+@keyframes lu-r-triste-braco { 0%, 100% { transform: rotate(0); } 15%, 85% { transform: rotate(calc(var(--s) * -12deg)); } 50% { transform: rotate(calc(var(--s) * -6deg)); } }
+
+/* ---------- SONO: olhos fechados, boquinha respirando, braços moles, acorda no fim ---------- */
+.lu-mascote[data-reacao='sono'] .lu-olho__aberto { animation: lu-r-sono-olho var(--d) linear both; }
+.lu-mascote[data-reacao='sono'] .lu-olho__fechado { animation: lu-r-sono-linha var(--d) linear both; }
+.lu-mascote[data-reacao='sono'] .lu-p-boca > img { animation: lu-r-sono-esconde var(--d) linear both; }
+.lu-mascote[data-reacao='sono'] .lu-boca__aberta { animation: lu-r-sono-boca var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='sono'] .lu-p-sobrancelha { animation: lu-r-sono-sobr var(--d) ease-in-out both; }
+.lu-mascote[data-reacao='sono'] .lu-p-braco { animation: lu-r-triste-braco var(--d) ease-in-out both; }
+@keyframes lu-r-sono-olho { 0%, 100% { transform: scaleY(1); } 8% { transform: scaleY(.4); } 12%, 82% { transform: scaleY(0); } 86% { transform: scaleY(1.1); } 92% { transform: scaleY(1); } }
+@keyframes lu-r-sono-linha { 0%, 9%, 84%, 100% { opacity: 0; } 12%, 82% { opacity: 1; } }
+@keyframes lu-r-sono-esconde { 0%, 12%, 82%, 100% { opacity: 1; } 15%, 79% { opacity: 0; } }
+@keyframes lu-r-sono-boca { 0%, 12%, 82%, 100% { scale: 0; } 18%, 50% { scale: .3 .35; } 34%, 66% { scale: .45 .55; } 78% { scale: .3 .35; } }
+@keyframes lu-r-sono-sobr { 0%, 100% { transform: translateY(0); } 12%, 80% { transform: translateY(16%); } 88% { transform: translateY(-30%); } }
+
+/* Movimento reduzido também vale para o rig (fica na pose original). */
+@media (prefers-reduced-motion: reduce) { .lu-rig, .lu-rig * { animation: none !important; } }
