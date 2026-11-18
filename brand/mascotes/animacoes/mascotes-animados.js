@@ -14,6 +14,7 @@
   var BASE = script && script.src ? new URL('.', script.src).href : '/brand/mascotes/animacoes/'
 
   var MASCOTES = {
+    nivo: { nome: 'Nivo', imagem: '../../mascote-nivo.webp' },
     'roblox-studio': { nome: 'Pino', trilha: 'Roblox Studio' },
     'programacao-luau': { nome: 'Chavi', trilha: 'Programação Luau' },
     'criacao-modelagem-3d': { nome: 'Bisel', trilha: 'Criação + Modelagem 3D' },
@@ -221,7 +222,7 @@
     var img = el.querySelector('img')
     if (!img) {
       img = document.createElement('img')
-      img.src = BASE + slug + '.webp'
+      img.src = BASE + (info.imagem || slug + '.webp')
       img.onerror = function () { img.onerror = null; img.src = BASE + '../' + slug + '.png' }
     }
     img.alt = ''
@@ -243,7 +244,7 @@
     var voltar = 0, gesto = 0, limpaGesto = 0
     var visivel = true
 
-    function rotular(r) { el.setAttribute('aria-label', REACOES[r].texto.replace('%s', info.nome) + ' (mascote da trilha ' + info.trilha + ')') }
+    function rotular(r) { el.setAttribute('aria-label', REACOES[r].texto.replace('%s', info.nome) + (info.trilha ? ' (mascote da trilha ' + info.trilha + ')' : ' (mascote da Level Up)')) }
 
     function aplicar(r) {
       clearTimeout(voltar); clearTimeout(limpaGesto)
