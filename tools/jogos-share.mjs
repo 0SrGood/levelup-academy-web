@@ -3,7 +3,7 @@
 // Uso no site publicado: node tools/jogos-share.mjs <pasta do site>.
 // Gasto: 1 consulta da lista por vez; a miniatura só é baixada quando é nova ou mudou.
 import fs from 'node:fs/promises';import path from 'node:path';import {pathToFileURL} from 'node:url';
-const API="https://fguqnhjvfvneipaqnoce.supabase.co/functions/v1/academy",SITE='https://0srgood.github.io/levelup-academy-web/',KEY="sb_publishable_UCl41rKzbb90quPWEfyfng_Y4LPvMXn";
+const API="https://levelup-academy-recovery.levelup-academy.workers.dev",SITE='https://0srgood.github.io/levelup-academy-web/',KEY="sb_publishable_UCl41rKzbb90quPWEfyfng_Y4LPvMXn";
 const ORIGIN='https://0srgood.github.io';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const headers=key=>({apikey:key,Authorization:'Bearer '+key,Origin:ORIGIN});
