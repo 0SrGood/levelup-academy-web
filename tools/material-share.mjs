@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';import path from 'node:path';import {pathToFil
 const API="https://fguqnhjvfvneipaqnoce.supabase.co/functions/v1/academy",KEY="sb_publishable_UCl41rKzbb90quPWEfyfng_Y4LPvMXn",SITE='https://0srgood.github.io/levelup-academy-web/';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function previewHtml(material,image,site=SITE){
- const url=new URL('materiais/'+material.id+'/',site).href,target='../../?material='+encodeURIComponent(material.id);
+ const url=new URL('materiais/'+material.id+'/?v=2',site).href,target='../../?material='+encodeURIComponent(material.id);
  const title=String(material.title),description=String(material.description);
  return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${esc(title)} · Level Up Academy</title><meta name="description" content="${esc(description)}">
@@ -19,7 +19,7 @@ export async function run(site,key=KEY,api=API){
  for(const material of materials){
   if(!/^[a-zA-Z0-9_-]{1,100}$/.test(material.id))continue;
   const dir=path.join(root,material.id);await fs.mkdir(dir,{recursive:true});let bytes;
-  if(/^\.\/[a-z0-9-]+\.(webp|png|jpe?g)$/i.test(material.image))bytes=new Uint8Array(await fs.readFile(path.join(site,material.image.slice(2))));
+  if(/^\.\/(?:brand\/share\/)?[a-z0-9-]+\.(webp|png|jpe?g)$/i.test(material.image))bytes=new Uint8Array(await fs.readFile(path.join(site,material.image.slice(2))));
   else if(/^https:\/\//.test(material.image)){
    // Capas enviadas pela equipe: copia somente a capa publicada, sem disponibilizar a aula.
    const result=await fetch(material.image);if(!result.ok)throw Error('Capa indisponível: '+material.id);
