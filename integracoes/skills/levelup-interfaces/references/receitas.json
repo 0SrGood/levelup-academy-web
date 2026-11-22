@@ -1,0 +1,2791 @@
+{
+  "version": 1,
+  "usage": "Leia o tutorial correspondente. Adapte a hierarquia ao projeto. Os comandos incluem LocalScript; sem acesso a scripts, remova apenas o controlador e informe que é uma prévia visual. Não aplique oito GUIs juntas: escolha um estilo.",
+  "recipes": [
+    {
+      "id": "simulador-colorido",
+      "name": "Simulador colorido",
+      "genreReference": "Steal a Brainrot",
+      "note": "Proposta original. A referência identifica o gênero, não uma reprodução oficial do HUD. Abrir/fechar funciona com permissão de scripts; indicadores são exemplos até serem ligados aos dados reais.",
+      "commands": [
+        {
+          "op": "create",
+          "ref": "simulador_colorido_StyleUI",
+          "cls": "ScreenGui",
+          "name": "StyleUI",
+          "parent": "StarterGui",
+          "props": {
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "ref": "simulador_colorido_HUD",
+          "cls": "Frame",
+          "name": "HUD",
+          "parent": "simulador_colorido_StyleUI",
+          "props": {
+            "Position": [
+              0,
+              16,
+              0,
+              16
+            ],
+            "Size": [
+              1,
+              -32,
+              0,
+              40
+            ],
+            "BackgroundTransparency": 1,
+            "BorderSizePixel": 0
+          }
+        },
+        {
+          "op": "create",
+          "ref": "simulador_colorido_Header",
+          "cls": "TextLabel",
+          "name": "Header",
+          "parent": "simulador_colorido_HUD",
+          "props": {
+            "Text": "Simulador colorido — prévia",
+            "Font": "FredokaOne",
+            "TextSize": 20,
+            "TextWrapped": true,
+            "TextXAlignment": "Left",
+            "Size": [
+              1,
+              0,
+              1,
+              0
+            ],
+            "BackgroundTransparency": 1,
+            "TextColor3": [
+              245,
+              247,
+              255
+            ],
+            "TextStrokeColor3": [
+              12,
+              20,
+              38
+            ],
+            "TextStrokeTransparency": 0.4
+          }
+        },
+        {
+          "op": "create",
+          "ref": "simulador_colorido_ButtonShadow",
+          "cls": "Frame",
+          "name": "ButtonShadow",
+          "parent": "simulador_colorido_StyleUI",
+          "props": {
+            "Position": [
+              0,
+              19,
+              0.5,
+              -19
+            ],
+            "Size": [
+              0,
+              140,
+              0,
+              44
+            ],
+            "BackgroundColor3": [
+              12,
+              20,
+              38
+            ],
+            "BorderSizePixel": 0,
+            "ZIndex": 2
+          }
+        },
+        {
+          "op": "create",
+          "ref": "simulador_colorido_Open",
+          "cls": "TextButton",
+          "name": "Open",
+          "parent": "simulador_colorido_StyleUI",
+          "props": {
+            "Text": "Abrir menu",
+            "Font": "Gotham",
+            "TextSize": 18,
+            "TextColor3": [
+              10,
+              15,
+              22
+            ],
+            "Position": [
+              0,
+              16,
+              0.5,
+              -22
+            ],
+            "Size": [
+              0,
+              140,
+              0,
+              44
+            ],
+            "BackgroundColor3": [
+              0,
+              132,
+              255
+            ],
+            "AutoButtonColor": true,
+            "BorderSizePixel": 0,
+            "ZIndex": 3
+          }
+        },
+        {
+          "op": "create",
+          "ref": "simulador_colorido_OpenCorner",
+          "cls": "UICorner",
+          "name": "OpenCorner",
+          "parent": "simulador_colorido_Open",
+          "props": {
+            "CornerRadius": [
+              0,
+              6
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "ref": "simulador_colorido_OpenStroke",
+          "cls": "UIStroke",
+          "name": "OpenStroke",
+          "parent": "simulador_colorido_Open",
+          "props": {
+            "Color": [
+              12,
+              20,
+              38
+            ],
+            "Thickness": 1,
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "ref": "simulador_colorido_OpenGradient",
+          "cls": "UIGradient",
+          "name": "OpenGradient",
+          "parent": "simulador_colorido_Open",
+          "props": {
+            "Color": [
+              [
+                0,
+                0,
+                132,
+                255
+              ],
+              [
+                1,
+                255,
+                195,
+                34
+              ]
+            ],
+            "Rotation": 90,
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "ref": "simulador_colorido_Panel",
+          "cls": "Frame",
+          "name": "Panel",
+          "parent": "simulador_colorido_StyleUI",
+          "props": {
+            "Position": [
+              0.5,
+              0,
+              0.5,
+              0
+            ],
+            "AnchorPoint": [
+              0.5,
+              0.5
+            ],
+            "Size": [
+              0.86,
+              0,
+              0.66,
+              0
+            ],
+            "BackgroundColor3": [
+              22,
+              31,
+              54
+            ],
+            "Visible": false,
+            "BorderSizePixel": 0,
+            "ZIndex": 10
+          }
+        },
+        {
+          "op": "create",
+          "ref": "simulador_colorido_PanelStroke",
+          "cls": "UIStroke",
+          "name": "PanelStroke",
+          "parent": "simulador_colorido_Panel",
+          "props": {
+            "Color": [
+              12,
+              20,
+              38
+            ],
+            "Thickness": 1,
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "ref": "simulador_colorido_Title",
+          "cls": "TextLabel",
+          "name": "Title",
+          "parent": "simulador_colorido_Panel",
+          "props": {
+            "Text": "Simulador colorido",
+            "Font": "FredokaOne",
+            "TextSize": 22,
+            "TextColor3": [
+              245,
+              247,
+              255
+            ],
+            "TextXAlignment": "Left",
+            "Position": [
+              0,
+              16,
+              0,
+              16
+            ],
+            "Size": [
+              1,
+              -84,
+              0,
+              32
+            ],
+            "BackgroundTransparency": 1,
+            "ZIndex": 11
+          }
+        },
+        {
+          "op": "create",
+          "ref": "simulador_colorido_Close",
+          "cls": "TextButton",
+          "name": "Close",
+          "parent": "simulador_colorido_Panel",
+          "props": {
+            "Text": "X",
+            "Font": "Gotham",
+            "TextSize": 22,
+            "TextColor3": [
+              245,
+              247,
+              255
+            ],
+            "Position": [
+              1,
+              -52,
+              0,
+              8
+            ],
+            "Size": [
+              0,
+              44,
+              0,
+              44
+            ],
+            "BackgroundTransparency": 1,
+            "BorderSizePixel": 0,
+            "AutoButtonColor": false,
+            "ZIndex": 12
+          }
+        },
+        {
+          "op": "create",
+          "ref": "simulador_colorido_Body",
+          "cls": "TextLabel",
+          "name": "Body",
+          "parent": "simulador_colorido_Panel",
+          "props": {
+            "Text": "Base editável do estilo. Substitua este texto pelas opções e dados reais do jogo.",
+            "Font": "Gotham",
+            "TextSize": 17,
+            "TextWrapped": true,
+            "TextColor3": [
+              245,
+              247,
+              255
+            ],
+            "TextXAlignment": "Left",
+            "TextYAlignment": "Top",
+            "Position": [
+              0,
+              16,
+              0,
+              64
+            ],
+            "Size": [
+              1,
+              -32,
+              1,
+              -90
+            ],
+            "BackgroundTransparency": 1,
+            "ZIndex": 11
+          }
+        },
+        {
+          "op": "create",
+          "ref": "simulador_colorido_MenuController",
+          "cls": "LocalScript",
+          "name": "MenuController",
+          "parent": "simulador_colorido_StyleUI",
+          "props": {
+            "Source": "local gui = script.Parent\nlocal panel = gui:WaitForChild(\"Panel\")\nlocal openButton = gui:WaitForChild(\"Open\")\nlocal closeButton = panel:WaitForChild(\"Close\")\nopenButton.MouseButton1Click:Connect(function()\n    panel.Visible = true\nend)\ncloseButton.MouseButton1Click:Connect(function()\n    panel.Visible = false\nend)\n"
+          }
+        }
+      ]
+    },
+    {
+      "id": "fazenda-cozy",
+      "name": "Fazenda aconchegante",
+      "genreReference": "Grow a Garden",
+      "note": "Proposta original. A referência identifica o gênero, não uma reprodução oficial do HUD. Abrir/fechar funciona com permissão de scripts; indicadores são exemplos até serem ligados aos dados reais.",
+      "commands": [
+        {
+          "op": "create",
+          "ref": "fazenda_cozy_StyleUI",
+          "cls": "ScreenGui",
+          "name": "StyleUI",
+          "parent": "StarterGui",
+          "props": {
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "ref": "fazenda_cozy_HUD",
+          "cls": "Frame",
+          "name": "HUD",
+          "parent": "fazenda_cozy_StyleUI",
+          "props": {
+            "Position": [
+              0,
+              16,
+              0,
+              16
+            ],
+            "Size": [
+              1,
+              -32,
+              0,
+              40
+            ],
+            "BackgroundTransparency": 1,
+            "BorderSizePixel": 0
+          }
+        },
+        {
+          "op": "create",
+          "ref": "fazenda_cozy_Header",
+          "cls": "TextLabel",
+          "name": "Header",
+          "parent": "fazenda_cozy_HUD",
+          "props": {
+            "Text": "Fazenda aconchegante — prévia",
+            "Font": "FredokaOne",
+            "TextSize": 20,
+            "TextWrapped": true,
+            "TextXAlignment": "Left",
+            "Size": [
+              1,
+              0,
+              1,
+              0
+            ],
+            "BackgroundTransparency": 1,
+            "TextColor3": [
+              62,
+              45,
+              31
+            ],
+            "TextStrokeColor3": [
+              91,
+              65,
+              43
+            ],
+            "TextStrokeTransparency": 0.4
+          }
+        },
+        {
+          "op": "create",
+          "ref": "fazenda_cozy_ButtonShadow",
+          "cls": "Frame",
+          "name": "ButtonShadow",
+          "parent": "fazenda_cozy_StyleUI",
+          "props": {
+            "Position": [
+              0.5,
+              -67,
+              1,
+              -97
+            ],
+            "Size": [
+              0,
+              140,
+              0,
+              44
+            ],
+            "BackgroundColor3": [
+              91,
+              65,
+              43
+            ],
+            "BorderSizePixel": 0,
+            "ZIndex": 2
+          }
+        },
+        {
+          "op": "create",
+          "ref": "fazenda_cozy_Open",
+          "cls": "TextButton",
+          "name": "Open",
+          "parent": "fazenda_cozy_StyleUI",
+          "props": {
+            "Text": "Abrir menu",
+            "Font": "Gotham",
+            "TextSize": 18,
+            "TextColor3": [
+              10,
+              15,
+              22
+            ],
+            "Position": [
+              0.5,
+              -70,
+              1,
+              -100
+            ],
+            "Size": [
+              0,
+              140,
+              0,
+              44
+            ],
+            "BackgroundColor3": [
+              74,
+              132,
+              69
+            ],
+            "AutoButtonColor": true,
+            "BorderSizePixel": 0,
+            "ZIndex": 3
+          }
+        },
+        {
+          "op": "create",
+          "ref": "fazenda_cozy_OpenCorner",
+          "cls": "UICorner",
+          "name": "OpenCorner",
+          "parent": "fazenda_cozy_Open",
+          "props": {
+            "CornerRadius": [
+              0,
+              6
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "ref": "fazenda_cozy_OpenStroke",
+          "cls": "UIStroke",
+          "name": "OpenStroke",
+          "parent": "fazenda_cozy_Open",
+          "props": {
+            "Color": [
+              91,
+              65,
+              43
+            ],
+            "Thickness": 1,
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "ref": "fazenda_cozy_Panel",
+          "cls": "Frame",
+          "name": "Panel",
+          "parent": "fazenda_cozy_StyleUI",
+          "props": {
+            "Position": [
+              0.5,
+              0,
+              0.5,
+              0
+            ],
+            "AnchorPoint": [
+              0.5,
+              0.5
+            ],
+            "Size": [
+              0.86,
+              0,
+              0.62,
+              0
+            ],
+            "BackgroundColor3": [
+              245,
+              236,
+              208
+            ],
+            "Visible": false,
+            "BorderSizePixel": 0,
+            "ZIndex": 10
+          }
+        },
+        {
+          "op": "create",
+          "ref": "fazenda_cozy_PanelStroke",
+          "cls": "UIStroke",
+          "name": "PanelStroke",
+          "parent": "fazenda_cozy_Panel",
+          "props": {
+            "Color": [
+              91,
+              65,
+              43
+            ],
+            "Thickness": 1,
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "ref": "fazenda_cozy_Title",
+          "cls": "TextLabel",
+          "name": "Title",
+          "parent": "fazenda_cozy_Panel",
+          "props": {
+            "Text": "Fazenda aconchegante",
+            "Font": "FredokaOne",
+            "TextSize": 22,
+            "TextColor3": [
+              62,
+              45,
+              31
+            ],
+            "TextXAlignment": "Left",
+            "Position": [
+              0,
+              16,
+              0,
+              16
+            ],
+            "Size": [
+              1,
+              -84,
+              0,
+              32
+            ],
+            "BackgroundTransparency": 1,
+            "ZIndex": 11
+          }
+        },
+        {
+          "op": "create",
+          "ref": "fazenda_cozy_Close",
+          "cls": "TextButton",
+          "name": "Close",
+          "parent": "fazenda_cozy_Panel",
+          "props": {
+            "Text": "X",
+            "Font": "Gotham",
+            "TextSize": 22,
+            "TextColor3": [
+              62,
+              45,
+              31
+            ],
+            "Position": [
+              1,
+              -52,
+              0,
+              8
+            ],
+            "Size": [
+              0,
+              44,
+              0,
+              44
+            ],
+            "BackgroundTransparency": 1,
+            "BorderSizePixel": 0,
+            "AutoButtonColor": false,
+            "ZIndex": 12
+          }
+        },
+        {
+          "op": "create",
+          "ref": "fazenda_cozy_Body",
+          "cls": "TextLabel",
+          "name": "Body",
+          "parent": "fazenda_cozy_Panel",
+          "props": {
+            "Text": "Base editável do estilo. Substitua este texto pelas opções e dados reais do jogo.",
+            "Font": "Gotham",
+            "TextSize": 17,
+            "TextWrapped": true,
+            "TextColor3": [
+              62,
+              45,
+              31
+            ],
+            "TextXAlignment": "Left",
+            "TextYAlignment": "Top",
+            "Position": [
+              0,
+              16,
+              0,
+              64
+            ],
+            "Size": [
+              1,
+              -32,
+              1,
+              -90
+            ],
+            "BackgroundTransparency": 1,
+            "ZIndex": 11
+          }
+        },
+        {
+          "op": "create",
+          "ref": "fazenda_cozy_MenuController",
+          "cls": "LocalScript",
+          "name": "MenuController",
+          "parent": "fazenda_cozy_StyleUI",
+          "props": {
+            "Source": "local gui = script.Parent\nlocal panel = gui:WaitForChild(\"Panel\")\nlocal openButton = gui:WaitForChild(\"Open\")\nlocal closeButton = panel:WaitForChild(\"Close\")\nopenButton.MouseButton1Click:Connect(function()\n    panel.Visible = true\nend)\ncloseButton.MouseButton1Click:Connect(function()\n    panel.Visible = false\nend)\n"
+          }
+        }
+      ]
+    },
+    {
+      "id": "rpg-anime",
+      "name": "RPG e anime",
+      "genreReference": "Blox Fruits",
+      "note": "Proposta original. A referência identifica o gênero, não uma reprodução oficial do HUD. Abrir/fechar funciona com permissão de scripts; indicadores são exemplos até serem ligados aos dados reais.",
+      "commands": [
+        {
+          "op": "create",
+          "ref": "rpg_anime_StyleUI",
+          "cls": "ScreenGui",
+          "name": "StyleUI",
+          "parent": "StarterGui",
+          "props": {
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "ref": "rpg_anime_HUD",
+          "cls": "Frame",
+          "name": "HUD",
+          "parent": "rpg_anime_StyleUI",
+          "props": {
+            "Position": [
+              0,
+              16,
+              0,
+              16
+            ],
+            "Size": [
+              1,
+              -32,
+              0,
+              40
+            ],
+            "BackgroundTransparency": 1,
+            "BorderSizePixel": 0
+          }
+        },
+        {
+          "op": "create",
+          "ref": "rpg_anime_Header",
+          "cls": "TextLabel",
+          "name": "Header",
+          "parent": "rpg_anime_HUD",
+          "props": {
+            "Text": "RPG e anime — prévia",
+            "Font": "Oswald",
+            "TextSize": 20,
+            "TextWrapped": true,
+            "TextXAlignment": "Left",
+            "Size": [
+              1,
+              0,
+              1,
+              0
+            ],
+            "BackgroundTransparency": 1,
+            "TextColor3": [
+              240,
+              239,
+              232
+            ],
+            "TextStrokeColor3": [
+              13,
+              15,
+              22
+            ],
+            "TextStrokeTransparency": 0.4
+          }
+        },
+        {
+          "op": "create",
+          "ref": "rpg_anime_ButtonShadow",
+          "cls": "Frame",
+          "name": "ButtonShadow",
+          "parent": "rpg_anime_StyleUI",
+          "props": {
+            "Position": [
+              0,
+              19,
+              1,
+              -173
+            ],
+            "Size": [
+              0,
+              140,
+              0,
+              44
+            ],
+            "BackgroundColor3": [
+              13,
+              15,
+              22
+            ],
+            "BorderSizePixel": 0,
+            "ZIndex": 2
+          }
+        },
+        {
+          "op": "create",
+          "ref": "rpg_anime_Open",
+          "cls": "TextButton",
+          "name": "Open",
+          "parent": "rpg_anime_StyleUI",
+          "props": {
+            "Text": "Abrir menu",
+            "Font": "Gotham",
+            "TextSize": 18,
+            "TextColor3": [
+              10,
+              15,
+              22
+            ],
+            "Position": [
+              0,
+              16,
+              1,
+              -176
+            ],
+            "Size": [
+              0,
+              140,
+              0,
+              44
+            ],
+            "BackgroundColor3": [
+              48,
+              137,
+              235
+            ],
+            "AutoButtonColor": true,
+            "BorderSizePixel": 0,
+            "ZIndex": 3
+          }
+        },
+        {
+          "op": "create",
+          "ref": "rpg_anime_OpenCorner",
+          "cls": "UICorner",
+          "name": "OpenCorner",
+          "parent": "rpg_anime_Open",
+          "props": {
+            "CornerRadius": [
+              0,
+              6
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "ref": "rpg_anime_OpenStroke",
+          "cls": "UIStroke",
+          "name": "OpenStroke",
+          "parent": "rpg_anime_Open",
+          "props": {
+            "Color": [
+              13,
+              15,
+              22
+            ],
+            "Thickness": 1,
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "ref": "rpg_anime_Panel",
+          "cls": "Frame",
+          "name": "Panel",
+          "parent": "rpg_anime_StyleUI",
+          "props": {
+            "Position": [
+              0.5,
+              0,
+              0.5,
+              0
+            ],
+            "AnchorPoint": [
+              0.5,
+              0.5
+            ],
+            "Size": [
+              0.86,
+              0,
+              0.62,
+              0
+            ],
+            "BackgroundColor3": [
+              24,
+              27,
+              36
+            ],
+            "Visible": false,
+            "BorderSizePixel": 0,
+            "ZIndex": 10
+          }
+        },
+        {
+          "op": "create",
+          "ref": "rpg_anime_PanelStroke",
+          "cls": "UIStroke",
+          "name": "PanelStroke",
+          "parent": "rpg_anime_Panel",
+          "props": {
+            "Color": [
+              13,
+              15,
+              22
+            ],
+            "Thickness": 1,
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "ref": "rpg_anime_Title",
+          "cls": "TextLabel",
+          "name": "Title",
+          "parent": "rpg_anime_Panel",
+          "props": {
+            "Text": "RPG e anime",
+            "Font": "Oswald",
+            "TextSize": 22,
+            "TextColor3": [
+              240,
+              239,
+              232
+            ],
+            "TextXAlignment": "Left",
+            "Position": [
+              0,
+              16,
+              0,
+              16
+            ],
+            "Size": [
+              1,
+              -84,
+              0,
+              32
+            ],
+            "BackgroundTransparency": 1,
+            "ZIndex": 11
+          }
+        },
+        {
+          "op": "create",
+          "ref": "rpg_anime_Close",
+          "cls": "TextButton",
+          "name": "Close",
+          "parent": "rpg_anime_Panel",
+          "props": {
+            "Text": "X",
+            "Font": "Gotham",
+            "TextSize": 22,
+            "TextColor3": [
+              240,
+              239,
+              232
+            ],
+            "Position": [
+              1,
+              -52,
+              0,
+              8
+            ],
+            "Size": [
+              0,
+              44,
+              0,
+              44
+            ],
+            "BackgroundTransparency": 1,
+            "BorderSizePixel": 0,
+            "AutoButtonColor": false,
+            "ZIndex": 12
+          }
+        },
+        {
+          "op": "create",
+          "ref": "rpg_anime_Body",
+          "cls": "TextLabel",
+          "name": "Body",
+          "parent": "rpg_anime_Panel",
+          "props": {
+            "Text": "Base editável do estilo. Substitua este texto pelas opções e dados reais do jogo.",
+            "Font": "Gotham",
+            "TextSize": 17,
+            "TextWrapped": true,
+            "TextColor3": [
+              240,
+              239,
+              232
+            ],
+            "TextXAlignment": "Left",
+            "TextYAlignment": "Top",
+            "Position": [
+              0,
+              16,
+              0,
+              64
+            ],
+            "Size": [
+              1,
+              -32,
+              1,
+              -90
+            ],
+            "BackgroundTransparency": 1,
+            "ZIndex": 11
+          }
+        },
+        {
+          "op": "create",
+          "ref": "rpg_anime_HealthTrack",
+          "cls": "Frame",
+          "name": "HealthTrack",
+          "parent": "rpg_anime_HUD",
+          "props": {
+            "Position": [
+              0,
+              0,
+              0,
+              42
+            ],
+            "Size": [
+              0,
+              220,
+              0,
+              20
+            ],
+            "BackgroundColor3": [
+              43,
+              48,
+              63
+            ],
+            "BorderSizePixel": 0
+          }
+        },
+        {
+          "op": "create",
+          "ref": "rpg_anime_HealthFill",
+          "cls": "Frame",
+          "name": "HealthFill",
+          "parent": "rpg_anime_HealthTrack",
+          "props": {
+            "Size": [
+              0.75,
+              0,
+              1,
+              0
+            ],
+            "BackgroundColor3": [
+              48,
+              181,
+              103
+            ],
+            "BorderSizePixel": 0
+          }
+        },
+        {
+          "op": "create",
+          "ref": "rpg_anime_HealthText",
+          "cls": "TextLabel",
+          "name": "HealthText",
+          "parent": "rpg_anime_HealthTrack",
+          "props": {
+            "Text": "Vida 75/100 — exemplo",
+            "Font": "Gotham",
+            "TextSize": 13,
+            "TextColor3": [
+              240,
+              239,
+              232
+            ],
+            "Size": [
+              1,
+              0,
+              1,
+              0
+            ],
+            "BackgroundTransparency": 1,
+            "ZIndex": 3
+          }
+        },
+        {
+          "op": "create",
+          "ref": "rpg_anime_MenuController",
+          "cls": "LocalScript",
+          "name": "MenuController",
+          "parent": "rpg_anime_StyleUI",
+          "props": {
+            "Source": "local gui = script.Parent\nlocal panel = gui:WaitForChild(\"Panel\")\nlocal openButton = gui:WaitForChild(\"Open\")\nlocal closeButton = panel:WaitForChild(\"Close\")\nopenButton.MouseButton1Click:Connect(function()\n    panel.Visible = true\nend)\ncloseButton.MouseButton1Click:Connect(function()\n    panel.Visible = false\nend)\n"
+          }
+        }
+      ]
+    },
+    {
+      "id": "roleplay-limpo",
+      "name": "Roleplay limpo",
+      "genreReference": "Brookhaven",
+      "note": "Proposta original. A referência identifica o gênero, não uma reprodução oficial do HUD. Abrir/fechar funciona com permissão de scripts; indicadores são exemplos até serem ligados aos dados reais.",
+      "commands": [
+        {
+          "op": "create",
+          "ref": "roleplay_limpo_StyleUI",
+          "cls": "ScreenGui",
+          "name": "StyleUI",
+          "parent": "StarterGui",
+          "props": {
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "ref": "roleplay_limpo_HUD",
+          "cls": "Frame",
+          "name": "HUD",
+          "parent": "roleplay_limpo_StyleUI",
+          "props": {
+            "Position": [
+              0,
+              16,
+              0,
+              16
+            ],
+            "Size": [
+              1,
+              -32,
+              0,
+              40
+            ],
+            "BackgroundTransparency": 1,
+            "BorderSizePixel": 0
+          }
+        },
+        {
+          "op": "create",
+          "ref": "roleplay_limpo_Header",
+          "cls": "TextLabel",
+          "name": "Header",
+          "parent": "roleplay_limpo_HUD",
+          "props": {
+            "Text": "Roleplay limpo — prévia",
+            "Font": "Roboto",
+            "TextSize": 20,
+            "TextWrapped": true,
+            "TextXAlignment": "Left",
+            "Size": [
+              1,
+              0,
+              1,
+              0
+            ],
+            "BackgroundTransparency": 1,
+            "TextColor3": [
+              35,
+              41,
+              51
+            ],
+            "TextStrokeColor3": [
+              151,
+              165,
+              183
+            ],
+            "TextStrokeTransparency": 0.4
+          }
+        },
+        {
+          "op": "create",
+          "ref": "roleplay_limpo_ButtonShadow",
+          "cls": "Frame",
+          "name": "ButtonShadow",
+          "parent": "roleplay_limpo_StyleUI",
+          "props": {
+            "Position": [
+              1,
+              -153,
+              0,
+              83
+            ],
+            "Size": [
+              0,
+              140,
+              0,
+              44
+            ],
+            "BackgroundColor3": [
+              151,
+              165,
+              183
+            ],
+            "BorderSizePixel": 0,
+            "ZIndex": 2
+          }
+        },
+        {
+          "op": "create",
+          "ref": "roleplay_limpo_Open",
+          "cls": "TextButton",
+          "name": "Open",
+          "parent": "roleplay_limpo_StyleUI",
+          "props": {
+            "Text": "Abrir menu",
+            "Font": "Gotham",
+            "TextSize": 18,
+            "TextColor3": [
+              10,
+              15,
+              22
+            ],
+            "Position": [
+              1,
+              -156,
+              0,
+              80
+            ],
+            "Size": [
+              0,
+              140,
+              0,
+              44
+            ],
+            "BackgroundColor3": [
+              60,
+              144,
+              225
+            ],
+            "AutoButtonColor": true,
+            "BorderSizePixel": 0,
+            "ZIndex": 3
+          }
+        },
+        {
+          "op": "create",
+          "ref": "roleplay_limpo_OpenCorner",
+          "cls": "UICorner",
+          "name": "OpenCorner",
+          "parent": "roleplay_limpo_Open",
+          "props": {
+            "CornerRadius": [
+              0,
+              6
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "ref": "roleplay_limpo_OpenStroke",
+          "cls": "UIStroke",
+          "name": "OpenStroke",
+          "parent": "roleplay_limpo_Open",
+          "props": {
+            "Color": [
+              151,
+              165,
+              183
+            ],
+            "Thickness": 1,
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "ref": "roleplay_limpo_Panel",
+          "cls": "Frame",
+          "name": "Panel",
+          "parent": "roleplay_limpo_StyleUI",
+          "props": {
+            "Position": [
+              0.5,
+              0,
+              0.5,
+              0
+            ],
+            "AnchorPoint": [
+              0.5,
+              0.5
+            ],
+            "Size": [
+              0.82,
+              0,
+              0.62,
+              0
+            ],
+            "BackgroundColor3": [
+              235,
+              239,
+              244
+            ],
+            "Visible": false,
+            "BorderSizePixel": 0,
+            "ZIndex": 10
+          }
+        },
+        {
+          "op": "create",
+          "ref": "roleplay_limpo_PanelStroke",
+          "cls": "UIStroke",
+          "name": "PanelStroke",
+          "parent": "roleplay_limpo_Panel",
+          "props": {
+            "Color": [
+              151,
+              165,
+              183
+            ],
+            "Thickness": 1,
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "ref": "roleplay_limpo_Title",
+          "cls": "TextLabel",
+          "name": "Title",
+          "parent": "roleplay_limpo_Panel",
+          "props": {
+            "Text": "Roleplay limpo",
+            "Font": "Roboto",
+            "TextSize": 22,
+            "TextColor3": [
+              35,
+              41,
+              51
+            ],
+            "TextXAlignment": "Left",
+            "Position": [
+              0,
+              16,
+              0,
+              16
+            ],
+            "Size": [
+              1,
+              -84,
+              0,
+              32
+            ],
+            "BackgroundTransparency": 1,
+            "ZIndex": 11
+          }
+        },
+        {
+          "op": "create",
+          "ref": "roleplay_limpo_Close",
+          "cls": "TextButton",
+          "name": "Close",
+          "parent": "roleplay_limpo_Panel",
+          "props": {
+            "Text": "X",
+            "Font": "Gotham",
+            "TextSize": 22,
+            "TextColor3": [
+              35,
+              41,
+              51
+            ],
+            "Position": [
+              1,
+              -52,
+              0,
+              8
+            ],
+            "Size": [
+              0,
+              44,
+              0,
+              44
+            ],
+            "BackgroundTransparency": 1,
+            "BorderSizePixel": 0,
+            "AutoButtonColor": false,
+            "ZIndex": 12
+          }
+        },
+        {
+          "op": "create",
+          "ref": "roleplay_limpo_Body",
+          "cls": "TextLabel",
+          "name": "Body",
+          "parent": "roleplay_limpo_Panel",
+          "props": {
+            "Text": "Base editável do estilo. Substitua este texto pelas opções e dados reais do jogo.",
+            "Font": "Gotham",
+            "TextSize": 17,
+            "TextWrapped": true,
+            "TextColor3": [
+              35,
+              41,
+              51
+            ],
+            "TextXAlignment": "Left",
+            "TextYAlignment": "Top",
+            "Position": [
+              0,
+              16,
+              0,
+              64
+            ],
+            "Size": [
+              1,
+              -32,
+              1,
+              -90
+            ],
+            "BackgroundTransparency": 1,
+            "ZIndex": 11
+          }
+        },
+        {
+          "op": "create",
+          "ref": "roleplay_limpo_MenuController",
+          "cls": "LocalScript",
+          "name": "MenuController",
+          "parent": "roleplay_limpo_StyleUI",
+          "props": {
+            "Source": "local gui = script.Parent\nlocal panel = gui:WaitForChild(\"Panel\")\nlocal openButton = gui:WaitForChild(\"Open\")\nlocal closeButton = panel:WaitForChild(\"Close\")\nopenButton.MouseButton1Click:Connect(function()\n    panel.Visible = true\nend)\ncloseButton.MouseButton1Click:Connect(function()\n    panel.Visible = false\nend)\n"
+          }
+        }
+      ]
+    },
+    {
+      "id": "moda-editorial",
+      "name": "Moda editorial",
+      "genreReference": "Dress to Impress",
+      "note": "Proposta original. A referência identifica o gênero, não uma reprodução oficial do HUD. Abrir/fechar funciona com permissão de scripts; indicadores são exemplos até serem ligados aos dados reais.",
+      "commands": [
+        {
+          "op": "create",
+          "ref": "moda_editorial_StyleUI",
+          "cls": "ScreenGui",
+          "name": "StyleUI",
+          "parent": "StarterGui",
+          "props": {
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "ref": "moda_editorial_HUD",
+          "cls": "Frame",
+          "name": "HUD",
+          "parent": "moda_editorial_StyleUI",
+          "props": {
+            "Position": [
+              0,
+              16,
+              0,
+              16
+            ],
+            "Size": [
+              1,
+              -32,
+              0,
+              40
+            ],
+            "BackgroundTransparency": 1,
+            "BorderSizePixel": 0
+          }
+        },
+        {
+          "op": "create",
+          "ref": "moda_editorial_Header",
+          "cls": "TextLabel",
+          "name": "Header",
+          "parent": "moda_editorial_HUD",
+          "props": {
+            "Text": "Moda editorial — prévia",
+            "Font": "Oswald",
+            "TextSize": 20,
+            "TextWrapped": true,
+            "TextXAlignment": "Left",
+            "Size": [
+              1,
+              0,
+              1,
+              0
+            ],
+            "BackgroundTransparency": 1,
+            "TextColor3": [
+              69,
+              35,
+              55
+            ],
+            "TextStrokeColor3": [
+              143,
+              97,
+              120
+            ],
+            "TextStrokeTransparency": 0.4
+          }
+        },
+        {
+          "op": "create",
+          "ref": "moda_editorial_ButtonShadow",
+          "cls": "Frame",
+          "name": "ButtonShadow",
+          "parent": "moda_editorial_StyleUI",
+          "props": {
+            "Position": [
+              1,
+              -153,
+              0.5,
+              -19
+            ],
+            "Size": [
+              0,
+              140,
+              0,
+              44
+            ],
+            "BackgroundColor3": [
+              143,
+              97,
+              120
+            ],
+            "BorderSizePixel": 0,
+            "ZIndex": 2
+          }
+        },
+        {
+          "op": "create",
+          "ref": "moda_editorial_Open",
+          "cls": "TextButton",
+          "name": "Open",
+          "parent": "moda_editorial_StyleUI",
+          "props": {
+            "Text": "Abrir menu",
+            "Font": "Gotham",
+            "TextSize": 18,
+            "TextColor3": [
+              10,
+              15,
+              22
+            ],
+            "Position": [
+              1,
+              -156,
+              0.5,
+              -22
+            ],
+            "Size": [
+              0,
+              140,
+              0,
+              44
+            ],
+            "BackgroundColor3": [
+              211,
+              88,
+              139
+            ],
+            "AutoButtonColor": true,
+            "BorderSizePixel": 0,
+            "ZIndex": 3
+          }
+        },
+        {
+          "op": "create",
+          "ref": "moda_editorial_OpenCorner",
+          "cls": "UICorner",
+          "name": "OpenCorner",
+          "parent": "moda_editorial_Open",
+          "props": {
+            "CornerRadius": [
+              0,
+              6
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "ref": "moda_editorial_OpenStroke",
+          "cls": "UIStroke",
+          "name": "OpenStroke",
+          "parent": "moda_editorial_Open",
+          "props": {
+            "Color": [
+              143,
+              97,
+              120
+            ],
+            "Thickness": 1,
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "ref": "moda_editorial_OpenGradient",
+          "cls": "UIGradient",
+          "name": "OpenGradient",
+          "parent": "moda_editorial_Open",
+          "props": {
+            "Color": [
+              [
+                0,
+                211,
+                88,
+                139
+              ],
+              [
+                1,
+                207,
+                165,
+                91
+              ]
+            ],
+            "Rotation": 90,
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "ref": "moda_editorial_Panel",
+          "cls": "Frame",
+          "name": "Panel",
+          "parent": "moda_editorial_StyleUI",
+          "props": {
+            "Position": [
+              0.5,
+              0,
+              0.5,
+              0
+            ],
+            "AnchorPoint": [
+              0.5,
+              0.5
+            ],
+            "Size": [
+              0.84,
+              0,
+              0.66,
+              0
+            ],
+            "BackgroundColor3": [
+              249,
+              240,
+              232
+            ],
+            "Visible": false,
+            "BorderSizePixel": 0,
+            "ZIndex": 10
+          }
+        },
+        {
+          "op": "create",
+          "ref": "moda_editorial_PanelStroke",
+          "cls": "UIStroke",
+          "name": "PanelStroke",
+          "parent": "moda_editorial_Panel",
+          "props": {
+            "Color": [
+              143,
+              97,
+              120
+            ],
+            "Thickness": 1,
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "ref": "moda_editorial_Title",
+          "cls": "TextLabel",
+          "name": "Title",
+          "parent": "moda_editorial_Panel",
+          "props": {
+            "Text": "Moda editorial",
+            "Font": "Oswald",
+            "TextSize": 22,
+            "TextColor3": [
+              69,
+              35,
+              55
+            ],
+            "TextXAlignment": "Left",
+            "Position": [
+              0,
+              16,
+              0,
+              16
+            ],
+            "Size": [
+              1,
+              -84,
+              0,
+              32
+            ],
+            "BackgroundTransparency": 1,
+            "ZIndex": 11
+          }
+        },
+        {
+          "op": "create",
+          "ref": "moda_editorial_Close",
+          "cls": "TextButton",
+          "name": "Close",
+          "parent": "moda_editorial_Panel",
+          "props": {
+            "Text": "X",
+            "Font": "Gotham",
+            "TextSize": 22,
+            "TextColor3": [
+              69,
+              35,
+              55
+            ],
+            "Position": [
+              1,
+              -52,
+              0,
+              8
+            ],
+            "Size": [
+              0,
+              44,
+              0,
+              44
+            ],
+            "BackgroundTransparency": 1,
+            "BorderSizePixel": 0,
+            "AutoButtonColor": false,
+            "ZIndex": 12
+          }
+        },
+        {
+          "op": "create",
+          "ref": "moda_editorial_Body",
+          "cls": "TextLabel",
+          "name": "Body",
+          "parent": "moda_editorial_Panel",
+          "props": {
+            "Text": "Base editável do estilo. Substitua este texto pelas opções e dados reais do jogo.",
+            "Font": "Gotham",
+            "TextSize": 17,
+            "TextWrapped": true,
+            "TextColor3": [
+              69,
+              35,
+              55
+            ],
+            "TextXAlignment": "Left",
+            "TextYAlignment": "Top",
+            "Position": [
+              0,
+              16,
+              0,
+              64
+            ],
+            "Size": [
+              1,
+              -32,
+              1,
+              -90
+            ],
+            "BackgroundTransparency": 1,
+            "ZIndex": 11
+          }
+        },
+        {
+          "op": "create",
+          "ref": "moda_editorial_MenuController",
+          "cls": "LocalScript",
+          "name": "MenuController",
+          "parent": "moda_editorial_StyleUI",
+          "props": {
+            "Source": "local gui = script.Parent\nlocal panel = gui:WaitForChild(\"Panel\")\nlocal openButton = gui:WaitForChild(\"Open\")\nlocal closeButton = panel:WaitForChild(\"Close\")\nopenButton.MouseButton1Click:Connect(function()\n    panel.Visible = true\nend)\ncloseButton.MouseButton1Click:Connect(function()\n    panel.Visible = false\nend)\n"
+          }
+        }
+      ]
+    },
+    {
+      "id": "terror-minimalista",
+      "name": "Terror minimalista",
+      "genreReference": "DOORS",
+      "note": "Proposta original. A referência identifica o gênero, não uma reprodução oficial do HUD. Abrir/fechar funciona com permissão de scripts; indicadores são exemplos até serem ligados aos dados reais.",
+      "commands": [
+        {
+          "op": "create",
+          "ref": "terror_minimalista_StyleUI",
+          "cls": "ScreenGui",
+          "name": "StyleUI",
+          "parent": "StarterGui",
+          "props": {
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "ref": "terror_minimalista_HUD",
+          "cls": "Frame",
+          "name": "HUD",
+          "parent": "terror_minimalista_StyleUI",
+          "props": {
+            "Position": [
+              0,
+              16,
+              0,
+              16
+            ],
+            "Size": [
+              1,
+              -32,
+              0,
+              40
+            ],
+            "BackgroundTransparency": 1,
+            "BorderSizePixel": 0
+          }
+        },
+        {
+          "op": "create",
+          "ref": "terror_minimalista_Header",
+          "cls": "TextLabel",
+          "name": "Header",
+          "parent": "terror_minimalista_HUD",
+          "props": {
+            "Text": "Terror minimalista — prévia",
+            "Font": "SourceSans",
+            "TextSize": 20,
+            "TextWrapped": true,
+            "TextXAlignment": "Left",
+            "Size": [
+              1,
+              0,
+              1,
+              0
+            ],
+            "BackgroundTransparency": 1,
+            "TextColor3": [
+              226,
+              216,
+              193
+            ],
+            "TextStrokeColor3": [
+              124,
+              111,
+              91
+            ],
+            "TextStrokeTransparency": 0.4
+          }
+        },
+        {
+          "op": "create",
+          "ref": "terror_minimalista_ButtonShadow",
+          "cls": "Frame",
+          "name": "ButtonShadow",
+          "parent": "terror_minimalista_StyleUI",
+          "props": {
+            "Position": [
+              0,
+              19,
+              0,
+              83
+            ],
+            "Size": [
+              0,
+              140,
+              0,
+              44
+            ],
+            "BackgroundColor3": [
+              124,
+              111,
+              91
+            ],
+            "BorderSizePixel": 0,
+            "ZIndex": 2
+          }
+        },
+        {
+          "op": "create",
+          "ref": "terror_minimalista_Open",
+          "cls": "TextButton",
+          "name": "Open",
+          "parent": "terror_minimalista_StyleUI",
+          "props": {
+            "Text": "Abrir menu",
+            "Font": "Gotham",
+            "TextSize": 18,
+            "TextColor3": [
+              255,
+              255,
+              255
+            ],
+            "Position": [
+              0,
+              16,
+              0,
+              80
+            ],
+            "Size": [
+              0,
+              140,
+              0,
+              44
+            ],
+            "BackgroundColor3": [
+              89,
+              65,
+              49
+            ],
+            "AutoButtonColor": true,
+            "BorderSizePixel": 0,
+            "ZIndex": 3
+          }
+        },
+        {
+          "op": "create",
+          "ref": "terror_minimalista_OpenCorner",
+          "cls": "UICorner",
+          "name": "OpenCorner",
+          "parent": "terror_minimalista_Open",
+          "props": {
+            "CornerRadius": [
+              0,
+              6
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "ref": "terror_minimalista_OpenStroke",
+          "cls": "UIStroke",
+          "name": "OpenStroke",
+          "parent": "terror_minimalista_Open",
+          "props": {
+            "Color": [
+              124,
+              111,
+              91
+            ],
+            "Thickness": 1,
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "ref": "terror_minimalista_Panel",
+          "cls": "Frame",
+          "name": "Panel",
+          "parent": "terror_minimalista_StyleUI",
+          "props": {
+            "Position": [
+              0.5,
+              0,
+              0.5,
+              0
+            ],
+            "AnchorPoint": [
+              0.5,
+              0.5
+            ],
+            "Size": [
+              0.82,
+              0,
+              0.6,
+              0
+            ],
+            "BackgroundColor3": [
+              23,
+              22,
+              21
+            ],
+            "Visible": false,
+            "BorderSizePixel": 0,
+            "ZIndex": 10
+          }
+        },
+        {
+          "op": "create",
+          "ref": "terror_minimalista_PanelStroke",
+          "cls": "UIStroke",
+          "name": "PanelStroke",
+          "parent": "terror_minimalista_Panel",
+          "props": {
+            "Color": [
+              124,
+              111,
+              91
+            ],
+            "Thickness": 1,
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "ref": "terror_minimalista_Title",
+          "cls": "TextLabel",
+          "name": "Title",
+          "parent": "terror_minimalista_Panel",
+          "props": {
+            "Text": "Terror minimalista",
+            "Font": "SourceSans",
+            "TextSize": 22,
+            "TextColor3": [
+              226,
+              216,
+              193
+            ],
+            "TextXAlignment": "Left",
+            "Position": [
+              0,
+              16,
+              0,
+              16
+            ],
+            "Size": [
+              1,
+              -84,
+              0,
+              32
+            ],
+            "BackgroundTransparency": 1,
+            "ZIndex": 11
+          }
+        },
+        {
+          "op": "create",
+          "ref": "terror_minimalista_Close",
+          "cls": "TextButton",
+          "name": "Close",
+          "parent": "terror_minimalista_Panel",
+          "props": {
+            "Text": "X",
+            "Font": "Gotham",
+            "TextSize": 22,
+            "TextColor3": [
+              226,
+              216,
+              193
+            ],
+            "Position": [
+              1,
+              -52,
+              0,
+              8
+            ],
+            "Size": [
+              0,
+              44,
+              0,
+              44
+            ],
+            "BackgroundTransparency": 1,
+            "BorderSizePixel": 0,
+            "AutoButtonColor": false,
+            "ZIndex": 12
+          }
+        },
+        {
+          "op": "create",
+          "ref": "terror_minimalista_Body",
+          "cls": "TextLabel",
+          "name": "Body",
+          "parent": "terror_minimalista_Panel",
+          "props": {
+            "Text": "Base editável do estilo. Substitua este texto pelas opções e dados reais do jogo.",
+            "Font": "Gotham",
+            "TextSize": 17,
+            "TextWrapped": true,
+            "TextColor3": [
+              226,
+              216,
+              193
+            ],
+            "TextXAlignment": "Left",
+            "TextYAlignment": "Top",
+            "Position": [
+              0,
+              16,
+              0,
+              64
+            ],
+            "Size": [
+              1,
+              -32,
+              1,
+              -90
+            ],
+            "BackgroundTransparency": 1,
+            "ZIndex": 11
+          }
+        },
+        {
+          "op": "create",
+          "ref": "terror_minimalista_MenuController",
+          "cls": "LocalScript",
+          "name": "MenuController",
+          "parent": "terror_minimalista_StyleUI",
+          "props": {
+            "Source": "local gui = script.Parent\nlocal panel = gui:WaitForChild(\"Panel\")\nlocal openButton = gui:WaitForChild(\"Open\")\nlocal closeButton = panel:WaitForChild(\"Close\")\nopenButton.MouseButton1Click:Connect(function()\n    panel.Visible = true\nend)\ncloseButton.MouseButton1Click:Connect(function()\n    panel.Visible = false\nend)\n"
+          }
+        }
+      ]
+    },
+    {
+      "id": "fps-competitivo",
+      "name": "FPS competitivo",
+      "genreReference": "RIVALS",
+      "note": "Proposta original. A referência identifica o gênero, não uma reprodução oficial do HUD. Abrir/fechar funciona com permissão de scripts; indicadores são exemplos até serem ligados aos dados reais.",
+      "commands": [
+        {
+          "op": "create",
+          "ref": "fps_competitivo_StyleUI",
+          "cls": "ScreenGui",
+          "name": "StyleUI",
+          "parent": "StarterGui",
+          "props": {
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "ref": "fps_competitivo_HUD",
+          "cls": "Frame",
+          "name": "HUD",
+          "parent": "fps_competitivo_StyleUI",
+          "props": {
+            "Position": [
+              0,
+              16,
+              0,
+              16
+            ],
+            "Size": [
+              1,
+              -32,
+              0,
+              40
+            ],
+            "BackgroundTransparency": 1,
+            "BorderSizePixel": 0
+          }
+        },
+        {
+          "op": "create",
+          "ref": "fps_competitivo_Header",
+          "cls": "TextLabel",
+          "name": "Header",
+          "parent": "fps_competitivo_HUD",
+          "props": {
+            "Text": "FPS competitivo — prévia",
+            "Font": "Oswald",
+            "TextSize": 20,
+            "TextWrapped": true,
+            "TextXAlignment": "Left",
+            "Size": [
+              1,
+              0,
+              1,
+              0
+            ],
+            "BackgroundTransparency": 1,
+            "TextColor3": [
+              240,
+              244,
+              250
+            ],
+            "TextStrokeColor3": [
+              83,
+              101,
+              125
+            ],
+            "TextStrokeTransparency": 0.4
+          }
+        },
+        {
+          "op": "create",
+          "ref": "fps_competitivo_ButtonShadow",
+          "cls": "Frame",
+          "name": "ButtonShadow",
+          "parent": "fps_competitivo_StyleUI",
+          "props": {
+            "Position": [
+              0.5,
+              -67,
+              0,
+              73
+            ],
+            "Size": [
+              0,
+              140,
+              0,
+              44
+            ],
+            "BackgroundColor3": [
+              83,
+              101,
+              125
+            ],
+            "BorderSizePixel": 0,
+            "ZIndex": 2
+          }
+        },
+        {
+          "op": "create",
+          "ref": "fps_competitivo_Open",
+          "cls": "TextButton",
+          "name": "Open",
+          "parent": "fps_competitivo_StyleUI",
+          "props": {
+            "Text": "Abrir menu",
+            "Font": "Gotham",
+            "TextSize": 18,
+            "TextColor3": [
+              10,
+              15,
+              22
+            ],
+            "Position": [
+              0.5,
+              -70,
+              0,
+              70
+            ],
+            "Size": [
+              0,
+              140,
+              0,
+              44
+            ],
+            "BackgroundColor3": [
+              48,
+              139,
+              238
+            ],
+            "AutoButtonColor": true,
+            "BorderSizePixel": 0,
+            "ZIndex": 3
+          }
+        },
+        {
+          "op": "create",
+          "ref": "fps_competitivo_OpenCorner",
+          "cls": "UICorner",
+          "name": "OpenCorner",
+          "parent": "fps_competitivo_Open",
+          "props": {
+            "CornerRadius": [
+              0,
+              2
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "ref": "fps_competitivo_OpenStroke",
+          "cls": "UIStroke",
+          "name": "OpenStroke",
+          "parent": "fps_competitivo_Open",
+          "props": {
+            "Color": [
+              83,
+              101,
+              125
+            ],
+            "Thickness": 1,
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "ref": "fps_competitivo_Panel",
+          "cls": "Frame",
+          "name": "Panel",
+          "parent": "fps_competitivo_StyleUI",
+          "props": {
+            "Position": [
+              0.5,
+              0,
+              0.5,
+              0
+            ],
+            "AnchorPoint": [
+              0.5,
+              0.5
+            ],
+            "Size": [
+              0.82,
+              0,
+              0.62,
+              0
+            ],
+            "BackgroundColor3": [
+              20,
+              24,
+              32
+            ],
+            "Visible": false,
+            "BorderSizePixel": 0,
+            "ZIndex": 10
+          }
+        },
+        {
+          "op": "create",
+          "ref": "fps_competitivo_PanelStroke",
+          "cls": "UIStroke",
+          "name": "PanelStroke",
+          "parent": "fps_competitivo_Panel",
+          "props": {
+            "Color": [
+              83,
+              101,
+              125
+            ],
+            "Thickness": 1,
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "ref": "fps_competitivo_Title",
+          "cls": "TextLabel",
+          "name": "Title",
+          "parent": "fps_competitivo_Panel",
+          "props": {
+            "Text": "FPS competitivo",
+            "Font": "Oswald",
+            "TextSize": 22,
+            "TextColor3": [
+              240,
+              244,
+              250
+            ],
+            "TextXAlignment": "Left",
+            "Position": [
+              0,
+              16,
+              0,
+              16
+            ],
+            "Size": [
+              1,
+              -84,
+              0,
+              32
+            ],
+            "BackgroundTransparency": 1,
+            "ZIndex": 11
+          }
+        },
+        {
+          "op": "create",
+          "ref": "fps_competitivo_Close",
+          "cls": "TextButton",
+          "name": "Close",
+          "parent": "fps_competitivo_Panel",
+          "props": {
+            "Text": "X",
+            "Font": "Gotham",
+            "TextSize": 22,
+            "TextColor3": [
+              240,
+              244,
+              250
+            ],
+            "Position": [
+              1,
+              -52,
+              0,
+              8
+            ],
+            "Size": [
+              0,
+              44,
+              0,
+              44
+            ],
+            "BackgroundTransparency": 1,
+            "BorderSizePixel": 0,
+            "AutoButtonColor": false,
+            "ZIndex": 12
+          }
+        },
+        {
+          "op": "create",
+          "ref": "fps_competitivo_Body",
+          "cls": "TextLabel",
+          "name": "Body",
+          "parent": "fps_competitivo_Panel",
+          "props": {
+            "Text": "Base editável do estilo. Substitua este texto pelas opções e dados reais do jogo.",
+            "Font": "Gotham",
+            "TextSize": 17,
+            "TextWrapped": true,
+            "TextColor3": [
+              240,
+              244,
+              250
+            ],
+            "TextXAlignment": "Left",
+            "TextYAlignment": "Top",
+            "Position": [
+              0,
+              16,
+              0,
+              64
+            ],
+            "Size": [
+              1,
+              -32,
+              1,
+              -90
+            ],
+            "BackgroundTransparency": 1,
+            "ZIndex": 11
+          }
+        },
+        {
+          "op": "create",
+          "ref": "fps_competitivo_CrosshairH",
+          "cls": "Frame",
+          "name": "CrosshairH",
+          "parent": "fps_competitivo_StyleUI",
+          "props": {
+            "AnchorPoint": [
+              0.5,
+              0.5
+            ],
+            "Position": [
+              0.5,
+              0,
+              0.5,
+              0
+            ],
+            "Size": [
+              0,
+              14,
+              0,
+              2
+            ],
+            "BackgroundColor3": [
+              240,
+              244,
+              250
+            ],
+            "BorderSizePixel": 0
+          }
+        },
+        {
+          "op": "create",
+          "ref": "fps_competitivo_CrosshairV",
+          "cls": "Frame",
+          "name": "CrosshairV",
+          "parent": "fps_competitivo_StyleUI",
+          "props": {
+            "AnchorPoint": [
+              0.5,
+              0.5
+            ],
+            "Position": [
+              0.5,
+              0,
+              0.5,
+              0
+            ],
+            "Size": [
+              0,
+              2,
+              0,
+              14
+            ],
+            "BackgroundColor3": [
+              240,
+              244,
+              250
+            ],
+            "BorderSizePixel": 0
+          }
+        },
+        {
+          "op": "create",
+          "ref": "fps_competitivo_MenuController",
+          "cls": "LocalScript",
+          "name": "MenuController",
+          "parent": "fps_competitivo_StyleUI",
+          "props": {
+            "Source": "local gui = script.Parent\nlocal panel = gui:WaitForChild(\"Panel\")\nlocal openButton = gui:WaitForChild(\"Open\")\nlocal closeButton = panel:WaitForChild(\"Close\")\nopenButton.MouseButton1Click:Connect(function()\n    panel.Visible = true\nend)\ncloseButton.MouseButton1Click:Connect(function()\n    panel.Visible = false\nend)\n"
+          }
+        }
+      ]
+    },
+    {
+      "id": "aventura-natural",
+      "name": "Aventura natural",
+      "genreReference": "Fisch",
+      "note": "Proposta original. A referência identifica o gênero, não uma reprodução oficial do HUD. Abrir/fechar funciona com permissão de scripts; indicadores são exemplos até serem ligados aos dados reais.",
+      "commands": [
+        {
+          "op": "create",
+          "ref": "aventura_natural_StyleUI",
+          "cls": "ScreenGui",
+          "name": "StyleUI",
+          "parent": "StarterGui",
+          "props": {
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "ref": "aventura_natural_HUD",
+          "cls": "Frame",
+          "name": "HUD",
+          "parent": "aventura_natural_StyleUI",
+          "props": {
+            "Position": [
+              0,
+              16,
+              0,
+              16
+            ],
+            "Size": [
+              1,
+              -32,
+              0,
+              40
+            ],
+            "BackgroundTransparency": 1,
+            "BorderSizePixel": 0
+          }
+        },
+        {
+          "op": "create",
+          "ref": "aventura_natural_Header",
+          "cls": "TextLabel",
+          "name": "Header",
+          "parent": "aventura_natural_HUD",
+          "props": {
+            "Text": "Aventura natural — prévia",
+            "Font": "SourceSans",
+            "TextSize": 20,
+            "TextWrapped": true,
+            "TextXAlignment": "Left",
+            "Size": [
+              1,
+              0,
+              1,
+              0
+            ],
+            "BackgroundTransparency": 1,
+            "TextColor3": [
+              232,
+              223,
+              196
+            ],
+            "TextStrokeColor3": [
+              120,
+              132,
+              112
+            ],
+            "TextStrokeTransparency": 0.4
+          }
+        },
+        {
+          "op": "create",
+          "ref": "aventura_natural_ButtonShadow",
+          "cls": "Frame",
+          "name": "ButtonShadow",
+          "parent": "aventura_natural_StyleUI",
+          "props": {
+            "Position": [
+              0.5,
+              -67,
+              1,
+              -97
+            ],
+            "Size": [
+              0,
+              140,
+              0,
+              44
+            ],
+            "BackgroundColor3": [
+              120,
+              132,
+              112
+            ],
+            "BorderSizePixel": 0,
+            "ZIndex": 2
+          }
+        },
+        {
+          "op": "create",
+          "ref": "aventura_natural_Open",
+          "cls": "TextButton",
+          "name": "Open",
+          "parent": "aventura_natural_StyleUI",
+          "props": {
+            "Text": "Abrir menu",
+            "Font": "Gotham",
+            "TextSize": 18,
+            "TextColor3": [
+              255,
+              255,
+              255
+            ],
+            "Position": [
+              0.5,
+              -70,
+              1,
+              -100
+            ],
+            "Size": [
+              0,
+              140,
+              0,
+              44
+            ],
+            "BackgroundColor3": [
+              91,
+              118,
+              76
+            ],
+            "AutoButtonColor": true,
+            "BorderSizePixel": 0,
+            "ZIndex": 3
+          }
+        },
+        {
+          "op": "create",
+          "ref": "aventura_natural_OpenCorner",
+          "cls": "UICorner",
+          "name": "OpenCorner",
+          "parent": "aventura_natural_Open",
+          "props": {
+            "CornerRadius": [
+              0,
+              6
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "ref": "aventura_natural_OpenStroke",
+          "cls": "UIStroke",
+          "name": "OpenStroke",
+          "parent": "aventura_natural_Open",
+          "props": {
+            "Color": [
+              120,
+              132,
+              112
+            ],
+            "Thickness": 1,
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "ref": "aventura_natural_Panel",
+          "cls": "Frame",
+          "name": "Panel",
+          "parent": "aventura_natural_StyleUI",
+          "props": {
+            "Position": [
+              0.5,
+              0,
+              0.5,
+              0
+            ],
+            "AnchorPoint": [
+              0.5,
+              0.5
+            ],
+            "Size": [
+              0.86,
+              0,
+              0.64,
+              0
+            ],
+            "BackgroundColor3": [
+              29,
+              49,
+              63
+            ],
+            "Visible": false,
+            "BorderSizePixel": 0,
+            "ZIndex": 10
+          }
+        },
+        {
+          "op": "create",
+          "ref": "aventura_natural_PanelStroke",
+          "cls": "UIStroke",
+          "name": "PanelStroke",
+          "parent": "aventura_natural_Panel",
+          "props": {
+            "Color": [
+              120,
+              132,
+              112
+            ],
+            "Thickness": 1,
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "ref": "aventura_natural_Title",
+          "cls": "TextLabel",
+          "name": "Title",
+          "parent": "aventura_natural_Panel",
+          "props": {
+            "Text": "Aventura natural",
+            "Font": "SourceSans",
+            "TextSize": 22,
+            "TextColor3": [
+              232,
+              223,
+              196
+            ],
+            "TextXAlignment": "Left",
+            "Position": [
+              0,
+              16,
+              0,
+              16
+            ],
+            "Size": [
+              1,
+              -84,
+              0,
+              32
+            ],
+            "BackgroundTransparency": 1,
+            "ZIndex": 11
+          }
+        },
+        {
+          "op": "create",
+          "ref": "aventura_natural_Close",
+          "cls": "TextButton",
+          "name": "Close",
+          "parent": "aventura_natural_Panel",
+          "props": {
+            "Text": "X",
+            "Font": "Gotham",
+            "TextSize": 22,
+            "TextColor3": [
+              232,
+              223,
+              196
+            ],
+            "Position": [
+              1,
+              -52,
+              0,
+              8
+            ],
+            "Size": [
+              0,
+              44,
+              0,
+              44
+            ],
+            "BackgroundTransparency": 1,
+            "BorderSizePixel": 0,
+            "AutoButtonColor": false,
+            "ZIndex": 12
+          }
+        },
+        {
+          "op": "create",
+          "ref": "aventura_natural_Body",
+          "cls": "TextLabel",
+          "name": "Body",
+          "parent": "aventura_natural_Panel",
+          "props": {
+            "Text": "Base editável do estilo. Substitua este texto pelas opções e dados reais do jogo.",
+            "Font": "Gotham",
+            "TextSize": 17,
+            "TextWrapped": true,
+            "TextColor3": [
+              232,
+              223,
+              196
+            ],
+            "TextXAlignment": "Left",
+            "TextYAlignment": "Top",
+            "Position": [
+              0,
+              16,
+              0,
+              64
+            ],
+            "Size": [
+              1,
+              -32,
+              1,
+              -90
+            ],
+            "BackgroundTransparency": 1,
+            "ZIndex": 11
+          }
+        },
+        {
+          "op": "create",
+          "ref": "aventura_natural_MenuController",
+          "cls": "LocalScript",
+          "name": "MenuController",
+          "parent": "aventura_natural_StyleUI",
+          "props": {
+            "Source": "local gui = script.Parent\nlocal panel = gui:WaitForChild(\"Panel\")\nlocal openButton = gui:WaitForChild(\"Open\")\nlocal closeButton = panel:WaitForChild(\"Close\")\nopenButton.MouseButton1Click:Connect(function()\n    panel.Visible = true\nend)\ncloseButton.MouseButton1Click:Connect(function()\n    panel.Visible = false\nend)\n"
+          }
+        }
+      ]
+    }
+  ]
+}
