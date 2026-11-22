@@ -1,0 +1,28 @@
+---
+name: levelup-organizacao-otimizacao
+description: Planejar e revisar o custo de cenários, modelos, scripts e animações no Studio Level Up para manter o jogo organizado e leve.
+---
+
+# Organização e otimização
+
+Use junto das skills de criação quando a IA adicionar um cenário, muitos objetos ou comportamento repetido. Leia performanceContext no contexto atual antes de propor adições. Ele mede estrutura e bytes serializados, não FPS nem consumo real de GPU.
+
+## Planejar o custo
+
+- Escolha um orçamento de peças proporcional ao pedido e ao projeto existente. Faça um modelo representativo primeiro e estime a multiplicação antes de espalhar dezenas de cópias. Não use o limite de 6000 instâncias como meta de qualidade ou garantia de desempenho.
+- Prefira silhuetas e formas legíveis com poucas primitivas. Uma árvore simples pode usar um tronco e poucas copas; evite folhas individuais, microdetalhes e fileiras excessivas de faixas que pouco aparecem no jogo.
+- CSG serve a formas e recortes úteis. Uma união pode ter centenas de formas internas mesmo contando como uma única instância. Não una uma cidade inteira, não crie negativos ocultos sem função e evite cadeias profundas de uniões. Compare o total de folhas CSG antes e depois.
+- Não adicione luz a cada detalhe. Use poucas luzes locais onde fizer diferença; evite muitas superfícies transparentes sobrepostas e sombras caras em pequenos enfeites.
+- Não embuta cópias de malhas, texturas ou grandes dados em strings quando um asset já existente atende ao pedido. Preserve referências e recursos do projeto.
+
+## Física, scripts e animações
+
+- Peças estáticas do cenário devem ficar Anchored=true. CanCollide e CanTouch devem refletir a função: enfeites pequenos geralmente não precisam de colisão ou toque; pisos, paredes e obstáculos precisam de colisão coerente.
+- Prefira um controlador por sistema a um loop por objeto. Use eventos e intervalos adequados; evite ciclos sem espera, buscas completas de Workspace por quadro e conexões repetidas que nunca são removidas.
+- Use os keyframes necessários para o movimento, sem duplicar a mesma pose a cada quadro. Não faça scripts recriarem geometria estática continuamente.
+
+## Hierarquia e entrega
+
+Agrupe partes de cada casa, poste ou árvore em Models com nomes claros. Separe cenário, objetos interativos, personagens e interface por função. Preserve o que já existe e não duplique um cenário inteiro para corrigir um detalhe. Model/Folder organiza, mas sozinho não reduz custo de renderização.
+
+Antes de entregar, revise quantidade de instâncias e partes, corpos dinâmicos, luzes, folhas e profundidade de CSG, scripts e bytes serializados. Explique as escolhas de otimização no resumo sem prometer FPS não medidos. Para projetos grandes, entregue etapas úteis e testáveis, começando por uma base leve; acrescente detalhes após conferir a navegação e Jogar.
