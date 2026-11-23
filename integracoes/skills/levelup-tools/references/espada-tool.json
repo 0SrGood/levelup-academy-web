@@ -1,0 +1,439 @@
+{
+  "version": 1,
+  "note": "Exemplo compacto com altura aproximada de 3.1 studs. Handle no centro do cabo, não no centro da lâmina. Ajustar Grip à referência sem alterar a escala por causa da pega.",
+  "recipes": [
+    {
+      "id": "espada-tool",
+      "name": "Espada modelada equipável em escala de mão",
+      "commands": [
+        {
+          "op": "create",
+          "ref": "espada",
+          "cls": "Tool",
+          "name": "Espada de treino",
+          "parent": "StarterPack",
+          "props": {
+            "Enabled": true,
+            "RequiresHandle": true,
+            "GripPos": [
+              0,
+              0,
+              0
+            ],
+            "GripOrientation": [
+              25,
+              0,
+              12
+            ],
+            "ToolTip": "Espada modelada com pega no centro do cabo"
+          }
+        },
+        {
+          "op": "create",
+          "ref": "lamina_base",
+          "cls": "Part",
+          "name": "Volume da lâmina",
+          "parent": "espada",
+          "props": {
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Block",
+            "Position": [
+              0,
+              1.568,
+              0
+            ],
+            "Size": [
+              0.576,
+              2.24,
+              0.112
+            ],
+            "Material": "Metal",
+            "Color": [
+              188,
+              205,
+              220
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "ref": "corte_e",
+          "cls": "Part",
+          "name": "Corte esquerdo",
+          "parent": "espada",
+          "props": {
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Position": [
+              -0.4525483,
+              3.1405483,
+              0
+            ],
+            "Size": [
+              1.28,
+              1.28,
+              0.32
+            ],
+            "Orientation": [
+              0,
+              0,
+              45
+            ],
+            "Color": [
+              188,
+              205,
+              220
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "ref": "corte_d",
+          "cls": "Part",
+          "name": "Corte direito",
+          "parent": "espada",
+          "props": {
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Position": [
+              0.4525483,
+              3.1405483,
+              0
+            ],
+            "Size": [
+              1.28,
+              1.28,
+              0.32
+            ],
+            "Orientation": [
+              0,
+              0,
+              -45
+            ],
+            "Color": [
+              188,
+              205,
+              220
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "espada",
+          "ref": "chanfro0",
+          "name": "Cortador longitudinal da lâmina",
+          "props": {
+            "Size": [
+              0.16,
+              3.2,
+              0.16
+            ],
+            "Position": [
+              -0.32,
+              1.568,
+              -0.096
+            ],
+            "Color": [
+              180,
+              190,
+              205
+            ],
+            "Anchored": false,
+            "CanTouch": false,
+            "Orientation": [
+              0,
+              45,
+              0
+            ],
+            "CanCollide": false
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "espada",
+          "ref": "chanfro1",
+          "name": "Cortador longitudinal da lâmina",
+          "props": {
+            "Size": [
+              0.16,
+              3.2,
+              0.16
+            ],
+            "Position": [
+              -0.32,
+              1.568,
+              0.096
+            ],
+            "Color": [
+              180,
+              190,
+              205
+            ],
+            "Anchored": false,
+            "CanTouch": false,
+            "Orientation": [
+              0,
+              45,
+              0
+            ],
+            "CanCollide": false
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "espada",
+          "ref": "chanfro2",
+          "name": "Cortador longitudinal da lâmina",
+          "props": {
+            "Size": [
+              0.16,
+              3.2,
+              0.16
+            ],
+            "Position": [
+              0.32,
+              1.568,
+              -0.096
+            ],
+            "Color": [
+              180,
+              190,
+              205
+            ],
+            "Anchored": false,
+            "CanTouch": false,
+            "Orientation": [
+              0,
+              45,
+              0
+            ],
+            "CanCollide": false
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "espada",
+          "ref": "chanfro3",
+          "name": "Cortador longitudinal da lâmina",
+          "props": {
+            "Size": [
+              0.16,
+              3.2,
+              0.16
+            ],
+            "Position": [
+              0.32,
+              1.568,
+              0.096
+            ],
+            "Color": [
+              180,
+              190,
+              205
+            ],
+            "Anchored": false,
+            "CanTouch": false,
+            "Orientation": [
+              0,
+              45,
+              0
+            ],
+            "CanCollide": false
+          }
+        },
+        {
+          "op": "negate",
+          "ids": [
+            "corte_e",
+            "corte_d",
+            "chanfro0",
+            "chanfro1",
+            "chanfro2",
+            "chanfro3"
+          ]
+        },
+        {
+          "op": "union",
+          "ref": "lamina",
+          "name": "Lâmina com ponta modelada",
+          "ids": [
+            "lamina_base",
+            "corte_e",
+            "corte_d",
+            "chanfro0",
+            "chanfro1",
+            "chanfro2",
+            "chanfro3"
+          ]
+        },
+        {
+          "op": "update",
+          "id": "lamina",
+          "props": {
+            "UsePartColor": true,
+            "Color": [
+              188,
+              205,
+              220
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "ref": "guarda",
+          "cls": "Part",
+          "name": "Guarda",
+          "parent": "espada",
+          "props": {
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Position": [
+              0,
+              0.416,
+              0
+            ],
+            "Size": [
+              1.024,
+              0.16,
+              0.224
+            ],
+            "Material": "Metal",
+            "Color": [
+              202,
+              159,
+              63
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "ref": "punho",
+          "cls": "Part",
+          "name": "Empunhadura",
+          "parent": "espada",
+          "props": {
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Position": [
+              0,
+              0,
+              0
+            ],
+            "Size": [
+              0.768,
+              0.16,
+              0.16
+            ],
+            "Orientation": [
+              0,
+              0,
+              90
+            ],
+            "Material": "Wood",
+            "Color": [
+              79,
+              49,
+              33
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "ref": "pomo",
+          "cls": "Part",
+          "name": "Pomo",
+          "parent": "espada",
+          "props": {
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Ball",
+            "Position": [
+              0,
+              -0.32,
+              0
+            ],
+            "Size": [
+              0.256,
+              0.256,
+              0.256
+            ],
+            "Material": "Metal",
+            "Color": [
+              202,
+              159,
+              63
+            ]
+          }
+        },
+        {
+          "op": "union",
+          "ref": "espada_final",
+          "name": "Espada modelada",
+          "ids": [
+            "lamina",
+            "guarda",
+            "punho",
+            "pomo"
+          ]
+        },
+        {
+          "op": "update",
+          "id": "espada_final",
+          "props": {
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "UsePartColor": false
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "pega",
+          "name": "Handle",
+          "parent": "espada",
+          "props": {
+            "Position": [
+              0,
+              0,
+              0
+            ],
+            "Size": [
+              0.18,
+              0.32,
+              0.18
+            ],
+            "Transparency": 1,
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "name": "Fixação da espada modelada",
+          "parent": "pega",
+          "props": {
+            "Part0": "pega",
+            "Part1": "espada_final",
+            "Enabled": true
+          },
+          "ref": "solda_espada"
+        }
+      ]
+    }
+  ]
+}
