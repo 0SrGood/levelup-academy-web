@@ -35,3 +35,5 @@ Verifique: aparece no inventário; equipa; Handle e todos os componentes acompan
 Tool.Activated/Deactivated e Equipped/Unequipped existem no runtime; ativar não cria efeitos por si só. Não prometer som de violão sem uma classe/API de áudio suportada no contrato. Não adicionar loops por peça nem scripts de geração futura no lugar da geometria.
 
 A receita é modelo editável e Tool de inventário, não asset oficial da Roblox. No gratuito, leia os tutoriais completos incluídos em skills[].references e entregue levelup-alteracoes.json com o fingerprint atual. No MCP, consulte levelup_skills por nome/referência e proponha os mesmos comandos. Não exigir MCP pago para criar, soldar ou importar a Tool por JSON.
+
+Se o contexto fornecer files.response, use esse nome ao entregar o JSON. Ele identifica projeto, conteúdo e data; os nomes genéricos acima servem apenas como exemplo do formato.

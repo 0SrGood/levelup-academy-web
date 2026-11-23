@@ -30,3 +30,5 @@ As ferramentas reais são Girar, Mover, adicionar/editar/mover/apagar quadros, c
 Tempos únicos e crescentes entre 0 e 30 segundos; até 2000 quadros ao todo. A duração nunca termina antes do último quadro. Use os easings e prioridades declarados no contexto. Feche loops com poses inicial/final compatíveis e revise apoio dos pés, limites articulares e colisões visuais.
 
 Não aplique CSG em partes de rig articulado. Se o pedido incluir cenário ou acessório modelado, use também levelup-modelagem e preserve juntas. Confira organização e custo com levelup-organizacao-otimizacao.
+
+Se o contexto fornecer files.response, use esse nome ao entregar o JSON. Ele identifica projeto, conteúdo e data; os nomes genéricos acima servem apenas como exemplo do formato.

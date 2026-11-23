@@ -56,3 +56,5 @@ Para instrumentos e acessórios que precisam ir à mão, consulte também levelu
 No gratuito, leia esta skill e suas referências dentro de skills[] do contexto e retorne levelup-alteracoes.json. No MCP, leia levelup_skills com name="levelup-detalhamento" e reference da receita; envie a proposta e aguarde a aplicação. Use refs novas, IDs reais, até 500 operações por proposta e dimensões >=0.05. Os cilindros usam comprimento X local; uma haste vertical usa Size=[altura,diâmetro,diâmetro] e Orientation=[0,0,90]. Ball é esférica, não um elipsoide.
 
 Descreva as formas e recortes criados, os grupos editáveis preservados e como conferir de perto e à distância. Diferencie revisão numérica de teste visual; não alegue ter visto a cena sem acesso à prévia.
+
+Se o contexto fornecer files.response, use esse nome ao entregar o JSON. Ele identifica projeto, conteúdo e data; os nomes genéricos acima servem apenas como exemplo do formato.
