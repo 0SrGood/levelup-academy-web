@@ -28,3 +28,9 @@ Estas receitas são construções originais adaptadas ao Studio Level Up. Os jog
 Confira um celular estreito (aprox. 390×844), um celular deitado (844×390) e um notebook (1366×768). Esses valores são cenários de teste, não prova de teste realizado. Controles de toque importantes devem ter alvo próximo de 44 px ou maior, com espaço entre eles. Reduza quantidade visível e use páginas no celular em vez de comprimir oito botões numa linha.
 
 Teste abrir, fechar, selecionar, pressionar, texto longo, valores zero e navegação repetida. Informe o que realmente testou. Reduza decoração e instâncias antes de sacrificar legibilidade. Os orçamentos dos tutoriais são metas iniciais ajustáveis, não promessa de FPS.
+
+## Contorno proporcional
+
+UIStroke.StrokeSizingMode aceita FixedSize (Thickness em pixels) e ScaledSize. Em ScaledSize na borda, Thickness é uma fração do menor lado do elemento; no texto Contextual, é fração do tamanho da fonte. Use Thickness=0.02 para uma borda de 2% do lado menor, ou 0.05 para texto com 5% da fonte. O valor 2 usado no modo fixo não equivale a 2 pixels no modo proporcional: passaria a uma fração 2, grande demais. Escolha explicitamente a espessura ao trocar modo. A propriedade funciona no editor, runtime Luau e importação/exportação Roblox.
+
+Referências oficiais: https://create.roblox.com/docs/reference/engine/enums/StrokeSizingMode e https://create.roblox.com/docs/ui/appearance-modifiers. As instruções acima estão incluídas no contexto gratuito, sem exigir navegação externa.

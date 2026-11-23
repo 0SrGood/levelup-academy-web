@@ -1,0 +1,1476 @@
+{
+  "version": 1,
+  "note": "Protótipos separados na origem: escolha a receita do pedido e adapte TODAS as posições e cortadores ao mapa. Incluir commands no envelope com fingerprint atual. Não executar todas as receitas umas sobre as outras.",
+  "recipes": [
+    {
+      "id": "montanha-facetada",
+      "name": "Montanha com crista assimétrica e faces cinzas",
+      "commands": [
+        {
+          "op": "create",
+          "cls": "Model",
+          "ref": "montanha",
+          "name": "Montanha facetada",
+          "parent": "Workspace"
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "montanha",
+          "ref": "volume",
+          "name": "Volume da montanha",
+          "props": {
+            "Size": [
+              12,
+              10,
+              10
+            ],
+            "Position": [
+              0,
+              5,
+              0
+            ],
+            "Color": [
+              115,
+              119,
+              126
+            ],
+            "Anchored": true,
+            "CanTouch": false,
+            "Material": "Slate"
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "montanha",
+          "ref": "esquerda",
+          "name": "Cortador de plano esquerda",
+          "props": {
+            "Size": [
+              40,
+              20,
+              40
+            ],
+            "Position": [
+              -5.7357643635104605,
+              16.191520442889917,
+              0
+            ],
+            "Color": [
+              115,
+              119,
+              126
+            ],
+            "Anchored": true,
+            "CanTouch": false,
+            "Orientation": [
+              0,
+              0,
+              35
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "montanha",
+          "ref": "direita",
+          "name": "Cortador de plano direita",
+          "props": {
+            "Size": [
+              40,
+              20,
+              40
+            ],
+            "Position": [
+              4.999999999999999,
+              16.66025403784439,
+              0
+            ],
+            "Color": [
+              115,
+              119,
+              126
+            ],
+            "Anchored": true,
+            "CanTouch": false,
+            "Orientation": [
+              0,
+              0,
+              -30
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "montanha",
+          "ref": "frente",
+          "name": "Cortador de plano frente",
+          "props": {
+            "Size": [
+              40,
+              20,
+              40
+            ],
+            "Position": [
+              0,
+              17.460254037844386,
+              4.999999999999999
+            ],
+            "Color": [
+              115,
+              119,
+              126
+            ],
+            "Anchored": true,
+            "CanTouch": false,
+            "Orientation": [
+              30,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "montanha",
+          "ref": "costas",
+          "name": "Cortador de plano costas",
+          "props": {
+            "Size": [
+              40,
+              20,
+              40
+            ],
+            "Position": [
+              0,
+              17.3630778703665,
+              -4.2261826174069945
+            ],
+            "Color": [
+              115,
+              119,
+              126
+            ],
+            "Anchored": true,
+            "CanTouch": false,
+            "Orientation": [
+              -25,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "montanha",
+          "ref": "quebra",
+          "name": "Recorte lateral",
+          "props": {
+            "Size": [
+              3,
+              4,
+              3
+            ],
+            "Position": [
+              -4.7,
+              2.7,
+              4.3
+            ],
+            "Color": [
+              115,
+              119,
+              126
+            ],
+            "Anchored": true,
+            "CanTouch": false,
+            "Orientation": [
+              0,
+              0,
+              15
+            ]
+          }
+        },
+        {
+          "op": "negate",
+          "ids": [
+            "esquerda",
+            "direita",
+            "frente",
+            "costas",
+            "quebra"
+          ]
+        },
+        {
+          "op": "union",
+          "ref": "rocha",
+          "name": "Montanha com crista e planos",
+          "ids": [
+            "volume",
+            "esquerda",
+            "direita",
+            "frente",
+            "costas",
+            "quebra"
+          ]
+        },
+        {
+          "op": "update",
+          "id": "rocha",
+          "props": {
+            "UsePartColor": true,
+            "Color": [
+              115,
+              119,
+              126
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "arvore-organica",
+      "name": "Árvore com ramificação e copa irregular",
+      "commands": [
+        {
+          "op": "create",
+          "cls": "Model",
+          "ref": "arvore",
+          "name": "Árvore orgânica",
+          "parent": "Workspace"
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "arvore",
+          "ref": "tronco",
+          "name": "Tronco circular",
+          "props": {
+            "Size": [
+              6,
+              0.8,
+              0.8
+            ],
+            "Position": [
+              0,
+              3,
+              0
+            ],
+            "Color": [
+              112,
+              76,
+              44
+            ],
+            "Anchored": true,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              90
+            ],
+            "Material": "Wood"
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "arvore",
+          "ref": "ramoE",
+          "name": "Ramo esquerdo",
+          "props": {
+            "Size": [
+              2.8,
+              0.35,
+              0.35
+            ],
+            "Position": [
+              -0.7,
+              5.4,
+              0
+            ],
+            "Color": [
+              112,
+              76,
+              44
+            ],
+            "Anchored": true,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              125
+            ],
+            "Material": "Wood"
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "arvore",
+          "ref": "ramoD",
+          "name": "Ramo direito",
+          "props": {
+            "Size": [
+              2.6,
+              0.32,
+              0.32
+            ],
+            "Position": [
+              0.7,
+              5.5,
+              0.15
+            ],
+            "Color": [
+              112,
+              76,
+              44
+            ],
+            "Anchored": true,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              55
+            ],
+            "Material": "Wood"
+          }
+        },
+        {
+          "op": "union",
+          "ref": "madeira",
+          "name": "Tronco e ramificações",
+          "ids": [
+            "tronco",
+            "ramoE",
+            "ramoD"
+          ]
+        },
+        {
+          "op": "update",
+          "id": "madeira",
+          "props": {
+            "UsePartColor": true,
+            "Color": [
+              112,
+              76,
+              44
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "arvore",
+          "ref": "massaA",
+          "name": "Massa central",
+          "props": {
+            "Size": [
+              4.8,
+              4.8,
+              4.8
+            ],
+            "Position": [
+              0,
+              7,
+              0
+            ],
+            "Color": [
+              48,
+              126,
+              65
+            ],
+            "Anchored": true,
+            "CanTouch": false,
+            "Shape": "Ball",
+            "Material": "Grass"
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "arvore",
+          "ref": "massaB",
+          "name": "Massa esquerda",
+          "props": {
+            "Size": [
+              3.6,
+              3.6,
+              3.6
+            ],
+            "Position": [
+              -1.5,
+              6.6,
+              0.2
+            ],
+            "Color": [
+              48,
+              126,
+              65
+            ],
+            "Anchored": true,
+            "CanTouch": false,
+            "Shape": "Ball",
+            "Material": "Grass"
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "arvore",
+          "ref": "massaC",
+          "name": "Massa direita",
+          "props": {
+            "Size": [
+              3.8,
+              3.8,
+              3.8
+            ],
+            "Position": [
+              1.4,
+              7.2,
+              0.3
+            ],
+            "Color": [
+              48,
+              126,
+              65
+            ],
+            "Anchored": true,
+            "CanTouch": false,
+            "Shape": "Ball",
+            "Material": "Grass"
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "arvore",
+          "ref": "reentrancia",
+          "name": "Reentrância arredondada",
+          "props": {
+            "Size": [
+              2,
+              2,
+              2
+            ],
+            "Position": [
+              1.8,
+              5.3,
+              1.2
+            ],
+            "Color": [
+              48,
+              126,
+              65
+            ],
+            "Anchored": true,
+            "CanTouch": false,
+            "Shape": "Ball"
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "arvore",
+          "ref": "entalhe",
+          "name": "Quebra lateral",
+          "props": {
+            "Size": [
+              2,
+              2,
+              2
+            ],
+            "Position": [
+              -2.8,
+              5.5,
+              0.6
+            ],
+            "Color": [
+              48,
+              126,
+              65
+            ],
+            "Anchored": true,
+            "CanTouch": false,
+            "Orientation": [
+              0,
+              0,
+              25
+            ]
+          }
+        },
+        {
+          "op": "negate",
+          "ids": [
+            "reentrancia",
+            "entalhe"
+          ]
+        },
+        {
+          "op": "union",
+          "ref": "copa",
+          "name": "Copa orgânica recortada",
+          "ids": [
+            "massaA",
+            "massaB",
+            "massaC",
+            "reentrancia",
+            "entalhe"
+          ]
+        },
+        {
+          "op": "update",
+          "id": "copa",
+          "props": {
+            "UsePartColor": true,
+            "Color": [
+              48,
+              126,
+              65
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "lixeira-redonda",
+      "name": "Lixeira cilíndrica com entrada, interior e tampa",
+      "commands": [
+        {
+          "op": "create",
+          "cls": "Model",
+          "ref": "lixeira",
+          "name": "Lixeira redonda",
+          "parent": "Workspace"
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "lixeira",
+          "ref": "corpo",
+          "name": "Corpo circular",
+          "props": {
+            "Size": [
+              2.8,
+              1.8,
+              1.8
+            ],
+            "Position": [
+              0,
+              1.4,
+              0
+            ],
+            "Color": [
+              30,
+              105,
+              78
+            ],
+            "Anchored": true,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              90
+            ],
+            "Material": "Metal"
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "lixeira",
+          "ref": "interior",
+          "name": "Interior oco",
+          "props": {
+            "Size": [
+              3,
+              1.45,
+              1.45
+            ],
+            "Position": [
+              0,
+              1.8,
+              0
+            ],
+            "Color": [
+              30,
+              105,
+              78
+            ],
+            "Anchored": true,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              90
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "lixeira",
+          "ref": "boca",
+          "name": "Abertura lateral",
+          "props": {
+            "Size": [
+              2.2,
+              0.7,
+              0.8
+            ],
+            "Position": [
+              0,
+              2.15,
+              0.75
+            ],
+            "Color": [
+              30,
+              105,
+              78
+            ],
+            "Anchored": true,
+            "CanTouch": false
+          }
+        },
+        {
+          "op": "negate",
+          "ids": [
+            "interior",
+            "boca"
+          ]
+        },
+        {
+          "op": "union",
+          "ref": "casco",
+          "name": "Corpo vazado com entrada",
+          "ids": [
+            "corpo",
+            "interior",
+            "boca"
+          ]
+        },
+        {
+          "op": "update",
+          "id": "casco",
+          "props": {
+            "UsePartColor": true,
+            "Color": [
+              30,
+              105,
+              78
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "lixeira",
+          "ref": "disco",
+          "name": "Tampa circular",
+          "props": {
+            "Size": [
+              0.2,
+              2,
+              2
+            ],
+            "Position": [
+              0,
+              2.9,
+              0
+            ],
+            "Color": [
+              50,
+              55,
+              63
+            ],
+            "Anchored": true,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              90
+            ],
+            "Material": "Metal"
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "lixeira",
+          "ref": "pegador",
+          "name": "Pegador da tampa",
+          "props": {
+            "Size": [
+              0.3,
+              0.4,
+              0.4
+            ],
+            "Position": [
+              0,
+              3.15,
+              0
+            ],
+            "Color": [
+              50,
+              55,
+              63
+            ],
+            "Anchored": true,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              90
+            ],
+            "Material": "Metal"
+          }
+        },
+        {
+          "op": "union",
+          "ref": "tampa",
+          "name": "Tampa com pegador",
+          "ids": [
+            "disco",
+            "pegador"
+          ]
+        },
+        {
+          "op": "update",
+          "id": "tampa",
+          "props": {
+            "UsePartColor": true,
+            "Color": [
+              50,
+              55,
+              63
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "casinha-passaros",
+      "name": "Casinha com frontão, interior, entrada circular e telhado",
+      "commands": [
+        {
+          "op": "create",
+          "cls": "Model",
+          "ref": "casinha",
+          "name": "Casinha de pássaros",
+          "parent": "Workspace"
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "casinha",
+          "ref": "suporte",
+          "name": "Suporte circular",
+          "props": {
+            "Size": [
+              3.5,
+              0.35,
+              0.35
+            ],
+            "Position": [
+              0,
+              1.75,
+              0
+            ],
+            "Color": [
+              112,
+              76,
+              44
+            ],
+            "Anchored": true,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              90
+            ],
+            "Material": "Wood"
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "casinha",
+          "ref": "corpo",
+          "name": "Volume da casinha",
+          "props": {
+            "Size": [
+              2.4,
+              3,
+              2
+            ],
+            "Position": [
+              0,
+              5,
+              0
+            ],
+            "Color": [
+              167,
+              113,
+              65
+            ],
+            "Anchored": true,
+            "CanTouch": false,
+            "Material": "WoodPlanks"
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "casinha",
+          "ref": "cavidade",
+          "name": "Interior",
+          "props": {
+            "Size": [
+              2,
+              2.2,
+              1.6
+            ],
+            "Position": [
+              0,
+              4.8,
+              0
+            ],
+            "Color": [
+              167,
+              113,
+              65
+            ],
+            "Anchored": true,
+            "CanTouch": false
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "casinha",
+          "ref": "entrada",
+          "name": "Entrada circular",
+          "props": {
+            "Size": [
+              1.4,
+              0.75,
+              0.75
+            ],
+            "Position": [
+              0,
+              4.9,
+              1
+            ],
+            "Color": [
+              167,
+              113,
+              65
+            ],
+            "Anchored": true,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              90,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "casinha",
+          "ref": "gableE",
+          "name": "Cortador de plano gableE",
+          "props": {
+            "Size": [
+              40,
+              20,
+              40
+            ],
+            "Position": [
+              -4.2261826174069945,
+              15.483077870366499,
+              0
+            ],
+            "Color": [
+              167,
+              113,
+              65
+            ],
+            "Anchored": true,
+            "CanTouch": false,
+            "Orientation": [
+              0,
+              0,
+              25
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "casinha",
+          "ref": "gableD",
+          "name": "Cortador de plano gableD",
+          "props": {
+            "Size": [
+              40,
+              20,
+              40
+            ],
+            "Position": [
+              4.2261826174069945,
+              15.483077870366499,
+              0
+            ],
+            "Color": [
+              167,
+              113,
+              65
+            ],
+            "Anchored": true,
+            "CanTouch": false,
+            "Orientation": [
+              0,
+              0,
+              -25
+            ]
+          }
+        },
+        {
+          "op": "negate",
+          "ids": [
+            "cavidade",
+            "entrada",
+            "gableE",
+            "gableD"
+          ]
+        },
+        {
+          "op": "union",
+          "ref": "casa",
+          "name": "Corpo com frontão e entrada circular",
+          "ids": [
+            "corpo",
+            "cavidade",
+            "entrada",
+            "gableE",
+            "gableD"
+          ]
+        },
+        {
+          "op": "update",
+          "id": "casa",
+          "props": {
+            "UsePartColor": true,
+            "Color": [
+              167,
+              113,
+              65
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "casinha",
+          "ref": "telhaE",
+          "name": "Metade esquerda da cobertura",
+          "props": {
+            "Size": [
+              1.65,
+              0.16,
+              2.5
+            ],
+            "Position": [
+              -0.7477039243052361,
+              6.15,
+              0
+            ],
+            "Color": [
+              64,
+              85,
+              110
+            ],
+            "Anchored": true,
+            "CanTouch": false,
+            "Orientation": [
+              0,
+              0,
+              25
+            ],
+            "Material": "Slate"
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "casinha",
+          "ref": "telhaD",
+          "name": "Metade direita da cobertura",
+          "props": {
+            "Size": [
+              1.65,
+              0.16,
+              2.5
+            ],
+            "Position": [
+              0.7477039243052361,
+              6.15,
+              0
+            ],
+            "Color": [
+              64,
+              85,
+              110
+            ],
+            "Anchored": true,
+            "CanTouch": false,
+            "Orientation": [
+              0,
+              0,
+              -25
+            ],
+            "Material": "Slate"
+          }
+        },
+        {
+          "op": "union",
+          "ref": "cobertura",
+          "name": "Telhado em duas águas",
+          "ids": [
+            "telhaE",
+            "telhaD"
+          ]
+        },
+        {
+          "op": "update",
+          "id": "cobertura",
+          "props": {
+            "UsePartColor": true,
+            "Color": [
+              64,
+              85,
+              110
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "casinha",
+          "ref": "poleiro",
+          "name": "Poleiro frontal",
+          "props": {
+            "Size": [
+              0.8,
+              0.14,
+              0.14
+            ],
+            "Position": [
+              0,
+              4.25,
+              1.25
+            ],
+            "Color": [
+              112,
+              76,
+              44
+            ],
+            "Anchored": true,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              90,
+              0
+            ],
+            "Material": "Wood"
+          }
+        }
+      ]
+    },
+    {
+      "id": "espada-chanfrada",
+      "name": "Espada com ponta recortada e quatro chanfros na seção",
+      "commands": [
+        {
+          "op": "create",
+          "ref": "espada",
+          "cls": "Model",
+          "name": "Espada CSG",
+          "parent": "Workspace"
+        },
+        {
+          "op": "create",
+          "ref": "lamina_base",
+          "cls": "Part",
+          "name": "Volume da lâmina",
+          "parent": "espada",
+          "props": {
+            "Anchored": true,
+            "CanCollide": true,
+            "CanTouch": false,
+            "Shape": "Block",
+            "Position": [
+              0,
+              6.3,
+              0
+            ],
+            "Size": [
+              1.8,
+              7,
+              0.35
+            ],
+            "Material": "Metal",
+            "Color": [
+              188,
+              205,
+              220
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "ref": "corte_e",
+          "cls": "Part",
+          "name": "Corte esquerdo",
+          "parent": "espada",
+          "props": {
+            "Anchored": true,
+            "CanCollide": true,
+            "CanTouch": false,
+            "Position": [
+              -1.4142135623730951,
+              11.214213562373097,
+              0
+            ],
+            "Size": [
+              4,
+              4,
+              1
+            ],
+            "Orientation": [
+              0,
+              0,
+              45
+            ],
+            "Color": [
+              188,
+              205,
+              220
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "ref": "corte_d",
+          "cls": "Part",
+          "name": "Corte direito",
+          "parent": "espada",
+          "props": {
+            "Anchored": true,
+            "CanCollide": true,
+            "CanTouch": false,
+            "Position": [
+              1.4142135623730951,
+              11.214213562373097,
+              0
+            ],
+            "Size": [
+              4,
+              4,
+              1
+            ],
+            "Orientation": [
+              0,
+              0,
+              -45
+            ],
+            "Color": [
+              188,
+              205,
+              220
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "espada",
+          "ref": "chanfro0",
+          "name": "Cortador longitudinal da lâmina",
+          "props": {
+            "Size": [
+              0.5,
+              10,
+              0.5
+            ],
+            "Position": [
+              -1,
+              6.3,
+              -0.3
+            ],
+            "Color": [
+              180,
+              190,
+              205
+            ],
+            "Anchored": true,
+            "CanTouch": false,
+            "Orientation": [
+              0,
+              45,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "espada",
+          "ref": "chanfro1",
+          "name": "Cortador longitudinal da lâmina",
+          "props": {
+            "Size": [
+              0.5,
+              10,
+              0.5
+            ],
+            "Position": [
+              -1,
+              6.3,
+              0.3
+            ],
+            "Color": [
+              180,
+              190,
+              205
+            ],
+            "Anchored": true,
+            "CanTouch": false,
+            "Orientation": [
+              0,
+              45,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "espada",
+          "ref": "chanfro2",
+          "name": "Cortador longitudinal da lâmina",
+          "props": {
+            "Size": [
+              0.5,
+              10,
+              0.5
+            ],
+            "Position": [
+              1,
+              6.3,
+              -0.3
+            ],
+            "Color": [
+              180,
+              190,
+              205
+            ],
+            "Anchored": true,
+            "CanTouch": false,
+            "Orientation": [
+              0,
+              45,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "parent": "espada",
+          "ref": "chanfro3",
+          "name": "Cortador longitudinal da lâmina",
+          "props": {
+            "Size": [
+              0.5,
+              10,
+              0.5
+            ],
+            "Position": [
+              1,
+              6.3,
+              0.3
+            ],
+            "Color": [
+              180,
+              190,
+              205
+            ],
+            "Anchored": true,
+            "CanTouch": false,
+            "Orientation": [
+              0,
+              45,
+              0
+            ]
+          }
+        },
+        {
+          "op": "negate",
+          "ids": [
+            "corte_e",
+            "corte_d",
+            "chanfro0",
+            "chanfro1",
+            "chanfro2",
+            "chanfro3"
+          ]
+        },
+        {
+          "op": "union",
+          "ref": "lamina",
+          "name": "Lâmina com ponta modelada",
+          "ids": [
+            "lamina_base",
+            "corte_e",
+            "corte_d",
+            "chanfro0",
+            "chanfro1",
+            "chanfro2",
+            "chanfro3"
+          ]
+        },
+        {
+          "op": "update",
+          "id": "lamina",
+          "props": {
+            "UsePartColor": true,
+            "Color": [
+              188,
+              205,
+              220
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "ref": "guarda",
+          "cls": "Part",
+          "name": "Guarda",
+          "parent": "espada",
+          "props": {
+            "Anchored": true,
+            "CanCollide": true,
+            "CanTouch": false,
+            "Position": [
+              0,
+              2.7,
+              0
+            ],
+            "Size": [
+              3.2,
+              0.5,
+              0.7
+            ],
+            "Material": "Metal",
+            "Color": [
+              202,
+              159,
+              63
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "ref": "punho",
+          "cls": "Part",
+          "name": "Empunhadura",
+          "parent": "espada",
+          "props": {
+            "Anchored": true,
+            "CanCollide": true,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Position": [
+              0,
+              1.4,
+              0
+            ],
+            "Size": [
+              2.4,
+              0.5,
+              0.5
+            ],
+            "Orientation": [
+              0,
+              0,
+              90
+            ],
+            "Material": "Wood",
+            "Color": [
+              79,
+              49,
+              33
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "ref": "pomo",
+          "cls": "Part",
+          "name": "Pomo",
+          "parent": "espada",
+          "props": {
+            "Anchored": true,
+            "CanCollide": true,
+            "CanTouch": false,
+            "Shape": "Ball",
+            "Position": [
+              0,
+              0.4,
+              0
+            ],
+            "Size": [
+              0.8,
+              0.8,
+              0.8
+            ],
+            "Material": "Metal",
+            "Color": [
+              202,
+              159,
+              63
+            ]
+          }
+        },
+        {
+          "op": "union",
+          "ref": "espada_final",
+          "name": "Espada modelada",
+          "ids": [
+            "lamina",
+            "guarda",
+            "punho",
+            "pomo"
+          ]
+        }
+      ]
+    }
+  ]
+}

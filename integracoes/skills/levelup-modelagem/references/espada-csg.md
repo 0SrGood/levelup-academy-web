@@ -14,3 +14,5 @@ Objetivo: criar uma espada com ponta trabalhada, guarda, empunhadura e pomo, em 
 10. Para uma espada equipável, adapte o resultado a uma Tool com Handle e soldas suportadas; não prometa funcionamento de Tool para o exemplo estático. Pode manter grupos de forma separados quando a editabilidade do pedido exigir.
 
 A receita é construída na origem para servir de protótipo. Para posicioná-la em outro ponto, desloque todas as posições de volumes e cortadores pelo mesmo vetor antes de executar a união. Não aplique Position ao Model: ele não é uma BasePart.
+
+Cor de acabamento: os negativos da receita têm a cor do componente que recortam. As uniões uniformes recebem update com UsePartColor=true e Color final. Numa união externa com vários componentes de cores diferentes, mantenha UsePartColor=false para preservar a paleta.

@@ -37,3 +37,9 @@ A receita luminaria-csg.json cria poste circular, suporte, carcaça com quatro c
 3. Faça a copa com massas de tamanhos variados e assimetria coerente. Una volumes sobrepostos e use negativos para vazios/lacunas que reforcem a silhueta, não para cortar buracos aleatórios na árvore.
 4. Se a intenção for poda geométrica, um cortador de plano pode nivelar a parte inferior. Para árvore natural, preserve irregularidade; não reutilize automaticamente a base plana da receita estilizada.
 5. Mantenha copa e tronco editáveis separadamente. Ramos que sustentam a copa devem chegar nela. Faça variações pequenas do exemplar e confira custo antes de povoar o cenário.
+
+## Receita numérica: chanfros longitudinais da espada
+
+Consulte espada-chanfrada em receitas-avancadas.json. Além dos dois negativos da ponta, quatro cortadores percorrem o comprimento Y da lâmina. Para seção original X=1.8 e Z=0.35, cortadores de Size=[0.5,10,0.5], Orientation=[0,45,0], centros X=+/-1.0, Y=6.3 e Z=+/-0.3 retiram os quatro cantos da seção X/Z. A lâmina ganha faces de aresta ao longo do comprimento, em vez de continuar uma tábua retangular.
+
+Declare Color cinza metálica nos seis cortadores. Depois de unir, a etapa da lâmina usa UsePartColor=true e a cor cinza; a união externa da espada mantém false, preservando guarda e cabo de outras cores. Confira que os chanfros não cortam o núcleo, que a ponta continua estreita e que o volume é menor que a lâmina apenas apontada. Escale os cortadores junto com a seção se mudar largura/espessura; não reutilize os mesmos números em qualquer espada.

@@ -15,6 +15,21 @@ Part é volume de construção, não uma proibição de material: use Cylinder, 
 
 Leia [receitas de acabamento](references/acabamento.md) para espada, poste, luminária e árvore. Para uma luminária executável com cantos chanfrados, alojamento negativo e luz real, consulte [receita JSON](references/luminaria-csg.json). Adapte escala/posição a partir do contexto e consulte propertyDefinitions antes de mudar propriedades.
 
+## Cores e percurso dos tutoriais
+
+Antes de qualquer CSG colorido, leia [cores dos recortes](references/cores-recortes.md). Faces abertas por negativos podem herdar a Color do cortador: não usar cortadores vermelhos por hábito. Para componente uniforme, iguale as cores e use UsePartColor=true na união resultante; para cores intencionais, mantenha false e planeje cada face. Não apagar a paleta de uma espada/árvore inteira com uma flag uniforme externa.
+
+Para evitar assets simplificados, siga [planejar e revisar](references/planejar-e-revisar.md) e escolha o tutorial:
+
+- [Montanhas e rochas](references/montanhas-e-rochas.md): cristas e planos com volume, sem pirâmides vermelhas repetidas.
+- [Árvores orgânicas](references/arvores-organicas.md): tronco/galhos circulares e copa com reentrâncias.
+- [Objetos urbanos](references/objetos-urbanos.md): lixeira redonda, poste e luminária.
+- [Casinha e encaixes](references/casinha-e-encaixes.md): entrada circular, cavidade e telhado.
+- [Receitas avançadas executáveis](references/receitas-avancadas.json): comandos completos para os quatro casos, com política de cor explícita.
+- [Fontes e referências visuais oficiais](references/fontes-modelagem.md): conceitos do Roblox adaptados ao contrato local.
+
+As referências textuais e JSON acompanham integralmente o contexto gratuito. A IA deve ler o tutorial correspondente, aplicar os comandos adaptados e fazer a revisão; não devolver apenas links nem copiar uma receita sem considerar escala, apoio e estilo do pedido.
+
 ## Como decidir e executar
 
 - Defina uso, estilo e distância de observação. Separe detalhe de silhueta, detalhe funcional e decoração pequena. Preserve a identidade vista de frente, perfil e três quartos.
@@ -31,6 +46,10 @@ Use os recortes que o resultado pede, inclusive vários negativos. Prefira uma u
 O motor Level Up calcula a superfície CSG e mantém a geometria em cache por união enquanto suas peças internas não mudam. Isso evita recalcular uma união intacta em cada atualização. O projeto preserva operandos para permitir Separar e editar; uma UnionOperation não significa uma única primitiva nem custo zero. Não afirmar equivalência de simplificação com o Roblox: o motor atual não oferece um decimador automático com garantia de preservar detalhes.
 
 Consulte levelup-organizacao-otimizacao para contagem de folhas/profundidade CSG, instâncias, luzes e bytes. Faça um exemplar representativo e revise geometria/custo antes de replicar. Uma união é uma decisão de forma, não uma promessa de FPS. Se a engine limitar o detalhe solicitado, informe a limitação concreta e preserve a intenção visual; não alegue que uniões serão automaticamente otimizadas sem evidência.
+
+## Objetos equipáveis
+
+Para instrumentos e acessórios que precisam ir à mão, consulte também levelup-tools e modelar-violao.md. Modelagem concluída não substitui Handle, StarterPack, soldas finais e teste de equipar. O violão precisa de corpo curvo, caixa, cintura e dorso arredondado, além de detalhes frontais.
 
 ## Entrega nos dois fluxos
 

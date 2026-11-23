@@ -14,3 +14,5 @@ Objetivo: uma árvore estilizada com tronco ramificado e copa composta, não ape
 10. Só depois replique a árvore no cenário. Varie escala e inclinação com moderação, evite detalhar folha por folha e acompanhe folhas CSG/complexidade. Uma união pode ser cara mesmo aparecendo como uma única instância.
 
 Essa é uma modelagem estilizada, não uma malha orgânica esculpida. Não afirmar criar um MeshPart quando só foram usados sólidos CSG. O exemplo fica na origem; posicione todos os seus volumes coerentemente quando adaptar ao mapa.
+
+Cor de acabamento: os negativos da receita têm a cor do componente que recortam. As uniões uniformes recebem update com UsePartColor=true e Color final. Numa união externa com vários componentes de cores diferentes, mantenha UsePartColor=false para preservar a paleta.

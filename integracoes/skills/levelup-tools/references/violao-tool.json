@@ -1,0 +1,2535 @@
+{
+  "version": 1,
+  "note": "Tool filha direta de StarterPack; aparece na Backpack ao Jogar. Escolher slot para equipar. Protótipo sem som/animação. Modelagem CSG preserva caixa acústica e cores; soldas são criadas depois de todas as uniões.",
+  "recipes": [
+    {
+      "id": "violao-equipavel",
+      "name": "Violão de corpo arredondado, caixa acústica, braço cilíndrico e pega",
+      "commands": [
+        {
+          "op": "create",
+          "cls": "Tool",
+          "ref": "violao",
+          "name": "Violão modelado",
+          "parent": "StarterPack",
+          "props": {
+            "RequiresHandle": true,
+            "Enabled": true,
+            "CanBeDropped": false,
+            "ToolTip": "Violão modelado e equipável",
+            "GripPos": [
+              0,
+              0,
+              0
+            ],
+            "GripOrientation": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "caixabaixo",
+          "name": "Bojo inferior",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.55,
+              2,
+              2
+            ],
+            "Position": [
+              0,
+              1.15,
+              0
+            ],
+            "Color": [
+              139,
+              72,
+              32
+            ],
+            "Material": "Wood",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              90,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "caixaalto",
+          "name": "Bojo superior",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.55,
+              1.65,
+              1.65
+            ],
+            "Position": [
+              0,
+              2.25,
+              0
+            ],
+            "Color": [
+              139,
+              72,
+              32
+            ],
+            "Material": "Wood",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              90,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "caixameio",
+          "name": "Ligação dos bojos",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              1.2,
+              1.1,
+              0.55
+            ],
+            "Position": [
+              0,
+              1.75,
+              0
+            ],
+            "Color": [
+              139,
+              72,
+              32
+            ],
+            "Material": "Wood",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "caixacorteE",
+          "name": "Recorte da cintura esquerda",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              1.15,
+              1.25,
+              1.25
+            ],
+            "Position": [
+              -1.25,
+              1.8,
+              0
+            ],
+            "Color": [
+              139,
+              72,
+              32
+            ],
+            "Material": "Wood",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              90,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "caixacorteD",
+          "name": "Recorte da cintura direita",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              1.15,
+              1.25,
+              1.25
+            ],
+            "Position": [
+              1.25,
+              1.8,
+              0
+            ],
+            "Color": [
+              139,
+              72,
+              32
+            ],
+            "Material": "Wood",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              90,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "caixacavBaixa",
+          "name": "Cavidade inferior",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.32,
+              1.7,
+              1.7
+            ],
+            "Position": [
+              0,
+              1.15,
+              0
+            ],
+            "Color": [
+              139,
+              72,
+              32
+            ],
+            "Material": "Wood",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              90,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "caixacavAlta",
+          "name": "Cavidade superior",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.32,
+              1.35,
+              1.35
+            ],
+            "Position": [
+              0,
+              2.25,
+              0
+            ],
+            "Color": [
+              139,
+              72,
+              32
+            ],
+            "Material": "Wood",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              90,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "caixacavMeio",
+          "name": "Ligação interna",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.8,
+              1.1,
+              0.32
+            ],
+            "Position": [
+              0,
+              1.75,
+              0
+            ],
+            "Color": [
+              139,
+              72,
+              32
+            ],
+            "Material": "Wood",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "caixaboca",
+          "name": "Abertura circular do tampo",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.8,
+              0.58,
+              0.58
+            ],
+            "Position": [
+              0,
+              2.14,
+              0.28
+            ],
+            "Color": [
+              139,
+              72,
+              32
+            ],
+            "Material": "Wood",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              90,
+              0
+            ]
+          }
+        },
+        {
+          "op": "negate",
+          "ids": [
+            "caixacorteE",
+            "caixacorteD",
+            "caixacavBaixa",
+            "caixacavAlta",
+            "caixacavMeio",
+            "caixaboca"
+          ]
+        },
+        {
+          "op": "union",
+          "ref": "caixa",
+          "name": "Caixa acústica arredondada e oca",
+          "ids": [
+            "caixabaixo",
+            "caixaalto",
+            "caixameio",
+            "caixacorteE",
+            "caixacorteD",
+            "caixacavBaixa",
+            "caixacavAlta",
+            "caixacavMeio",
+            "caixaboca"
+          ]
+        },
+        {
+          "op": "update",
+          "id": "caixa",
+          "props": {
+            "UsePartColor": true,
+            "Color": [
+              139,
+              72,
+              32
+            ],
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "tampobaixo",
+          "name": "Bojo inferior",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.06,
+              2,
+              2
+            ],
+            "Position": [
+              0,
+              1.15,
+              0.3
+            ],
+            "Color": [
+              202,
+              151,
+              78
+            ],
+            "Material": "Wood",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              90,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "tampoalto",
+          "name": "Bojo superior",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.06,
+              1.65,
+              1.65
+            ],
+            "Position": [
+              0,
+              2.25,
+              0.3
+            ],
+            "Color": [
+              202,
+              151,
+              78
+            ],
+            "Material": "Wood",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              90,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "tampomeio",
+          "name": "Ligação dos bojos",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              1.2,
+              1.1,
+              0.06
+            ],
+            "Position": [
+              0,
+              1.75,
+              0.3
+            ],
+            "Color": [
+              202,
+              151,
+              78
+            ],
+            "Material": "Wood",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "tampocorteE",
+          "name": "Recorte da cintura esquerda",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.6599999999999999,
+              1.25,
+              1.25
+            ],
+            "Position": [
+              -1.25,
+              1.8,
+              0.3
+            ],
+            "Color": [
+              202,
+              151,
+              78
+            ],
+            "Material": "Wood",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              90,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "tampocorteD",
+          "name": "Recorte da cintura direita",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.6599999999999999,
+              1.25,
+              1.25
+            ],
+            "Position": [
+              1.25,
+              1.8,
+              0.3
+            ],
+            "Color": [
+              202,
+              151,
+              78
+            ],
+            "Material": "Wood",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              90,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "tampoboca",
+          "name": "Abertura circular do tampo",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.8,
+              0.58,
+              0.58
+            ],
+            "Position": [
+              0,
+              2.14,
+              0.28
+            ],
+            "Color": [
+              202,
+              151,
+              78
+            ],
+            "Material": "Wood",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              90,
+              0
+            ]
+          }
+        },
+        {
+          "op": "negate",
+          "ids": [
+            "tampocorteE",
+            "tampocorteD",
+            "tampoboca"
+          ]
+        },
+        {
+          "op": "union",
+          "ref": "tampo",
+          "name": "Tampo com cintura curva e entrada",
+          "ids": [
+            "tampobaixo",
+            "tampoalto",
+            "tampomeio",
+            "tampocorteE",
+            "tampocorteD",
+            "tampoboca"
+          ]
+        },
+        {
+          "op": "update",
+          "id": "tampo",
+          "props": {
+            "UsePartColor": true,
+            "Color": [
+              202,
+              151,
+              78
+            ],
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "dorso",
+          "name": "Dorso arredondado do braço",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              2.35,
+              0.34,
+              0.34
+            ],
+            "Position": [
+              0,
+              3.85,
+              0
+            ],
+            "Color": [
+              114,
+              63,
+              32
+            ],
+            "Material": "Wood",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              90
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "escala",
+          "name": "Escala plana do instrumento",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.42,
+              2.35,
+              0.08
+            ],
+            "Position": [
+              0,
+              3.85,
+              0.19
+            ],
+            "Color": [
+              47,
+              32,
+              23
+            ],
+            "Material": "Wood",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "cabeca",
+          "name": "Volume da mão",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.65,
+              0.9,
+              0.25
+            ],
+            "Position": [
+              0,
+              5.4,
+              0.02
+            ],
+            "Color": [
+              114,
+              63,
+              32
+            ],
+            "Material": "Wood",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "topoE",
+          "name": "Chanfrar topo da mão",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.4,
+              0.4,
+              1
+            ],
+            "Position": [
+              -0.32,
+              5.85,
+              0.02
+            ],
+            "Color": [
+              114,
+              63,
+              32
+            ],
+            "Material": "Wood",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Orientation": [
+              0,
+              0,
+              45
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "topoD",
+          "name": "Chanfrar topo da mão",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.4,
+              0.4,
+              1
+            ],
+            "Position": [
+              0.32,
+              5.85,
+              0.02
+            ],
+            "Color": [
+              114,
+              63,
+              32
+            ],
+            "Material": "Wood",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Orientation": [
+              0,
+              0,
+              45
+            ]
+          }
+        },
+        {
+          "op": "negate",
+          "ids": [
+            "topoE",
+            "topoD"
+          ]
+        },
+        {
+          "op": "union",
+          "ref": "mao",
+          "name": "Mão com topo chanfrado",
+          "ids": [
+            "cabeca",
+            "topoE",
+            "topoD"
+          ]
+        },
+        {
+          "op": "update",
+          "id": "mao",
+          "props": {
+            "UsePartColor": true,
+            "Color": [
+              114,
+              63,
+              32
+            ],
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "aroExt",
+          "name": "Roseta da boca",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.05,
+              0.78,
+              0.78
+            ],
+            "Position": [
+              0,
+              2.14,
+              0.36
+            ],
+            "Color": [
+              47,
+              32,
+              23
+            ],
+            "Material": "Wood",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              90,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "aroInt",
+          "name": "Vazio da roseta",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.4,
+              0.62,
+              0.62
+            ],
+            "Position": [
+              0,
+              2.14,
+              0.36
+            ],
+            "Color": [
+              47,
+              32,
+              23
+            ],
+            "Material": "Wood",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              90,
+              0
+            ]
+          }
+        },
+        {
+          "op": "negate",
+          "ids": [
+            "aroInt"
+          ]
+        },
+        {
+          "op": "union",
+          "ref": "roseta",
+          "name": "Anel da entrada sem tapar a boca",
+          "ids": [
+            "aroExt",
+            "aroInt"
+          ]
+        },
+        {
+          "op": "update",
+          "id": "roseta",
+          "props": {
+            "UsePartColor": true,
+            "Color": [
+              47,
+              32,
+              23
+            ],
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "ponteBase",
+          "name": "Ponte central",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.65,
+              0.2,
+              0.13
+            ],
+            "Position": [
+              0,
+              0.8,
+              0.37
+            ],
+            "Color": [
+              47,
+              32,
+              23
+            ],
+            "Material": "Wood",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "ponteE",
+          "name": "Extremidade arredondada da ponte",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.13,
+              0.2,
+              0.2
+            ],
+            "Position": [
+              -0.325,
+              0.8,
+              0.37
+            ],
+            "Color": [
+              47,
+              32,
+              23
+            ],
+            "Material": "Wood",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              90,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "ponteD",
+          "name": "Extremidade arredondada da ponte",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.13,
+              0.2,
+              0.2
+            ],
+            "Position": [
+              0.325,
+              0.8,
+              0.37
+            ],
+            "Color": [
+              47,
+              32,
+              23
+            ],
+            "Material": "Wood",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              90,
+              0
+            ]
+          }
+        },
+        {
+          "op": "union",
+          "ref": "ponte",
+          "name": "Ponte de extremidades curvas",
+          "ids": [
+            "ponteBase",
+            "ponteE",
+            "ponteD"
+          ]
+        },
+        {
+          "op": "update",
+          "id": "ponte",
+          "props": {
+            "UsePartColor": true,
+            "Color": [
+              47,
+              32,
+              23
+            ],
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "rastilho",
+          "name": "Rastilho",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.54,
+              0.06,
+              0.06
+            ],
+            "Position": [
+              0,
+              0.83,
+              0.47
+            ],
+            "Color": [
+              225,
+              217,
+              185
+            ],
+            "Material": "SmoothPlastic",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "pestana",
+          "name": "Pestana",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.45,
+              0.06,
+              0.06
+            ],
+            "Position": [
+              0,
+              5,
+              0.29
+            ],
+            "Color": [
+              225,
+              217,
+              185
+            ],
+            "Material": "SmoothPlastic",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "corda0",
+          "name": "Corda 1",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              4.18,
+              0.05,
+              0.05
+            ],
+            "Position": [
+              -0.15,
+              2.92,
+              0.34
+            ],
+            "Color": [
+              180,
+              185,
+              190
+            ],
+            "Material": "Metal",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              90
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "corda1",
+          "name": "Corda 2",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              4.18,
+              0.05,
+              0.05
+            ],
+            "Position": [
+              -0.09,
+              2.92,
+              0.34
+            ],
+            "Color": [
+              180,
+              185,
+              190
+            ],
+            "Material": "Metal",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              90
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "corda2",
+          "name": "Corda 3",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              4.18,
+              0.05,
+              0.05
+            ],
+            "Position": [
+              -0.03,
+              2.92,
+              0.34
+            ],
+            "Color": [
+              180,
+              185,
+              190
+            ],
+            "Material": "Metal",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              90
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "corda3",
+          "name": "Corda 4",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              4.18,
+              0.05,
+              0.05
+            ],
+            "Position": [
+              0.03,
+              2.92,
+              0.34
+            ],
+            "Color": [
+              180,
+              185,
+              190
+            ],
+            "Material": "Metal",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              90
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "corda4",
+          "name": "Corda 5",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              4.18,
+              0.05,
+              0.05
+            ],
+            "Position": [
+              0.09,
+              2.92,
+              0.34
+            ],
+            "Color": [
+              180,
+              185,
+              190
+            ],
+            "Material": "Metal",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              90
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "corda5",
+          "name": "Corda 6",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              4.18,
+              0.05,
+              0.05
+            ],
+            "Position": [
+              0.15,
+              2.92,
+              0.34
+            ],
+            "Color": [
+              180,
+              185,
+              190
+            ],
+            "Material": "Metal",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              90
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "traste0",
+          "name": "Traste 1",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.45,
+              0.05,
+              0.05
+            ],
+            "Position": [
+              0,
+              3.02,
+              0.265
+            ],
+            "Color": [
+              180,
+              185,
+              190
+            ],
+            "Material": "Metal",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "traste1",
+          "name": "Traste 2",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.45,
+              0.05,
+              0.05
+            ],
+            "Position": [
+              0,
+              3.2,
+              0.265
+            ],
+            "Color": [
+              180,
+              185,
+              190
+            ],
+            "Material": "Metal",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "traste2",
+          "name": "Traste 3",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.45,
+              0.05,
+              0.05
+            ],
+            "Position": [
+              0,
+              3.38,
+              0.265
+            ],
+            "Color": [
+              180,
+              185,
+              190
+            ],
+            "Material": "Metal",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "traste3",
+          "name": "Traste 4",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.45,
+              0.05,
+              0.05
+            ],
+            "Position": [
+              0,
+              3.56,
+              0.265
+            ],
+            "Color": [
+              180,
+              185,
+              190
+            ],
+            "Material": "Metal",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "traste4",
+          "name": "Traste 5",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.45,
+              0.05,
+              0.05
+            ],
+            "Position": [
+              0,
+              3.74,
+              0.265
+            ],
+            "Color": [
+              180,
+              185,
+              190
+            ],
+            "Material": "Metal",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "traste5",
+          "name": "Traste 6",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.45,
+              0.05,
+              0.05
+            ],
+            "Position": [
+              0,
+              3.92,
+              0.265
+            ],
+            "Color": [
+              180,
+              185,
+              190
+            ],
+            "Material": "Metal",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "traste6",
+          "name": "Traste 7",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.45,
+              0.05,
+              0.05
+            ],
+            "Position": [
+              0,
+              4.1,
+              0.265
+            ],
+            "Color": [
+              180,
+              185,
+              190
+            ],
+            "Material": "Metal",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "traste7",
+          "name": "Traste 8",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.45,
+              0.05,
+              0.05
+            ],
+            "Position": [
+              0,
+              4.28,
+              0.265
+            ],
+            "Color": [
+              180,
+              185,
+              190
+            ],
+            "Material": "Metal",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "traste8",
+          "name": "Traste 9",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.45,
+              0.05,
+              0.05
+            ],
+            "Position": [
+              0,
+              4.46,
+              0.265
+            ],
+            "Color": [
+              180,
+              185,
+              190
+            ],
+            "Material": "Metal",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "traste9",
+          "name": "Traste 10",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.45,
+              0.05,
+              0.05
+            ],
+            "Position": [
+              0,
+              4.64,
+              0.265
+            ],
+            "Color": [
+              180,
+              185,
+              190
+            ],
+            "Material": "Metal",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "tarraxaE0eixo",
+          "name": "Eixo da tarraxa",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.35,
+              0.08,
+              0.08
+            ],
+            "Position": [
+              -0.39,
+              5.12,
+              0.02
+            ],
+            "Color": [
+              180,
+              185,
+              190
+            ],
+            "Material": "Metal",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "tarraxaE0botao",
+          "name": "Botão arredondado da tarraxa",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.17,
+              0.17,
+              0.17
+            ],
+            "Position": [
+              -0.58,
+              5.12,
+              0.02
+            ],
+            "Color": [
+              225,
+              217,
+              185
+            ],
+            "Material": "SmoothPlastic",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Ball"
+          }
+        },
+        {
+          "op": "union",
+          "ref": "tarraxaE0",
+          "name": "Tarraxa com eixo e botão",
+          "ids": [
+            "tarraxaE0eixo",
+            "tarraxaE0botao"
+          ]
+        },
+        {
+          "op": "update",
+          "id": "tarraxaE0",
+          "props": {
+            "UsePartColor": true,
+            "Color": [
+              180,
+              185,
+              190
+            ],
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "tarraxaE1eixo",
+          "name": "Eixo da tarraxa",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.35,
+              0.08,
+              0.08
+            ],
+            "Position": [
+              -0.39,
+              5.390000000000001,
+              0.02
+            ],
+            "Color": [
+              180,
+              185,
+              190
+            ],
+            "Material": "Metal",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "tarraxaE1botao",
+          "name": "Botão arredondado da tarraxa",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.17,
+              0.17,
+              0.17
+            ],
+            "Position": [
+              -0.58,
+              5.390000000000001,
+              0.02
+            ],
+            "Color": [
+              225,
+              217,
+              185
+            ],
+            "Material": "SmoothPlastic",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Ball"
+          }
+        },
+        {
+          "op": "union",
+          "ref": "tarraxaE1",
+          "name": "Tarraxa com eixo e botão",
+          "ids": [
+            "tarraxaE1eixo",
+            "tarraxaE1botao"
+          ]
+        },
+        {
+          "op": "update",
+          "id": "tarraxaE1",
+          "props": {
+            "UsePartColor": true,
+            "Color": [
+              180,
+              185,
+              190
+            ],
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "tarraxaE2eixo",
+          "name": "Eixo da tarraxa",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.35,
+              0.08,
+              0.08
+            ],
+            "Position": [
+              -0.39,
+              5.66,
+              0.02
+            ],
+            "Color": [
+              180,
+              185,
+              190
+            ],
+            "Material": "Metal",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "tarraxaE2botao",
+          "name": "Botão arredondado da tarraxa",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.17,
+              0.17,
+              0.17
+            ],
+            "Position": [
+              -0.58,
+              5.66,
+              0.02
+            ],
+            "Color": [
+              225,
+              217,
+              185
+            ],
+            "Material": "SmoothPlastic",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Ball"
+          }
+        },
+        {
+          "op": "union",
+          "ref": "tarraxaE2",
+          "name": "Tarraxa com eixo e botão",
+          "ids": [
+            "tarraxaE2eixo",
+            "tarraxaE2botao"
+          ]
+        },
+        {
+          "op": "update",
+          "id": "tarraxaE2",
+          "props": {
+            "UsePartColor": true,
+            "Color": [
+              180,
+              185,
+              190
+            ],
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "tarraxaD0eixo",
+          "name": "Eixo da tarraxa",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.35,
+              0.08,
+              0.08
+            ],
+            "Position": [
+              0.39,
+              5.12,
+              0.02
+            ],
+            "Color": [
+              180,
+              185,
+              190
+            ],
+            "Material": "Metal",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "tarraxaD0botao",
+          "name": "Botão arredondado da tarraxa",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.17,
+              0.17,
+              0.17
+            ],
+            "Position": [
+              0.58,
+              5.12,
+              0.02
+            ],
+            "Color": [
+              225,
+              217,
+              185
+            ],
+            "Material": "SmoothPlastic",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Ball"
+          }
+        },
+        {
+          "op": "union",
+          "ref": "tarraxaD0",
+          "name": "Tarraxa com eixo e botão",
+          "ids": [
+            "tarraxaD0eixo",
+            "tarraxaD0botao"
+          ]
+        },
+        {
+          "op": "update",
+          "id": "tarraxaD0",
+          "props": {
+            "UsePartColor": true,
+            "Color": [
+              180,
+              185,
+              190
+            ],
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "tarraxaD1eixo",
+          "name": "Eixo da tarraxa",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.35,
+              0.08,
+              0.08
+            ],
+            "Position": [
+              0.39,
+              5.390000000000001,
+              0.02
+            ],
+            "Color": [
+              180,
+              185,
+              190
+            ],
+            "Material": "Metal",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "tarraxaD1botao",
+          "name": "Botão arredondado da tarraxa",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.17,
+              0.17,
+              0.17
+            ],
+            "Position": [
+              0.58,
+              5.390000000000001,
+              0.02
+            ],
+            "Color": [
+              225,
+              217,
+              185
+            ],
+            "Material": "SmoothPlastic",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Ball"
+          }
+        },
+        {
+          "op": "union",
+          "ref": "tarraxaD1",
+          "name": "Tarraxa com eixo e botão",
+          "ids": [
+            "tarraxaD1eixo",
+            "tarraxaD1botao"
+          ]
+        },
+        {
+          "op": "update",
+          "id": "tarraxaD1",
+          "props": {
+            "UsePartColor": true,
+            "Color": [
+              180,
+              185,
+              190
+            ],
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "tarraxaD2eixo",
+          "name": "Eixo da tarraxa",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.35,
+              0.08,
+              0.08
+            ],
+            "Position": [
+              0.39,
+              5.66,
+              0.02
+            ],
+            "Color": [
+              180,
+              185,
+              190
+            ],
+            "Material": "Metal",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Cylinder",
+            "Orientation": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "tarraxaD2botao",
+          "name": "Botão arredondado da tarraxa",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.17,
+              0.17,
+              0.17
+            ],
+            "Position": [
+              0.58,
+              5.66,
+              0.02
+            ],
+            "Color": [
+              225,
+              217,
+              185
+            ],
+            "Material": "SmoothPlastic",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Shape": "Ball"
+          }
+        },
+        {
+          "op": "union",
+          "ref": "tarraxaD2",
+          "name": "Tarraxa com eixo e botão",
+          "ids": [
+            "tarraxaD2eixo",
+            "tarraxaD2botao"
+          ]
+        },
+        {
+          "op": "update",
+          "id": "tarraxaD2",
+          "props": {
+            "UsePartColor": true,
+            "Color": [
+              180,
+              185,
+              190
+            ],
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false
+          }
+        },
+        {
+          "op": "create",
+          "cls": "Part",
+          "ref": "handle",
+          "name": "Handle",
+          "parent": "violao",
+          "props": {
+            "Size": [
+              0.18,
+              0.4,
+              0.18
+            ],
+            "Position": [
+              0,
+              3.25,
+              0
+            ],
+            "Color": [
+              100,
+              100,
+              100
+            ],
+            "Material": "Wood",
+            "Anchored": false,
+            "CanCollide": false,
+            "CanTouch": false,
+            "Transparency": 1
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_caixa",
+          "name": "Fixação caixa",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "caixa",
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_tampo",
+          "name": "Fixação tampo",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "tampo",
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_dorso",
+          "name": "Fixação dorso",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "dorso",
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_escala",
+          "name": "Fixação escala",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "escala",
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_mao",
+          "name": "Fixação mao",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "mao",
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_roseta",
+          "name": "Fixação roseta",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "roseta",
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_ponte",
+          "name": "Fixação ponte",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "ponte",
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_rastilho",
+          "name": "Fixação rastilho",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "rastilho",
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_pestana",
+          "name": "Fixação pestana",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "pestana",
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_corda0",
+          "name": "Fixação corda0",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "corda0",
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_corda1",
+          "name": "Fixação corda1",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "corda1",
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_corda2",
+          "name": "Fixação corda2",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "corda2",
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_corda3",
+          "name": "Fixação corda3",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "corda3",
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_corda4",
+          "name": "Fixação corda4",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "corda4",
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_corda5",
+          "name": "Fixação corda5",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "corda5",
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_traste0",
+          "name": "Fixação traste0",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "traste0",
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_traste1",
+          "name": "Fixação traste1",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "traste1",
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_traste2",
+          "name": "Fixação traste2",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "traste2",
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_traste3",
+          "name": "Fixação traste3",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "traste3",
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_traste4",
+          "name": "Fixação traste4",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "traste4",
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_traste5",
+          "name": "Fixação traste5",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "traste5",
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_traste6",
+          "name": "Fixação traste6",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "traste6",
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_traste7",
+          "name": "Fixação traste7",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "traste7",
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_traste8",
+          "name": "Fixação traste8",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "traste8",
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_traste9",
+          "name": "Fixação traste9",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "traste9",
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_tarraxaE0",
+          "name": "Fixação tarraxaE0",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "tarraxaE0",
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_tarraxaE1",
+          "name": "Fixação tarraxaE1",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "tarraxaE1",
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_tarraxaE2",
+          "name": "Fixação tarraxaE2",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "tarraxaE2",
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_tarraxaD0",
+          "name": "Fixação tarraxaD0",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "tarraxaD0",
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_tarraxaD1",
+          "name": "Fixação tarraxaD1",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "tarraxaD1",
+            "Enabled": true
+          }
+        },
+        {
+          "op": "create",
+          "cls": "WeldConstraint",
+          "ref": "fixar_tarraxaD2",
+          "name": "Fixação tarraxaD2",
+          "parent": "handle",
+          "props": {
+            "Part0": "handle",
+            "Part1": "tarraxaD2",
+            "Enabled": true
+          }
+        }
+      ]
+    }
+  ]
+}

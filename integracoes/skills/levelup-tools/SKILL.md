@@ -1,0 +1,33 @@
+---
+name: levelup-tools
+description: Criar Tools realmente equipáveis no Studio Level Up por JSON gratuito ou MCP, com Handle, StarterPack, soldas, empunhadura e testes de uso; inclui violão modelado.
+---
+
+# Tools equipáveis no Studio Level Up
+
+Use quando o objeto precisar ir para a mão do jogador, entrar na mochila ou funcionar como ferramenta. Um Model chamado Tool, um objeto bonito no Workspace e um Handle solto não são uma Tool funcional. Use junto de levelup-modelagem e levelup-detalhamento para não sacrificar o formato do objeto.
+
+## Hierarquia mínima que funciona
+
+- Crie uma instância de classe Tool, filha direta de StarterPack, para recebê-la na mochila ao iniciar Jogar/renascer. StarterPack já existe: não criar outro serviço. Tool dentro de Workspace/Model não entra automaticamente na mochila; o Level Up não deve ser tratado como se tivesse coleta automática por toque pronta.
+- Handle deve ser uma BasePart chamada exatamente Handle e filha direta da Tool. Não colocar o Handle dentro de um Model/Folder. Pode ser uma Part invisível que represente o ponto de pega. RequiresHandle=false permite ferramentas sem pega, mas não coloca o violão na mão sozinho.
+- Todas as peças visuais finais, inclusive UnionOperation e peças dentro de Models, precisam de ligação rígida até o Handle por WeldConstraint Enabled=true. Part0 e Part1 usam IDs/refs reais de BaseParts; nunca nomes de Models nem strings de caminho.
+- Modele primeiro; faça union/negate; crie as soldas por último com as referências finais. union consome as peças antigas: soldas apontadas para essas referências não ficam válidas por intenção.
+- Handle e peças visuais da Tool ficam Anchored=false e CanCollide=false. Para enfeites pequenos também CanTouch=false. Não invente Massless no JSON se a propriedade não estiver no contrato. Cenários estáticos continuam ancorados; isso não se aplica às peças equipáveis.
+- Nome, Enabled=true, ToolTip e CanBeDropped são propriedades suportadas. TextureId configura o ícone do slot: vazio mostra apenas o nome; preenchido mostra apenas a imagem, mantendo o nome acessível e no tooltip. Use URL de imagem ou mídia carregada suportada pelo editor. JSON usa GripPos e GripOrientation; o editor não aceita um objeto CFrame como props.Grip. GripOrientation usa graus YXZ; em scripts Luau, Tool.Grip aceita CFrame suportado pelo runtime.
+
+Leia [montar e testar](references/montar-e-testar.md), [diagnóstico](references/diagnostico.md) e a [receita executável de violão](references/violao-tool.json). Para a forma do instrumento, leia [modelar o violão](references/modelar-violao.md) antes de copiar comandos.
+
+## Empunhadura e teste real
+
+O ponto de pega é o Handle, não o centro do Model. Posicione o Handle perto da região que a mão deve segurar e conserve as posições relativas nas soldas. O motor coloca o Handle na mão direita com o inverso de Grip; ajuste GripPos/GripOrientation em pequenos passos, revendo a ferramenta na mão. Não compensar um ponto de pega errado esticando o objeto.
+
+Em Jogar, a Tool de StarterPack é clonada para a Backpack. O jogador toca no slot da ferramenta ou tecla seu número para equipar. Estar na mochila não significa estar equipada. Para autoequipar quando explicitamente desejado, use Humanoid:EquipTool na cópia da Backpack, não no template de StarterPack; siga o exemplo do tutorial.
+
+Verifique: aparece no inventário; equipa; Handle e todos os componentes acompanham a mão ao caminhar/girar; não ficam peças no chão; desequipa; volta ao renascer. Confira a Saída. Relate o que foi testado de fato; não chame uma Tool estática de funcional sem conferir o fluxo.
+
+## Limites e entrega
+
+Tool.Activated/Deactivated e Equipped/Unequipped existem no runtime; ativar não cria efeitos por si só. Não prometer som de violão sem uma classe/API de áudio suportada no contrato. Não adicionar loops por peça nem scripts de geração futura no lugar da geometria.
+
+A receita é modelo editável e Tool de inventário, não asset oficial da Roblox. No gratuito, leia os tutoriais completos incluídos em skills[].references e entregue levelup-alteracoes.json com o fingerprint atual. No MCP, consulte levelup_skills por nome/referência e proponha os mesmos comandos. Não exigir MCP pago para criar, soldar ou importar a Tool por JSON.

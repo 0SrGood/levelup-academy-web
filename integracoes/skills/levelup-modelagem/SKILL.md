@@ -52,6 +52,10 @@ Para placas de comprimento L no X local e ângulo θ, use distância horizontal 
 
 Confira por transformação dos pontos que a cumeeira está acima dos beirais e que as metades realmente se encontram. Use largura e beiral compatíveis com as paredes e considere a espessura ao assentar o telhado. Se usar Wedge em vez de placas, o Wedge padrão tem base em -Y e parte alta em +Z: derive a rotação antes de posicionar. Não suponha o mesmo eixo de um Cylinder.
 
+## Cores do CSG
+
+As novas faces de uma subtração podem herdar a Color do cortador. Não usar vermelho de depuração nos negativos: declare a cor desejada para os recortes. Para componentes uniformes, use update da união com UsePartColor=true e Color final; para manter várias cores, deixe false e planeje as cores de todos os volumes. Uma flag uniforme na união externa apaga diferenças entre lâmina, guarda e cabo ou entre tronco e copa. Leia cores-recortes.md da skill levelup-detalhamento, incluída integralmente no arquivo gratuito.
+
 ## União e recortes
 
 Use `create` para as peças e refs distintas. `negate` alterna o cortador para negativo. `union` com `ref` novo e `ids` de duas ou mais peças produz uma UnionOperation; pelo menos uma deve ser positiva. O negativo sozinho não recorta nada. Após unir, os IDs de entrada deixam de existir: use o ref da união.
