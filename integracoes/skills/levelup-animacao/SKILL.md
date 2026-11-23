@@ -10,12 +10,16 @@ Funciona nos dois fluxos: arquivo gratuito e MCP. Leia o rig e a animação do c
 ## Fluxo gratuito no editor
 
 1. O aluno abre o personagem no editor e clica em **IA gratuita**, na barra superior.
-2. **Exportar personagem para IA** gera levelup-contexto-animacao.json com juntas, pivôs, rascunho, ferramentas, limites e skills completas.
+2. **Copiar para IA** ou **Baixar arquivo** entrega um contexto identificado por projeto e data com juntas, pivôs, rascunho, ferramentas, limites e skills completas.
 3. Leia target.editableParts, target.joints, currentAnimation e animationRules. Siga [o formato JSON](references/formato-json.md) e [o planejamento do movimento](references/animar-passo-a-passo.md).
 4. Entregue um arquivo baixável **levelup-animacao.json** seguindo responseExample e explique poses, duração e loop. Não substitua por Luau, vídeo ou descrição.
 5. O aluno usa **Importar animação JSON**, revisa e clica em **Carregar na linha do tempo**. Os losangos ficam editáveis. Ele confere com Tocar e usa Salvar.
 
-A importação cria uma nova animação não salva, preservando a anterior salva. O rascunho aberto é substituído depois da revisão e pode ser recuperado com Desfazer. Mudanças no personagem ou no rascunho após a exportação exigem novo contexto; alterações em outra parte do mapa não invalidam esse arquivo específico de animação. Um AnimData independente compatível também pode ser importado, com revisão de compatibilidade.
+A importação cria uma nova animação não salva, preservando a anterior salva. O rascunho aberto é substituído depois da revisão e pode ser recuperado com Desfazer. Mudanças na estrutura do personagem (partes, dimensões e juntas) exigem novo contexto; reabrir o editor ou mudar o rascunho não invalida o arquivo. alterações em outra parte do mapa não invalidam esse arquivo específico de animação. Um AnimData independente compatível também pode ser importado, com revisão de compatibilidade.
+
+## Contrato para qualquer assistente
+
+ChatGPT, Gemini, Claude e outros assistentes usam o mesmo JSON, sem APIs particulares. Siga assistantGuide e responseExample, que aparecem antes das referências longas no contexto. Leia [o roteiro curto de entrega](references/entrega-qualquer-assistente.md) antes de responder. O importador reconhece alguns envelopes alternativos, mas isso não é motivo para devolver o contexto antigo ou ignorar as restrições do pedido.
 
 ## MCP
 
