@@ -26,3 +26,7 @@ Use junto das skills de criação quando a IA adicionar um cenário, muitos obje
 Agrupe partes de cada casa, poste ou árvore em Models com nomes claros. Separe cenário, objetos interativos, personagens e interface por função. Preserve o que já existe e não duplique um cenário inteiro para corrigir um detalhe. Model/Folder organiza, mas sozinho não reduz custo de renderização.
 
 Antes de entregar, revise quantidade de instâncias e partes, corpos dinâmicos, luzes, folhas e profundidade de CSG, scripts e bytes serializados. Explique as escolhas de otimização no resumo sem prometer FPS não medidos. Para projetos grandes, entregue etapas úteis e testáveis, começando por uma base leve; acrescente detalhes após conferir a navegação e Jogar.
+
+## NPCs e aparelhos com pouca memória
+
+NPC móvel é uma montagem desancorada conectada por Motor6D, não cenário estático nem partes com loops de física separados. O runtime mantém um controlador por rig e reaproveita a lista de membros até a hierarquia mudar. Criar poucos NPCs e medir antes de multiplicar. Usar MoveToFinished para sequenciar destinos; não gerar Heartbeat por membro, IA de perseguição sem espera, texturas grandes duplicadas ou recarga de página para recuperar uma queda de FPS. Limpar conexões, tweens e faixas que não são mais usados. Testes automatizados de memória não substituem teste real no Safari/iOS.

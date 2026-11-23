@@ -82,3 +82,9 @@ Respeite min/max das propriedades. Cada dimensão de peça deve ser >=0.05, incl
 ## Armas
 
 Para katana, espadas e outras armas de mão, siga levelup-tools: o guia `modelar-katana.md` ensina curva por segmentos, faixas sobrepostas, ponta e anéis por CSG, e a receita `katana-tool.json` mostra o nível de detalhe esperado.
+
+Para galhos, troncos e tubos, leia [direção e extremidades](references/direcao-e-extremidades.md). Prefira cylinder_between para calcular automaticamente a rotação a partir de from/to; galhos para cima exigem to.Y > from.Y nos dois lados.
+
+## Escala de conjuntos
+
+Na ferramenta Escala, Models crescem proporcionalmente pelo mesmo fator, preservando formato, rotações e distâncias entre peças. Juntas C0/C1 e HipHeight acompanham a escala de um rig. Ao editar via JSON/MCP com updates individuais, calcular esse mesmo fator para Size, Position em torno do pivô e deslocamentos das juntas; não esticar só um eixo de cada peça de um objeto modelado.

@@ -14,3 +14,11 @@ O Studio simula um subconjunto da API Roblox: confira o código e exemplos dispo
 Quando o pedido for modelar um objeto ou cenário, crie geometria editável usando as operações de modelagem, em vez de entregar somente um script que criará tudo durante Jogar. Use scripts para comportamento, interação e regras.
 
 IDs de animação publicados neste editor pertencem ao mapa. Preserve o código do aluno fora do escopo da mudança. Nunca inclua senhas ou tokens de conta em scripts ou arquivos de resposta.
+
+## Animações de propriedades
+
+TweenService está disponível: Create, GetValue, TweenInfo, Play/Pause/Cancel/Destroy e Completed. Leia [exemplos e limites reais](references/tweenservice.md) antes de criar movimentos, fades ou transições de GUI. A interpolação inclui UDim/UDim2, vetores, CFrame, cores e números.
+
+## NPCs, direção e velocidade
+
+Para criar NPCs, leia [o tutorial de movimento](references/npcs-movimento.md): MoveTo/MoveToFinished, altura R6/R15, juntas, RootPart, CFrame.LookVector, Velocity e AssemblyLinearVelocity. Ele inclui código executável, testes e os limites atuais. Não invente PathfindingService. Vale no MCP e no arquivo gratuito.

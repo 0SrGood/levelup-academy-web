@@ -36,3 +36,7 @@ Tempos únicos e crescentes entre 0 e 30 segundos; até 2000 quadros ao todo. A 
 Não aplique CSG em partes de rig articulado. Se o pedido incluir cenário ou acessório modelado, use também levelup-modelagem e preserve juntas. Confira organização e custo com levelup-organizacao-otimizacao.
 
 Se o contexto fornecer files.response, use esse nome ao entregar o JSON. Ele identifica projeto, conteúdo e data; os nomes genéricos acima servem apenas como exemplo do formato.
+
+## Rigs em jogo
+
+O rig novo tem Motor6D, peças desancoradas e colisão apenas na HumanoidRootPart. Ao criar NPC móvel, preservar as juntas e consultar levelup-scripts/references/npcs-movimento.md para MoveTo, HipHeight, LookVector e Velocity. R6 usa HipHeight=0; R15 padrão usa 2. Uma animação de passos não substitui o controlador de movimento, e MoveTo não cria automaticamente uma animação.
