@@ -5,6 +5,19 @@ description: Modelar cenários e objetos no Studio Level Up usando primitivas, c
 
 # Modelagem no Studio Level Up
 
+## Modelar por etapas (obrigatório para objetos, armas e ferramentas)
+
+Nunca entregue uma pilha de blocos. Pense em cada etapa e escreva o campo `plan` na resposta:
+
+1. **Estilo e silhueta**: escolha um estilo em `levelup-detalhamento/references/estilos-modelagem.md` e descreva o que torna o objeto reconhecível de longe.
+2. **Componentes**: divida o objeto (ex.: lâmina, guarda, cabo, pomo, detalhes). Cada um com medidas, 3 tons de cor, material e os cortes de que precisa.
+3. **Cada componente sozinho, em um Model próprio**: volume positivo → cortadores (ponta, chanfro, entalhe, furo, curva) → `negate` → `union` → camadas de detalhe (faixas, frisos, anéis, gemas). A etapa de corte não é opcional.
+4. **Montagem**: coloque cada componente na posição final, encostado no vizinho, na escala certa.
+5. **Função**: objeto de mão vira Tool (levelup-tools): Handle, peças soltas da física e soldadas ao Handle por último.
+6. **Revisão**: confira contra `craftBrief.qualityBar` do contexto. Armas: 28+ peças, 4+ cortadores, 2+ unions, 5+ cores, 2+ formas além de Block.
+
+Exemplos completos por etapas: `levelup-tools/references/espada-fogo-tool.json` (fantasia) e `katana-tool.json` (realista).
+
 Use quando o pedido envolver construir ou alterar formas, móveis, prédios, natureza ou cenários no Laboratório. Sempre que possível, modele o objeto solicitado; não entregue apenas animação, uma descrição ou um script que só criará as peças depois.
 
 ## Preferência do projeto: construir o formato, não apenas agrupar blocos

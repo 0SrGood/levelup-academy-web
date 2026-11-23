@@ -58,3 +58,7 @@ No gratuito, leia esta skill e suas referências dentro de skills[] do contexto 
 Descreva as formas e recortes criados, os grupos editáveis preservados e como conferir de perto e à distância. Diferencie revisão numérica de teste visual; não alegue ter visto a cena sem acesso à prévia.
 
 Se o contexto fornecer files.response, use esse nome ao entregar o JSON. Ele identifica projeto, conteúdo e data; os nomes genéricos acima servem apenas como exemplo do formato.
+
+## Estilos
+
+Antes de detalhar, escolha um estilo em [estilos de modelagem](references/estilos-modelagem.md) (fantasia, realista, anime, low-poly, sci-fi) e siga proporção, cortes, paleta e detalhes dele. O checklist anti-bloco no fim do guia vale para qualquer objeto.
