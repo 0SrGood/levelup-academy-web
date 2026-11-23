@@ -7,6 +7,22 @@ description: Modelar cenários e objetos no Studio Level Up usando primitivas, c
 
 Use quando o pedido envolver construir ou alterar formas, móveis, prédios, natureza ou cenários no Laboratório. Sempre que possível, modele o objeto solicitado; não entregue apenas animação, uma descrição ou um script que só criará as peças depois.
 
+## Preferência do projeto: construir o formato, não apenas agrupar blocos
+
+Use Parts simples para estruturas básicas: paredes, pisos, lajes, bases e suportes retangulares sem trabalho de forma. Para objetos como **espadas, árvores, ferramentas e elementos decorativos**, entregue modelagem do formato com primitivas e CSG quando compatível. Colocar várias Parts num Model, mudar seus nomes ou trocar cores não conta por si só como modelagem de formato.
+
+Parts são a matéria-prima temporária da operação: crie volumes positivos e cortadores, aplique `negate` nos cortadores e `union` nos grupos apropriados. O resultado deve apresentar a silhueta, recortes e encaixes pedidos, e não ficar só nas peças de construção iniciais. Não invente uma classe MeshPart sem dados de malha nem apenas afirme ter usado união: envie as operações reais no JSON/MCP.
+
+Antes de responder a pedidos de espada ou árvore, leia o passo a passo e a receita correspondente:
+
+- [Espada com ponta recortada por negativos](references/espada-csg.md).
+- [Árvore com tronco ramificado e copa modelada](references/arvore-csg.md).
+- [Receitas executáveis de ambos os objetos](references/receitas.json).
+
+No arquivo gratuito, as referências completas estão em `skills[].references`. No MCP, use `levelup_skills` com name="levelup-modelagem" e reference="references/espada-csg.md" ou a referência desejada. Os mesmos comandos funcionam nos dois fluxos.
+
+Use poucas operações que tenham efeito real: negativos para remover volume; união para compor a forma. Preserve os grandes grupos editáveis, como tronco e copa separados. Não faça uma união única da cidade inteira. Não aplique CSG em juntas de rigs, SpawnLocation ou MeshParts incompatíveis; esses casos têm restrições reais e não devem ser contornados.
+
 Leia `levelup_context` no MCP ou o contexto JSON exportado. Consulte operações, propertyDefinitions, geometryRules, permissões e IDs atuais. O arquivo gratuito usa as mesmas operações do MCP, sem executar ferramentas na conversa da IA.
 
 ## Cilindros e proporções
