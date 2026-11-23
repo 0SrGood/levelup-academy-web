@@ -65,3 +65,7 @@ Exemplo de abertura: crie parede e cortador atravessando toda sua espessura, neg
 Part, NegateOperation e UnionOperation locais podem participar da união. MeshPart, SpawnLocation e corpos de rigs articulados não devem entrar nessas operações. Modele acessórios fora do rig antes de conectá-los. Evite união única para o cenário inteiro: mantenha casas, portas, móveis e vegetação editáveis.
 
 Respeite min/max das propriedades. Cada dimensão de peça deve ser >=0.05, inclusive faixas e pinturas. Confira eixo, rotação, escala, centro e contato com o chão antes da entrega. Devolva o arquivo de operações ou uma proposta MCP com resumo e modo de testar; não publique online sem pedido.
+
+## Armas
+
+Para katana, espadas e outras armas de mão, siga levelup-tools: o guia `modelar-katana.md` ensina curva por segmentos, faixas sobrepostas, ponta e anéis por CSG, e a receita `katana-tool.json` mostra o nível de detalhe esperado.
