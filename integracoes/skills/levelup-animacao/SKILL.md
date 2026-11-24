@@ -39,4 +39,6 @@ Se o contexto fornecer files.response, use esse nome ao entregar o JSON. Ele ide
 
 ## Rigs em jogo
 
+O jogador local R15 tem Animate padrão em Jogar: parado, caminhada/corrida, salto, queda e escalada com dados locais na prioridade Core. Para golpes e outras ações, publicar no mapa e tocar uma faixa Action com fade; ao parar, Core volta a aparecer. Um LocalScript chamado Animate em StarterCharacterScripts substitui o padrão. NPCs/R6 não ganham esse controlador R15 automaticamente. AdjustWeight e as prioridades são descritos em levelup-scripts/references/animate.md, disponível nos contextos MCP e gratuito. Não prometer reprodução de IDs arbitrários do catálogo Roblox nem marcadores de quadros.
+
 O rig novo tem Motor6D, peças desancoradas e colisão apenas na HumanoidRootPart. Ao criar NPC móvel, preservar as juntas e consultar levelup-scripts/references/npcs-movimento.md para MoveTo, HipHeight, LookVector e Velocity. R6 usa HipHeight=0; R15 padrão usa 2. Uma animação de passos não substitui o controlador de movimento, e MoveTo não cria automaticamente uma animação.

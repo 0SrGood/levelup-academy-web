@@ -17,6 +17,8 @@ IDs de animação publicados neste editor pertencem ao mapa. Preserve o código 
 
 ## Animações de propriedades
 
+Para movimentos do personagem e AnimationTrack, leia [o guia do Animate](references/animate.md). O jogador R15 já recebe os movimentos padrão em Jogar. Não criar um segundo controlador por Heartbeat; use faixas Action para ações temporárias e preserve o Animate do aluno.
+
 TweenService está disponível: Create, GetValue, TweenInfo, Play/Pause/Cancel/Destroy e Completed. Leia [exemplos e limites reais](references/tweenservice.md) antes de criar movimentos, fades ou transições de GUI. A interpolação inclui UDim/UDim2, vetores, CFrame, cores e números.
 
 ## NPCs, direção e velocidade
