@@ -18,7 +18,7 @@ Nunca entregue uma pilha de blocos. Pense em cada etapa e escreva o campo `plan`
 
 Exemplos completos por etapas: `levelup-tools/references/espada-fogo-tool.json` (fantasia) e `katana-tool.json` (realista).
 
-Use quando o pedido envolver construir ou alterar formas, móveis, prédios, natureza ou cenários no Laboratório. Sempre que possível, modele o objeto solicitado; não entregue apenas animação, uma descrição ou um script que só criará as peças depois.
+Use quando o pedido envolver construir ou alterar formas, móveis, prédios, natureza ou cenários no Studio Up. Sempre que possível, modele o objeto solicitado; não entregue apenas animação, uma descrição ou um script que só criará as peças depois.
 
 ## Preferência do projeto: construir o formato, não apenas agrupar blocos
 
@@ -46,6 +46,10 @@ Leia `levelup_context` no MCP ou o contexto JSON exportado. Consulte operações
 - Disco horizontal: `Size=[0.2,6,6]`, `Orientation=[0,0,90]`. O primeiro valor é a espessura, não o diâmetro.
 - Position é o centro. Base no chão Y=0 e altura H exige centro em Y=H/2. Copa e luminária devem encontrar o topo do suporte; não deixar peças flutuando.
 - Ball permanece esférica; Size não cria um elipsoide. Modele copas com esferas proporcionais ou composição de peças.
+
+## Orientação: frente, ponta e lado certo (obrigatório)
+
+Antes de entregar qualquer objeto com frente ou ponta (cadeira, carro, placa, NPC, arma, ferramenta, seta, rampa), leia [orientação de objetos](references/orientacao-de-objetos.md) e faça a autocorreção: frente = -Z (LookVector), cima = +Y, direita = +X; ferramentas de mão em pé (+Y) com o Handle sem rotação; gire conjuntos inteiros no pivô. Escreva no `plan` para onde a frente e a ponta apontam e confira com as extremidades calculadas.
 
 ## Rotação e verificação espacial antes da entrega
 

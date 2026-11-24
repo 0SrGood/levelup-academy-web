@@ -8,7 +8,7 @@
 | Só Handle acompanha a mão | Soldar todas as BaseParts visuais finais. Models organizam, não são ligações rígidas. |
 | Soldas aparecem, mas não fixam | Part0/Part1 devem referenciar peças existentes, Enabled=true. Soldas com ref antiga consumida por union precisam ser refeitas usando a união final. |
 | Parte do instrumento fica no chão ou prende no cenário | Anchored=false em todas as partes equipáveis e CanCollide=false. Rever tamanho e Grip. |
-| União do instrumento desaparece no clone | Conferir a versão atual do Laboratório: o renderizador foi corrigido para preservar a geometria CSG quando StarterPack clona a Tool para Backpack. Reiniciar Jogar depois de atualizar. Não trocar a união por blocos para esconder o defeito; se persistir, registrar o projeto e testar o clone. |
+| União do instrumento desaparece no clone | Conferir a versão atual do Studio Up: o renderizador foi corrigido para preservar a geometria CSG quando StarterPack clona a Tool para Backpack. Reiniciar Jogar depois de atualizar. Não trocar a união por blocos para esconder o defeito; se persistir, registrar o projeto e testar o clone. |
 | Tool dentro de NPC continua no chão | Exige Tool filha direta do Model com Humanoid e RightHand/Right Arm; Handle direto e soldas finais válidas. Conferir edição e Jogar. Um Model sem Humanoid não equipa. |
 | Mão segura a guarda/lâmina, arma flutua ou parece enorme | Recentrar Handle no meio do cabo, GripPos zero inicialmente, revisar escala do conjunto e inclinação. Ver empunhadura-e-npcs.md e espada-tool.json; não reaproveitar escala de espada de cenário. |
 | Vai para a mão, mas fica de cabeça para baixo | Revisar orientação do Handle e GripOrientation em graus; conferir pivô e frente do objeto. Não girar apenas detalhes isolados. |

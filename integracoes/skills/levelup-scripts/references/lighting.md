@@ -87,3 +87,9 @@ Não inventar Lighting:GetSunDirection, LightingChanged, SetMinutesAfterMidnight
 - https://create.roblox.com/docs/reference/engine/classes/Sky
 - https://create.roblox.com/docs/environment/post-processing-effects
 - https://create.roblox.com/docs/reference/engine/enums/LightingStyle
+
+### Orçamento do céu e pós-processamento
+
+Skyboxes e imagens de sol/lua personalizadas carregam somente em Alta no computador. São no máximo oito imagens retidas, reduzidas para 512×512, com até 8 MB por arquivo de origem. Trocas cancelam carregamentos anteriores; bitmaps e texturas saem ao rebaixar a qualidade ou fechar. Leve/celular mantém a hora e atmosfera simplificadas.
+
+Pós-processamento exige EXT_color_buffer_float; sem ela o motor conserva o caminho simples. Os alvos são DPR 1, no máximo 1024×768/786432 pixels. DOF diferencia NearIntensity/FarIntensity e respeita InFocusRadius; SunRays permanece uma aproximação por amostras da imagem. Nenhum desses limites garante FPS de aparelho físico não testado.

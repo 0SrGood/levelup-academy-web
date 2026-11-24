@@ -22,6 +22,8 @@ Para espadas e objetos que ficam longe da palma, leia [escala, pega e NPCs](refe
 
 Leia [montar e testar](references/montar-e-testar.md), [diagnóstico](references/diagnostico.md) e a [receita executável de violão](references/violao-tool.json). Para a forma do instrumento, leia [modelar o violão](references/modelar-violao.md) antes de copiar comandos.
 
+**Orientação na mão:** o Studio Up segura como o Roblox: ao equipar, o braço direito vai para a frente e a ferramenta sai da mão. Monte em pé (cabo embaixo, lâmina/cabeça em +Y, gume para -Z), Handle com Orientation [0,0,0] e GripOrientation [25,0,12]. Armas de fogo e varinhas apontam o cano para -Z. Detalhes e autocorreção em `levelup-modelagem/references/orientacao-de-objetos.md`.
+
 Leia também [dimensões e eixos dos personagens](references/dimensoes-personagens.md) antes de dimensionar uma Tool. O contexto inclui characterReference com as medidas extraídas dos rigs reais do construtor; para personagens importados, medir as peças do projeto.
 
 ## Empunhadura e teste real

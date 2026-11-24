@@ -20,7 +20,7 @@ export async function run(site,key=KEY,api=API){
     if(r.status===402||r.status===503)continue;
     if(r.ok){const ext={'image/jpeg':'jpg','image/png':'png','image/webp':'webp'}[r.headers.get('content-type')||'']||'jpg';image='capa-'+v+'.'+ext;
      for(const n of await fs.readdir(dir))if(n.startsWith('capa-'))await fs.rm(path.join(dir,n));await fs.writeFile(path.join(dir,image),new Uint8Array(await r.arrayBuffer()))}}}
-  const url=SITE+'jogos/'+code+'/',title=`${g.title} · Jogos dos alunos Level Up`,desc=(g.description||`Jogo criado por ${g.author} no Laboratório da Level Up. Jogue no navegador, sem instalar nada.`).replace(/\s+/g,' ').trim().slice(0,200);
+  const url=SITE+'jogos/'+code+'/',title=`${g.title} · Jogos dos alunos Level Up`,desc=(g.description||`Jogo criado por ${g.author} no Studio Up da Level Up. Jogue no navegador, sem instalar nada.`).replace(/\s+/g,' ').trim().slice(0,200);
   await fs.writeFile(path.join(dir,'index.html'),`<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${esc(title)}</title><meta name="description" content="${esc(desc)}">
 <meta property="og:type" content="website"><meta property="og:site_name" content="Level Up Academy"><meta property="og:url" content="${url}">
