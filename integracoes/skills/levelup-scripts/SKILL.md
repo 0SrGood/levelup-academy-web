@@ -22,3 +22,7 @@ TweenService está disponível: Create, GetValue, TweenInfo, Play/Pause/Cancel/D
 ## NPCs, direção e velocidade
 
 Para criar NPCs, leia [o tutorial de movimento](references/npcs-movimento.md): MoveTo/MoveToFinished, altura R6/R15, juntas, RootPart, CFrame.LookVector, Velocity e AssemblyLinearVelocity. Ele inclui código executável, testes e os limites atuais. Não invente PathfindingService. Vale no MCP e no arquivo gratuito.
+
+## Ambiente e iluminação
+
+Para Lighting, Atmosphere, Sky e efeitos de tela, leia [o guia completo de iluminação](references/lighting.md): propriedades, exemplos por JSON e Luau, limites do modo Leve/Alta e testes de remoção. As aproximações do navegador e o orçamento do aparelho precisam aparecer na entrega; não prometer equivalência total ao Roblox nem estabilidade física sem medição.

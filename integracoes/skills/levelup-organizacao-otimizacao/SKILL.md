@@ -30,3 +30,7 @@ Antes de entregar, revise quantidade de instâncias e partes, corpos dinâmicos,
 ## NPCs e aparelhos com pouca memória
 
 NPC móvel é uma montagem desancorada conectada por Motor6D, não cenário estático nem partes com loops de física separados. O runtime mantém um controlador por rig e reaproveita a lista de membros até a hierarquia mudar. Criar poucos NPCs e medir antes de multiplicar. Usar MoveToFinished para sequenciar destinos; não gerar Heartbeat por membro, IA de perseguição sem espera, texturas grandes duplicadas ou recarga de página para recuperar uma queda de FPS. Limpar conexões, tweens e faixas que não são mais usados. Testes automatizados de memória não substituem teste real no Safari/iOS.
+
+## Lighting e pós-processamento
+
+Comece por hora, cores e exposição, com poucas luzes. Um efeito habilitado por classe; não criar duplicatas ou alternar Enabled por quadro. No Leve/celular não há cadeia de pós-processamento: preserve parâmetros e respeite qualidade local. Shadows/reflexos/efeitos não devem ser forçados por PrioritizeLightingQuality. Os limites e exemplos estão em levelup-scripts/references/lighting.md, incluídos no contexto completo e no contexto enxuto de iluminação. Não afirmar ausência de recarga no iPhone com base em testes Node ou contagens de objetos.
