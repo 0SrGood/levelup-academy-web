@@ -40,8 +40,8 @@ Shirt: tronco + braços. Pants: tronco (cintura/quadril) + pernas, nas mesmas fa
 
 - Peito/logotipo: `torso.front` x 255–335, y 90–135. Botões e zíper: linha central x=295.
 - Barriga/barra da camisa: `torso.front` y 185–202 (continua nas laterais e costas na mesma altura).
-- Cintura/cinto da calça: y 74–90 das quatro faces do tronco.
-- Bolsos da calça: frente y 90–125, nos cantos; bolsos traseiros nas costas y 95–135.
+- Cintura/cinto da calça: y 146–158 das quatro faces do tronco. A calça pinta o tronco só de y 146 para baixo (quadril) e `torso.down`; acima disso e em `torso.up` fica transparente (camisa ou pele).
+- Bolsos da calça: frente y 160–195, nos cantos; bolsos traseiros nas costas y 162–192.
 - Ombro e manga: começam em `*.up` e no topo das faces do braço (y 355).
 - Cotovelo ≈ y 410–420; joelho ≈ y 410–425 (dobras e remendos).
 - No R15 as mesmas faces são esticadas sobre UpperTorso/LowerTorso e sobre braço, antebraço e mão (ou coxa, canela e pé): a parte de baixo de cada membro cai na mão/pé. Confira na Prévia 3D.

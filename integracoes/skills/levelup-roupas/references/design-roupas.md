@@ -50,7 +50,7 @@ Faça numa camada própria "Sombras" com opacidade 0.6–0.9, usando a cor escur
 
 ## 7. Calças e calçados
 
-- Cintura nas 4 faces do tronco (y 74–90), passantes a cada ~50 px, bolsos frontais em curva, bolsos traseiros nas costas.
+- Calça só da cintura para baixo: tronco de y 146 a 202 (cós em y 146) + `torso.down`; `torso.up` nunca. Passantes a cada ~50 px, bolsos frontais em curva, bolsos traseiros nas costas. Detalhes em criar-calca.md.
 - Pernas até o tornozelo; bermuda até y≈410; tênis de y 455 a 483 nas 4 faces + sola em `*.down`.
 
 ## 8. Conferência final (faça sempre)

@@ -5,7 +5,7 @@ description: Criar Shirt e Pants clássicas (585x559) no Editor de Roupa do Stud
 
 # Roupas clássicas (Shirt e Pants) no Studio Level Up
 
-Use quando o aluno pedir camisa, calça, farda, uniforme, jaqueta, vestido, moletom ou qualquer roupa 2D do personagem. A roupa é uma imagem de 585 x 559 pixels com fundo transparente, dividida em faces que embrulham o corpo como uma caixa de papel. Antes de desenhar, leia [o mapa do template](references/mapa-template.md); para deixar bonita, siga [os tutoriais de arte](references/design-roupas.md) (paleta, sombras, dobras, costuras, tecidos); com foto do aluno, use [da referência para o template](references/referencia-para-template.md); copie o padrão de [exemplos completos](references/exemplos-roupas.json).
+Use quando o aluno pedir camisa, calça, farda, uniforme, jaqueta, vestido, moletom ou qualquer roupa 2D do personagem. A roupa é uma imagem de 585 x 559 pixels com fundo transparente, dividida em faces que embrulham o corpo como uma caixa de papel. Antes de desenhar, leia [o mapa do template](references/mapa-template.md); para deixar bonita, siga [os tutoriais de arte](references/design-roupas.md) (paleta, sombras, dobras, costuras, tecidos); com foto do aluno, use [da referência para o template](references/referencia-para-template.md); para **calça**, siga [calça e calçado](references/criar-calca.md) (cintura em y 146, sempre com tênis/calçado); copie o padrão de [exemplos completos](references/exemplos-roupas.json).
 
 ## Pense como um criador de clothing profissional
 
