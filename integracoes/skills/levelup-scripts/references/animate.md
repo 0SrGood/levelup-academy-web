@@ -24,12 +24,24 @@ Core é a prioridade mais baixa, apesar do valor numérico 1000 do enum. A ordem
 
 O Animate padrão não impede a pose de segurar Tool. Uma ação de script com peso positivo pode assumir o controle do braço. Preserve os Motor6D e os scripts existentes do aluno. Não substituir o controlador inteiro para fazer um golpe.
 
+## Escalada (como no Roblox)
+
+- O personagem escala **TrussPart** (seção 2x2, inserida em Modelo > Treliça) e **escadas de degraus**: Parts ancoradas de até 2,5 studs de altura, uma acima da outra, com vão de até 2,6 studs.
+- Andar de frente para ela entra no estado `Enum.HumanoidStateType.Climbing`: sobe a 70% da WalkSpeed, para trás desce, parado fica preso, pular solta e afasta da parede. No topo, o personagem sobe na peça.
+- `Humanoid.Climbing` recebe a velocidade vertical (negativa ao descer); o Animate toca a animação climb com essa velocidade. `Humanoid.Running` só dispara no chão.
+- Uma parede lisa (Part alta) não é escalável, como no Roblox.
+
+## Editar as animações de movimento
+
+- Personagem > **Animate**: coloca o LocalScript Animate em StarterCharacterScripts (como copiar o Animate do personagem no Roblox) e, com um rig R15 selecionado, as animações Walk, Run, Idle, Jump, Fall e Climb no AnimSaves do rig.
+- Para trocar uma: abrir no Editor de animação, editar, publicar e colar o novo ID em Animate > (walk, run, idle, jump, fall, climb) > Animation > AnimationId. Os IDs LUP originais continuam funcionando.
+
 ## Limites e verificação
 
 - Não há download automático de animações pelo ID da Roblox: somente os clipes locais incluídos e os publicados no mapa contêm poses. O pacote padrão não inclui danças, natação ou emotes do catálogo. Para acrescentá-los, criar/publicar dados compatíveis.
 - KeyframeReached e GetMarkerReachedSignal ainda não notificam marcadores. Não depender deles para dano ou lógica da partida. DidLoop e Stopped existem; Ended sinaliza o término natural, não o fim exato de um fade visual.
 - Limite visual de 24 faixas e 16 rigs simultâneos. Reutilize as faixas; não criar Animation/LoadAnimation a cada quadro. Pare e destrua ações que não serão reutilizadas.
-- Testar parado → caminhar → correr → saltar → cair → pousar; equipar Tool, tocar/parar ação, morrer e renascer. Conferir a Saída e o retorno da mão à pose normal. A disponibilidade do clipe Climb não cria mecânica de escalada onde ela não existe.
+- Testar parado → caminhar → correr → saltar → cair → pousar; equipar Tool, tocar/parar ação, morrer e renascer. Conferir a Saída e o retorno da mão à pose normal. Para escalar, use TrussPart ou escada de degraus (veja abaixo).
 - O motor encerra conexões, tarefas e faixas do antigo StarterCharacterScripts ao renascer. Ao sair de Jogar, o estado Luau é destruído. Testes Node não substituem medições no iPhone físico.
 
 As mesmas regras valem para MCP e arquivos gratuitos; use os nomes, IDs e permissões presentes no contexto exportado.
