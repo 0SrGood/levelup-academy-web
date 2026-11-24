@@ -34,3 +34,15 @@ Teste abrir, fechar, selecionar, pressionar, texto longo, valores zero e navega�
 UIStroke.StrokeSizingMode aceita FixedSize (Thickness em pixels) e ScaledSize. Em ScaledSize na borda, Thickness é uma fração do menor lado do elemento; no texto Contextual, é fração do tamanho da fonte. Use Thickness=0.02 para uma borda de 2% do lado menor, ou 0.05 para texto com 5% da fonte. O valor 2 usado no modo fixo não equivale a 2 pixels no modo proporcional: passaria a uma fração 2, grande demais. Escolha explicitamente a espessura ao trocar modo. A propriedade funciona no editor, runtime Luau e importação/exportação Roblox.
 
 Referências oficiais: https://create.roblox.com/docs/reference/engine/enums/StrokeSizingMode e https://create.roblox.com/docs/ui/appearance-modifiers. As instruções acima estão incluídas no contexto gratuito, sem exigir navegação externa.
+
+## Contornos e fontes: contrato do Level Up
+
+UIStroke usa contorno contínuo, nunca várias cópias deslocadas de texto. FixedSize mede Thickness em pixels; ScaledSize Contextual de um texto mede fração do tamanho da fonte, e Border mede fração do menor lado do GuiObject. Exemplo: fonte de 30 px, Thickness=0.06 produz 1.8 px externos; borda 200×100 com 0.06 produz 6 px. Os valores JSON/Luau usam ponto decimal.
+
+Um stroke Contextual e outro Border podem coexistir. Havendo dois do mesmo ApplyStrokeMode, somente o PRIMEIRO filho criado é considerado. Desabilitar o primeiro não ativa automaticamente o segundo. Não crie duplicatas para engrossar o contorno.
+
+Fonte legada: Font='ComicNeueAngular', 'Roboto', 'Montserrat', 'Nunito', 'PressStart2P' etc.; consulte o catálogo completo em propertyDefinitions. FontFace é {Family:'rbxasset://fonts/families/Roboto.json',Weight:'Bold',Style:'Italic'}. Style aceita Normal/Italic; Weight Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Heavy. Em Luau use Font.new(family,Enum.FontWeight.Bold,Enum.FontStyle.Italic) ou Font.fromEnum(Enum.Font.Roboto).
+
+As famílias abertas são locais e carregadas sob demanda. SourceSans usa Source Sans 3; Gotham usa Montserrat; ComicNeueAngular usa Comic Neue e FredokaOne usa Fredoka. As demais famílias abertas conservam seu nome. Pesos/itálicos ausentes no arquivo da família são sintetizados pelo navegador. Não prometa equivalência tipográfica exata com Roblox.
+
+Antes de entregar, teste contorno com texto longo, acentos, transparência, TextScaled, UIGradient e ambos ApplyStrokeMode em celular/computador. Preserve preenchimento e área clicável; não achate interfaces em imagem.

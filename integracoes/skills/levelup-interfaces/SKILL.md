@@ -33,3 +33,5 @@ Defina âncoras e escalas para caber em celular e computador. Preserve margens, 
 Botões devem ter ação compreensível. Para comportamento, crie LocalScript apenas com a permissão de scripts e com APIs disponíveis no simulador. Não altere a interface da plataforma Level Up quando o pedido se refere somente à GUI do jogo.
 
 Devolva operações com resumo do estilo, hierarquia e como testar no editor e em Jogar. Não entregue botões que só parecem funcionar: use um LocalScript permitido ou informe que é uma prévia visual. A permissão Interfaces não libera automaticamente scripts ou publicação online.
+
+Contornos e FontFace seguem o contrato de [base técnica](references/base-tecnica.md): pontos decimais, primeiro UIStroke por modo, Style/Weight e famílias locais compatíveis.
