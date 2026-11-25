@@ -46,3 +46,41 @@ Servem para conversa dentro do mesmo lado: `Fire` com `Event`, e `Invoke` com `O
 - O servidor decide: pontos, dano, dinheiro e inventário mudam num Script.
 - O LocalScript só pede, por RemoteEvent. No servidor, confira os argumentos que chegam: tipo, limites e distância.
 - Nunca confie num valor de preço, dano ou pontos enviado pelo cliente.
+
+## Controles do jogador (PC e celular)
+
+- **Já existem; não crie outro botão nem outro joystick.**
+  - **PC:** WASD ou setas andam, Espaço pula.
+  - **Celular:** o joystick na tela anda e o botão de pular na tela pula.
+  - A direção do movimento aparece em `Humanoid.MoveDirection`.
+- **`UserInputService`** (só em LocalScript):
+  - `JumpRequest`: dispara a cada aperto de pular, **no Espaço e no botão do celular**.
+  - `InputBegan(input, processado)` e `InputEnded(input, processado)`: `input.KeyCode` (`Enum.KeyCode.E`, `Enum.KeyCode.LeftShift`...), `input.UserInputType` (`Enum.UserInputType.Keyboard`).
+  - `UIS:IsKeyDown(Enum.KeyCode.X)`.
+  - `UIS.TouchEnabled` (celular), `UIS.KeyboardEnabled`.
+- **Botão próprio para uma ação extra no celular** (correr, atacar): crie um TextButton numa ScreenGui e use `Activated` num LocalScript. No PC, a mesma ação pode usar uma tecla, com `InputBegan`.
+
+### Pulo duplo (PC e celular, sem botão extra)
+
+LocalScript em StarterCharacterScripts:
+
+```lua
+local UIS = game:GetService("UserInputService")
+local humanoid = script.Parent:WaitForChild("Humanoid")
+local usouDuplo = false
+
+humanoid.StateChanged:Connect(function(_, novo)
+    if novo == Enum.HumanoidStateType.Landed then usouDuplo = false end
+end)
+
+UIS.JumpRequest:Connect(function()
+    local estado = humanoid:GetState()
+    local noAr = estado == Enum.HumanoidStateType.Freefall or estado == Enum.HumanoidStateType.Jumping
+    if noAr and not usouDuplo then
+        usouDuplo = true
+        humanoid:ChangeState(Enum.HumanoidStateType.Jumping) -- pula de novo no ar
+    end
+end)
+```
+
+`ChangeState(Enum.HumanoidStateType.Jumping)` no ar faz o personagem pular de novo, com a mesma força do pulo (`JumpPower`/`JumpHeight`). O teste: pular e apertar pular de novo no alto. Funciona no Espaço e no botão do celular.
