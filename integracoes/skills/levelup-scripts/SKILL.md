@@ -15,6 +15,10 @@ Quando o pedido for modelar um objeto ou cenário, crie geometria editável usan
 
 IDs de animação publicados neste editor pertencem ao mapa. Preserve o código do aluno fora do escopo da mudança. Nunca inclua senhas ou tokens de conta em scripts ou arquivos de resposta.
 
+## Cliente, servidor e Remotes
+
+Antes de criar Script, LocalScript, RemoteEvent ou RemoteFunction, leia [cliente e servidor](references/cliente-servidor.md): onde cada script roda (LocalScript num NPC não roda; use Script), lado certo de FireServer/OnServerEvent, fila do RemoteEvent, LocalPlayer só no cliente e cliques/teclado só em LocalScript. Personagem próprio: Model StarterCharacter em StarterPlayer (Humanoid, HumanoidRootPart e acessórios soldados com WeldConstraint).
+
 ## Animações de propriedades
 
 Para movimentos do personagem e AnimationTrack, leia [o guia do Animate](references/animate.md). O jogador R15 já recebe os movimentos padrão em Jogar. Não criar um segundo controlador por Heartbeat; use faixas Action para ações temporárias e preserve o Animate do aluno.

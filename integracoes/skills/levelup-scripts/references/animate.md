@@ -2,7 +2,7 @@
 
 O jogador local R15 recebe, somente em Jogar, um LocalScript Animate com clipes locais de parado, caminhar, correr, saltar, cair e escalar. Não duplica esses dados no mapa salvo. O controlador reage aos eventos do Humanoid; não cria um loop JavaScript por membro. Se existir LocalScript chamado Animate diretamente em StarterCharacterScripts, ele ganha precedência (inclusive desabilitado).
 
-NPCs e rigs R6 não recebem esse controlador R15 automaticamente. Para eles, criar animações compatíveis com as juntas reais do contexto e tocar no Animator do respectivo Humanoid. MoveTo não cria um ciclo de caminhada para NPCs.
+NPCs e rigs R6 não recebem esse controlador R15 automaticamente. Para um NPC R15, selecione o rig e use Personagem > Animate: o Animate entra como **Script** dentro do NPC. LocalScript num NPC não roda, porque o NPC não tem cliente, como no Roblox. Com o Animate como Script, o MoveTo do NPC toca andar e correr. Para R6, criar animações compatíveis com as juntas reais e tocar no Animator do Humanoid.
 
 ## Ação temporária com retorno aos movimentos padrão
 
