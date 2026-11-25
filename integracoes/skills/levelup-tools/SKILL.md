@@ -41,3 +41,5 @@ Tool.Activated/Deactivated e Equipped/Unequipped existem no runtime; ativar não
 A receita é modelo editável e Tool de inventário, não asset oficial da Roblox. No gratuito, leia os tutoriais completos incluídos em skills[].references e entregue levelup-alteracoes.json com o fingerprint atual. No MCP, consulte levelup_skills por nome/referência e proponha os mesmos comandos. Não exigir MCP pago para criar, soldar ou importar a Tool por JSON.
 
 Se o contexto fornecer files.response, use esse nome ao entregar o JSON. Ele identifica projeto, conteúdo e data; os nomes genéricos acima servem apenas como exemplo do formato.
+
+Soldas adicionais à LeftHand/RightHand do jogador padrão R15 acompanham os ossos visuais no motor. A Tool duplicada deve permanecer desancorada e ter soldas válidas; teste caminhando e girando, não só parado. As referências enviadas ao Luau acompanham o passo de sincronização física (20 Hz); não prometer sincronização de mão remota não testada.

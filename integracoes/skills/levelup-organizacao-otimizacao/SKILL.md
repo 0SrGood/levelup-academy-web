@@ -9,7 +9,7 @@ Use junto das skills de criação quando a IA adicionar um cenário, muitos obje
 
 ## Planejar o custo
 
-- Escolha um orçamento de peças proporcional ao pedido e ao projeto existente. Faça um modelo representativo primeiro e estime a multiplicação antes de espalhar dezenas de cópias. Não use o limite de 6000 instâncias como meta de qualidade ou garantia de desempenho.
+- Escolha um orçamento de peças proporcional ao pedido e ao projeto existente. Faça um modelo representativo primeiro e estime a multiplicação antes de espalhar dezenas de cópias. O orçamento de 6000 novas instâncias vale por proposta da IA, não é um limite total do projeto nem garantia de desempenho. Projetos existentes maiores devem permanecer íntegros e editáveis.
 - Prefira silhuetas e formas legíveis com poucas primitivas. Uma árvore simples pode usar um tronco e poucas copas; evite folhas individuais, microdetalhes e fileiras excessivas de faixas que pouco aparecem no jogo.
 - CSG serve a formas e recortes úteis. Uma união pode ter centenas de formas internas mesmo contando como uma única instância. Não una uma cidade inteira, não crie negativos ocultos sem função e evite cadeias profundas de uniões. Compare o total de folhas CSG antes e depois.
 - Não adicione luz a cada detalhe. Use poucas luzes locais onde fizer diferença; evite muitas superfícies transparentes sobrepostas e sombras caras em pequenos enfeites.
@@ -44,3 +44,11 @@ CSG agora é calculado por um Worker serial e cancelável. O resultado é uma ge
 No modo Jogar, peças estáticas opacas com geometria/material compatíveis são agrupadas internamente em lotes por células. Continuam objetos independentes para scripts, colisão, hierarquia e exportação. Uma alteração por script retira a peça do lote; Stop devolve a edição normal. Não agrupar manualmente NPCs/Tools em uniões para tentar obter esse efeito.
 
 Conferir Exibir → Monitor: draw calls/triângulos do último passe, geometrias, texturas, uniões versus formas compartilhadas, objetos em lotes e memória do Luau. CPU de envio não mede GPU; memória linear WASM não é RAM total. Ainda não há streaming completo de recursos distantes: não afirmar que uma região é descarregada só porque ficou fora da câmera.
+
+## Recursos e perfis do motor
+
+Uniões iguais compartilham geometria; operandos editáveis continuam como dados, não como cópias renderizadas. CSG executa em Worker cancelável. Em Jogar, peças estáticas compatíveis podem usar instancing por célula; scripts, Tools e personagens conservam sua identidade. Colisões estáticas usam índice espacial: não substituir colisores detalhados por uma cidade de corpos dinâmicos.
+
+Os perfis Econômico, Equilibrado, Alto e Ultra alteram resolução, limite de apresentações e distância de residência gráfica; Auto usa medições com histerese. Objetos estáticos distantes saem do desenho e buffers de geometria sem usuário próximo podem ser descartados da GPU e reenviados na aproximação. Os dados CPU, scripts, hierarquia e colisores permanecem; texturas não são descarregadas por esse mecanismo. Esferas e cilindros primitivos estáticos podem usar menos segmentos quando seu tamanho angular fica pequeno; aproximar ou parar restaura a geometria original. Ultra desabilita esse LOD. Uniões e malhas detalhadas não são simplificadas por esse mecanismo. Não afirmar streaming completo de rede, LOD automático de CSG/MeshPart, física distante desligada nem redução de memória total sem medir. A edição e exportação preservam o detalhe original.
+
+Arquivos de IA só aditivos podem ser aplicados sobre o mapa atual. Para editar itens existentes, o Studio compara campos com uma base local de exportação (até quatro bases, orçamento estimado de 4 MiB e validade de sete dias no armazenamento). Mudanças em outros campos são preservadas; conflito no mesmo campo bloqueia a proposta inteira. A revisão ainda exige que o mapa não mude antes de Aplicar. Não remover o fingerprint nem dizer que já aplicou antes da confirmação do Studio.
