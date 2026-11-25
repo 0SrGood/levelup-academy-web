@@ -26,7 +26,7 @@ O Animate padrão não impede a pose de segurar Tool. Uma ação de script com p
 
 ## Escalada (como no Roblox)
 
-- O personagem escala **TrussPart** (seção 2x2, inserida em Modelo > Treliça) e **escadas de degraus**: Parts ancoradas de até 2,5 studs de altura, uma acima da outra, com vão de até 2,6 studs.
+- O personagem escala **TrussPart** (seção 2x2, inserida em Modelo > Treliça) e **escadas de degraus**. Na coluna rente à frente do personagem é preciso haver peça, depois espaço vazio de até 2,6 studs, depois outra peça (degraus, grade). Poste, parede, lateral de escada e peças contínuas não são escaláveis.
 - Andar de frente para ela entra no estado `Enum.HumanoidStateType.Climbing`: sobe a 70% da WalkSpeed, para trás desce, parado fica preso, pular solta e afasta da parede. No topo, o personagem sobe na peça.
 - `Humanoid.Climbing` recebe a velocidade vertical (negativa ao descer); o Animate toca a animação climb com essa velocidade. `Humanoid.Running` só dispara no chão.
 - Uma parede lisa (Part alta) não é escalável, como no Roblox.
