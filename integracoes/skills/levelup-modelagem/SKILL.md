@@ -92,3 +92,9 @@ Para galhos, troncos e tubos, leia [direção e extremidades](references/direcao
 ## Escala de conjuntos
 
 Na ferramenta Escala, Models crescem proporcionalmente pelo mesmo fator, preservando formato, rotações e distâncias entre peças. Juntas C0/C1 e HipHeight acompanham a escala de um rig. Ao editar via JSON/MCP com updates individuais, calcular esse mesmo fator para Size, Position em torno do pivô e deslocamentos das juntas; não esticar só um eixo de cada peça de um objeto modelado.
+
+## CSG e custo real
+
+O Studio calcula uniões fora da interface e compartilha a geometria entre cópias iguais. Preserve as uniões finais ao clonar Tools e objetos: não recriar os cortadores a cada equipamento. Os operandos editáveis permanecem dados; isso não significa que todos sejam desenhados no jogo. Mais detalhes não exigem cortes redundantes: cada recorte deve melhorar a forma. Medir triângulos e tempo, não deduzir o custo somente do número de uniões.
+
+Na exportação Roblox, use o plugin Level Up de modelos v2 e a ação Refazer uniões. Os cortadores de transporte são invisíveis e sem colisão; a reconstrução cria o sólido nativo com as cores e propriedades finais. Sem reconstrução, o contêiner de transporte não equivale à união nativa pronta. Não confundir com o plugin de personagens.

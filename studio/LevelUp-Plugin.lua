@@ -1,5 +1,5 @@
 --[[
-  Plugin Level Up para o Roblox Studio
+  Plugin Level Up para o Roblox Studio — modelos v2
   Leva modelos para o Studio Lite (Laboratório da Level Up) sem perder nada, e traz de volta.
 
   Como instalar (uma vez só):
@@ -113,46 +113,48 @@ local function preparar()
 end
 btnPreparar.Click:Connect(preparar)
 
+-- Reconstrução transacional: os operandos só são removidos depois do CSG terminar.
 local function refazer(raiz)
-	-- pastas mais fundas primeiro (uniões dentro de uniões)
-	local pastas = {}
-	local alvo = { raiz }
-	for _, d in ipairs(raiz:GetDescendants()) do table.insert(alvo, d) end
-	for _, d in ipairs(alvo) do
-		if d:IsA("Model") and string.sub(d.Name, 1, #UNIAO) == UNIAO then table.insert(pastas, d) end
-	end
-	local function fundura(x) local n = 0 while x and x ~= game do n += 1 x = x.Parent end return n end
-	table.sort(pastas, function(a, b) return fundura(a) > fundura(b) end)
-	local feitas = 0
-	for _, pasta in ipairs(pastas) do
-		local pecas = {}
-		for _, p in ipairs(pasta:GetChildren()) do
-			if p:IsA("BasePart") then
-				if p:IsA("Part") and string.sub(p.Name, 1, #NEGAR) == NEGAR then
-					local ok, neg = pcall(function() return plugin:Negate({ p }) end)
-					if ok and neg and neg[1] then neg[1].Name = string.sub(p.Name, #NEGAR + 1) table.insert(pecas, neg[1]) end
-				else
-					table.insert(pecas, p)
-				end
-			end
-		end
-		if #pecas >= 2 then
-			local ok, uniao = pcall(function() return plugin:Union(pecas) end)
-			if ok and uniao then
-				uniao.Name = string.sub(pasta.Name, #UNIAO + 1)
-				uniao.UsePartColor = false
-				for _, f in ipairs(pasta:GetChildren()) do
-					if f ~= uniao and not f:IsA("BasePart") then f.Parent = uniao end
-				end
-				uniao.Parent = pasta.Parent
-				pasta:Destroy()
-				feitas += 1
-			else
-				aviso("Não consegui unir '" .. pasta.Name .. "': " .. tostring(uniao))
-			end
-		end
-	end
-	return feitas
+ local geometry=game:GetService("GeometryService")
+ local pastas={} local alvo={raiz}
+ for _,d in ipairs(raiz:GetDescendants()) do table.insert(alvo,d) end
+ for _,d in ipairs(alvo) do if d:IsA("Model") and string.sub(d.Name,1,#UNIAO)==UNIAO then table.insert(pastas,d) end end
+ local function depth(x) local n=0 while x and x~=game do n+=1 x=x.Parent end return n end
+ table.sort(pastas,function(a,b) return depth(a)>depth(b) end)
+ local feitas=0
+ for _,pasta in ipairs(pastas) do
+  local positive,negative={},{}
+  for _,p in ipairs(pasta:GetChildren()) do
+   if p:IsA("BasePart") then
+    if string.sub(p.Name,1,#NEGAR)==NEGAR or p:IsA("NegateOperation") then table.insert(negative,p) else table.insert(positive,p) end
+   end
+  end
+  if #positive==0 then aviso("Sem volume positivo em "..pasta.Name) continue end
+  local result
+  local ok,err=pcall(function()
+   local options={SplitApart=false,CollisionFidelity=Enum.CollisionFidelity.Default,RenderFidelity=Enum.RenderFidelity.Automatic}
+   if #positive==1 then result=positive[1]:Clone() else local rest={} for j=2,#positive do table.insert(rest,positive[j]) end result=geometry:UnionAsync(positive[1],rest,options)[1] end
+   if not result then error("A união não produziu um volume") end
+   if #negative>0 then local cut=geometry:SubtractAsync(result,negative,options)[1] if not cut then error("Os cortes removeram todo o volume") end result:Destroy() result=cut end
+   local metadata=pasta:FindFirstChild("LevelUpCSGSettings")
+   local settings=metadata and metadata:IsA("StringValue") and game:GetService("HttpService"):JSONDecode(metadata.Value) or {}
+   local source=positive[1]
+   result.Name=string.sub(pasta.Name,#UNIAO+1)
+   if settings.Anchored==nil then result.Anchored=source.Anchored else result.Anchored=settings.Anchored end
+   if settings.CanCollide==nil then result.CanCollide=source.CanCollide else result.CanCollide=settings.CanCollide end
+   if settings.CanTouch==nil then result.CanTouch=source.CanTouch else result.CanTouch=settings.CanTouch end
+   result.Transparency=settings.Transparency or source.Transparency
+   result.Reflectance=settings.Reflectance or source.Reflectance
+   if result:IsA("PartOperation") then result.UsePartColor=settings.UsePartColor==true end
+   if settings.Color and settings.UsePartColor then result.Color=Color3.fromRGB(table.unpack(settings.Color)) end
+   -- Só agora efetivar a substituição. Scripts/luzes ficam no resultado; metadados técnicos são consumidos.
+   for _,child in ipairs(pasta:GetChildren()) do if not child:IsA("BasePart") and child~=metadata then child.Parent=result end end
+   result.Parent=pasta.Parent pasta:Destroy() feitas+=1
+  end)
+  if not ok then if result then result:Destroy() end aviso("Não consegui reconstruir '"..pasta.Name.."'. As peças foram preservadas: "..tostring(err)) end
+  task.wait()
+ end
+ return feitas
 end
 
 local function refazerSelecao()
