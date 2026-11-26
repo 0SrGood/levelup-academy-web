@@ -6,13 +6,13 @@ NPCs e rigs R6 não recebem esse controlador R15 automaticamente. Para um NPC R1
 
 ## Ação temporária com retorno aos movimentos padrão
 
-Publique a animação no editor e use seu ID local ao mapa. O exemplo pressupõe uma Animation chamada Golpe em ReplicatedStorage > Animacoes. Coloque o LocalScript em StarterCharacterScripts para recriar a referência ao personagem quando ele renascer.
+Publique a animação no editor e use seu ID local ao mapa. Novas publicações ficam em ServerStorage > Animations. No cliente, crie a referência Animation pelo ID publicado; ServerStorage não é replicado ao cliente no Roblox. Projetos antigos continuam com suas pastas e referências originais. Coloque o LocalScript em StarterCharacterScripts para recriar a referência ao personagem quando ele renascer.
 
 ```lua
 local humanoid = script.Parent:WaitForChild("Humanoid")
 local animator = humanoid:WaitForChild("Animator")
-local animacao = game:GetService("ReplicatedStorage")
-    :WaitForChild("Animacoes"):WaitForChild("Golpe")
+local animacao = Instance.new("Animation")
+animacao.AnimationId = "rbxassetid://00000001" -- substitua pelo ID publicado
 local faixa = animator:LoadAnimation(animacao)
 faixa.Priority = Enum.AnimationPriority.Action
 faixa.Looped = false
@@ -45,3 +45,6 @@ O Animate padrão não impede a pose de segurar Tool. Uma ação de script com p
 - O motor encerra conexões, tarefas e faixas do antigo StarterCharacterScripts ao renascer. Ao sair de Jogar, o estado Luau é destruído. Testes Node não substituem medições no iPhone físico.
 
 As mesmas regras valem para MCP e arquivos gratuitos; use os nomes, IDs e permissões presentes no contexto exportado.
+
+
+Escalar exige TrussPart ou degraus horizontais próximos; postes, paredes lisas e plataformas isoladas não são escadas. Não usar detalhes de um poste como justificativa para escalada.

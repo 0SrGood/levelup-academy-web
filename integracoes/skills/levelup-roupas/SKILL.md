@@ -52,4 +52,4 @@ Selecionar (V: mover, redimensionar pelos cantos, girar imagem, alinhar na face 
 
 ## Testar
 
-A prévia 3D ao lado do desenho mostra a roupa no R15 e no R6 (gire, aproxime). Depois de Aplicar, o aluno usa "Testar no selecionado" ou "Publicar roupa": publicar cria um ID local (mesma numeração das animações, sem repetir) em ReplicatedStorage > Roupas, e Shirt.ShirtTemplate / Pants.PantsTemplate aceitam esse ID.
+A prévia 3D ao lado do desenho mostra a roupa no R15 e no R6 (gire, aproxime). Depois de Aplicar, o aluno usa "Testar no selecionado" ou "Publicar roupa": publicar cria um ID local (mesma numeração das animações, sem repetir) em ServerStorage > Clothes, e Shirt.ShirtTemplate / Pants.PantsTemplate aceitam esse ID.
