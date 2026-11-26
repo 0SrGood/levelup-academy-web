@@ -98,3 +98,32 @@ Na ferramenta Escala, Models crescem proporcionalmente pelo mesmo fator, preserv
 O Studio calcula uniões fora da interface e compartilha a geometria entre cópias iguais. Preserve as uniões finais ao clonar Tools e objetos: não recriar os cortadores a cada equipamento. Os operandos editáveis permanecem dados; isso não significa que todos sejam desenhados no jogo. Mais detalhes não exigem cortes redundantes: cada recorte deve melhorar a forma. Medir triângulos e tempo, não deduzir o custo somente do número de uniões.
 
 Na exportação Roblox, use o plugin Level Up de modelos v2 e a ação Refazer uniões. Os cortadores de transporte são invisíveis e sem colisão; a reconstrução cria o sólido nativo com as cores e propriedades finais. Sem reconstrução, o contêiner de transporte não equivale à união nativa pronta. Não confundir com o plugin de personagens.
+
+## Operações e geometria persistida (CSG v2)
+
+As operações são ferramentas do editor/JSON/MCP. Não inventar GeometryService no código Luau do jogo. O resultado continua uma UnionOperation lógica, com uma malha final e seu acelerador de colisão. Os operandos de edição não são Parts escondidas na cena nem corpos separados.
+
+- union: soma volumes positivos e subtrai os negativos. ids é a lista de referências consumidas; ref é a referência final.
+- subtract: ids[0] é o volume preservado; os demais ids são cortadores consumidos, inclusive uniões prontas. Não depende de já ter aplicado negate.
+- intersect: mantém somente o volume comum das peças e uniões selecionadas. Use para silhuetas e encaixes úteis, sem gerar cortes redundantes.
+- negate: alterna Part ou UnionOperation para NegateOperation e recupera a classe ao alternar novamente. Negativo sozinho não recorta nada.
+- separate: recupera os componentes de uma união local, inclusive depois de salvar/reabrir. Uniões importadas sem operandos originais continuam com as limitações informadas no Studio. Ao recuperar dados atuais, o Studio preserva flags de edição e reutiliza IDs originais quando ainda estão livres.
+
+Exemplo JSON de porta (commands dentro do formato oficial, com baseFingerprint):
+
+```json
+[
+ {"op":"create","ref":"parede","cls":"Part","name":"Parede","parent":"Workspace","props":{"Size":[8,6,1],"Position":[0,3,0],"Color":[170,165,150],"Anchored":true}},
+ {"op":"create","ref":"porta","cls":"Part","name":"Corte da porta","parent":"Workspace","props":{"Size":[3,5,3],"Position":[0,2,0],"Color":[170,165,150],"Anchored":true}},
+ {"op":"subtract","ref":"parede_pronta","ids":["parede","porta"],"name":"Parede com porta"},
+ {"op":"update","id":"parede_pronta","props":{"UsePartColor":true,"Color":[170,165,150],"CollisionFidelity":"PreciseConvexDecomposition"}}
+]
+```
+
+Para interseção, crie dois volumes positivos com sobreposição e use {"op":"intersect","ref":"forma","ids":["volume_a","volume_b"]}. Confira a silhueta e a passagem antes de copiar o objeto. Operandos consumidos não podem ser usados em soldas posteriores: use a referência final.
+
+CSGMesh/CSGMeshKey são campos internos derivados. Não escrevê-los, não enviá-los para a IA e não apagá-los para forçar uma alteração. O Studio guarda buffers indexados, UVs planares, limites, dados BVH, versão e hash em representação binária comprimida. Nome, posição, rotação, material e cor uniforme da união externa não mudam sua geometria. Mudança real dos operandos invalida somente a forma atingida. Dados antigos ou cache inválido são reconstruídos sem apagar os operandos; a versão válida passa a ser salva com a place. A compilação não entra no Undo e não cria conflito de edição com respostas da IA.
+
+CollisionFidelity: Box pede caixa deliberadamente e fecha recortes; Hull usa envoltória convexa e também pode fechar aberturas. Default e PreciseConvexDecomposition usam a superfície resultante no controlador físico do Studio. O nome compatível PreciseConvexDecomposition não significa que este motor tenha o mesmo solver ou decompositor convexo dinâmico nativo do Roblox. Não prometer equivalência total nem estabilidade em aparelhos não testados. CanCollide/CanTouch/CanQuery devem ser escolhidos segundo a função do objeto.
+
+Para transportar interseções ao Roblox, use a versão atual do plugin Level Up e Refazer uniões; ele interpreta o tipo de operação guardado. Referência oficial da plataforma original: https://create.roblox.com/docs/reference/engine/classes/GeometryService . O transporte e o código Luau do Studio têm capacidades distintas.

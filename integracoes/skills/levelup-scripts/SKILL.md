@@ -33,6 +33,10 @@ Para criar NPCs, leia [o tutorial de movimento](references/npcs-movimento.md): M
 
 Para Lighting, Atmosphere, Sky e efeitos de tela, leia [o guia completo de iluminação](references/lighting.md): propriedades, exemplos por JSON e Luau, limites do modo Leve/Alta e testes de remoção. As aproximações do navegador e o orçamento do aparelho precisam aparecer na entrega; não prometer equivalência total ao Roblox nem estabilidade física sem medição.
 
+## Consultas de geometria e recortes
+
+Leia [consultas espaciais](references/consultas-espaciais.md) antes de criar detecção de alvo, passagem por portas CSG ou testes de área: Raycast, RaycastParams, OverlapParams, GetPartsInPart, GetTouchingParts e consultas de caixas/raio. CSG processado usa geometria final compartilhada; não gerar várias Parts invisíveis para simular recortes. O guia diferencia precisão real, caixa, envoltória convexa e os limites de MeshPart e filtros.
+
 ## Editor e diagnóstico
 
 Leia [edição, colagem e análise](references/editor-scripts.md) ao orientar a correção de código. A análise de sintaxe usa o compilador Luau sem executar a resposta. Os avisos de nomes/inicialização são básicos, não um analisador completo de tipos. Nunca substituir testes em Jogar por uma mensagem de sintaxe válida.

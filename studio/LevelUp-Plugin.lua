@@ -132,8 +132,11 @@ local function refazer(raiz)
   if #positive==0 then aviso("Sem volume positivo em "..pasta.Name) continue end
   local result
   local ok,err=pcall(function()
+   local metadata=pasta:FindFirstChild("LevelUpCSGSettings")
+   local settings=metadata and metadata:IsA("StringValue") and game:GetService("HttpService"):JSONDecode(metadata.Value) or {}
    local options={SplitApart=false,CollisionFidelity=Enum.CollisionFidelity.Default,RenderFidelity=Enum.RenderFidelity.Automatic}
-   if #positive==1 then result=positive[1]:Clone() else local rest={} for j=2,#positive do table.insert(rest,positive[j]) end result=geometry:UnionAsync(positive[1],rest,options)[1] end
+   if settings.CollisionFidelity then local fidelity=Enum.CollisionFidelity[settings.CollisionFidelity] if fidelity then options.CollisionFidelity=fidelity end end
+   if #positive==1 then result=positive[1]:Clone() else local rest={} for j=2,#positive do table.insert(rest,positive[j]) end if settings.CSGOperation=="Intersect" then result=geometry:IntersectAsync(positive[1],rest,options)[1] else result=geometry:UnionAsync(positive[1],rest,options)[1] end end
    if not result then error("A união não produziu um volume") end
    if #negative>0 then local cut=geometry:SubtractAsync(result,negative,options)[1] if not cut then error("Os cortes removeram todo o volume") end result:Destroy() result=cut end
    local metadata=pasta:FindFirstChild("LevelUpCSGSettings")
@@ -143,6 +146,7 @@ local function refazer(raiz)
    if settings.Anchored==nil then result.Anchored=source.Anchored else result.Anchored=settings.Anchored end
    if settings.CanCollide==nil then result.CanCollide=source.CanCollide else result.CanCollide=settings.CanCollide end
    if settings.CanTouch==nil then result.CanTouch=source.CanTouch else result.CanTouch=settings.CanTouch end
+   if settings.CanQuery~=nil then result.CanQuery=settings.CanQuery end
    result.Transparency=settings.Transparency or source.Transparency
    result.Reflectance=settings.Reflectance or source.Reflectance
    if result:IsA("PartOperation") then result.UsePartColor=settings.UsePartColor==true end
