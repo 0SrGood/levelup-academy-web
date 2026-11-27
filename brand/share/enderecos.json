@@ -1,0 +1,22 @@
+{
+  "principal": {
+    "titulo": "Level Up | Jogue as criações dos nossos alunos",
+    "descricao": "Descubra jogos criados pelos alunos da Level Up. Explore novos mundos, encontre seus favoritos e venha jogar.",
+    "alt": "Logo Level Up, controle azul com botões coral e a chamada Bora jogar? sobre fundo azul."
+  },
+  "curso": {
+    "titulo": "Curso Level Up | Aprenda a criar jogos",
+    "descricao": "Aulas de Roblox Studio, Luau, modelagem, interfaces e animação, com avisos e Quiz ao vivo para alunos matriculados.",
+    "alt": "Notebook com uma representação do curso e o mascote Nivo, em cenário violeta: Aprenda. Crie. Evolua."
+  },
+  "studioup": {
+    "titulo": "Studio Up | Crie jogos 3D no navegador",
+    "descricao": "Transforme ideias em jogos no Studio Up: crie mapas, modele objetos, escreva scripts e publique suas criações no navegador.",
+    "alt": "Logo Studio Up e representação de um editor com ponte, árvores e malha 3D em tons de verde."
+  },
+  "conta": {
+    "titulo": "Conta Level Up | Um acesso para todos os apps",
+    "descricao": "Uma conta para aprender, criar e jogar. Entre uma vez e acesse os aplicativos da Level Up com a mesma identidade.",
+    "alt": "Escudo de vidro com cadeado amarelo sobre fundo azul-petróleo e a frase Uma conta. Tudo conectado."
+  }
+}
