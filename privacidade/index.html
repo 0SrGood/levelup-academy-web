@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Privacidade e anúncios · Level Up</title>
+<meta name="description" content="Como a Level Up trata os dados dos jogadores e como funcionam os anúncios do site.">
+<meta name="robots" content="index,follow">
+<!-- Se voltar a ter campos marcados com colchete e a palavra preencher, scripts/package-pages.mjs NÃO publica esta página. -->
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}
+body{margin:0;background:#0b0b0e;color:#d6d6dc;font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:760px;margin:0 auto;padding:32px 20px 64px}
+h1{color:#fff;font-size:28px;line-height:1.2;margin:0 0 6px}h2{color:#fff;font-size:20px;margin:36px 0 8px;padding-top:12px;border-top:1px solid #22222a}
+a{color:#4da3ff}b,strong{color:#fff}small{color:#8d8d97}
+ul{padding-left:22px}li{margin:4px 0}
+.top{display:flex;align-items:center;gap:10px;margin-bottom:24px}.top a{color:#fff;font-weight:700;text-decoration:none}
+.choice{margin:16px 0;padding:14px 0;border-top:1px solid #22222a;border-bottom:1px solid #22222a}
+.choice p{margin:0 0 10px}.choice .row{display:flex;flex-wrap:wrap;gap:10px}
+.choice button{min-height:40px;padding:8px 16px;border:1px solid #3a3a44;background:#16161b;color:#fff;font:inherit;font-weight:700;cursor:pointer}
+.choice button:hover{background:#22222a}
+#estado{font-weight:700;color:#ffda00}
+</style></head>
+<body><main>
+<div class="top"><a href="/">← Voltar para a Level Up</a></div>
+<h1>Privacidade e anúncios</h1>
+<small>Versão de 28/11/2026. Responsável pelos dados (controlador): Tallyson Daniel Gomes da Silva. Contato do encarregado: <a href="mailto:levelupsoftwaredeveloper@gmail.com">levelupsoftwaredeveloper@gmail.com</a>.</small>
+
+<h2>1. O que a Level Up guarda</h2>
+<p>A conta de jogador pede só um apelido, o mês e o ano de nascimento e uma senha (guardada embaralhada, ninguém consegue ler).
+Quem tem até 16 anos também informa o e-mail de um responsável. <b>Não pedimos</b> nome real, CPF, documentos, foto,
+reconhecimento do rosto, endereço, telefone nem localização.</p>
+<p><b>Nenhum dado dos jogadores é usado para publicidade</b> nem para montar perfil de consumo. A Level Up não envia
+apelido, idade, amigos, progresso ou qualquer outro dado da conta para o Google ou para anunciantes.</p>
+
+<h2 id="anuncios">2. Anúncios no site</h2>
+<p>Para manter a plataforma grátis, o site <b>levelup.app.br</b> pode mostrar anúncios do <b>Google AdSense</b>. Eles seguem estas regras:</p>
+<ul>
+<li>Aparecem só em <b>dois espaços nas laterais</b> da tela, quando a tela é grande, sempre com o aviso <b>"Publicidade"</b>.</li>
+<li><b>Nunca</b> aparecem dentro dos jogos, no login, no cadastro, na Loja ou na Carteira. Não existem anúncios em janela (pop-up) nem em tela cheia.</li>
+<li>São <b>anúncios não personalizados</b> para todo mundo: o Google escolhe o anúncio pelo conteúdo da página, e não pelo que você fez antes, aqui ou em outros sites.</li>
+<li>Todos os pedidos de anúncio vão marcados com o <b>tratamento de idade mais restritivo</b> do Google (o mesmo usado para crianças), para todos os visitantes, sem perguntar a idade.
+Com essa marcação o Google desliga anúncios por interesse e remarketing e aplica as proteções para crianças.</li>
+<li>Bloqueamos no painel do AdSense anúncios de <b>apostas, bebidas alcoólicas, conteúdo sexual, namoro</b> e outras categorias sensíveis, e revisamos os anúncios que aparecem.</li>
+<li>Não fazemos perfil de crianças e adolescentes para publicidade (Lei 15.211/2025, o "ECA Digital", art. 22).</li>
+</ul>
+
+<h2 id="cookies">3. Cookies dos anúncios</h2>
+<p>Mesmo sem personalizar, o Google usa <b>cookies</b> (pequenos arquivos no navegador) para limitar quantas vezes o mesmo
+anúncio aparece, contar visualizações de forma agregada e evitar fraude. Por isso, <b>os anúncios só são carregados depois
+que você escolhe "Permitir anúncios"</b>. Se não escolher, ou escolher "Não permitir", o site não carrega nada do Google
+para anúncios e funciona igual.</p>
+<p>Quem tem menos de 12 anos deve pedir para um dos pais ou responsável escolher.</p>
+<p>Sua escolha fica guardada só neste navegador. Ela não vai para o servidor da Level Up.</p>
+<div class="choice" id="escolha">
+<p>Sua escolha neste navegador: <span id="estado">carregando…</span></p>
+<div class="row">
+<button type="button" data-c="sim">Permitir anúncios</button>
+<button type="button" data-c="nao">Não permitir</button>
+<button type="button" data-c="">Perguntar de novo</button>
+</div>
+</div>
+<p>O Google é responsável pelos dados que ele trata ao mostrar anúncios. Veja
+<a href="https://policies.google.com/technologies/partner-sites?hl=pt-BR" rel="noopener" target="_blank">como o Google usa informações de sites parceiros</a>
+e <a href="https://policies.google.com/technologies/ads?hl=pt-BR" rel="noopener" target="_blank">como o Google usa cookies em publicidade</a>.
+Você também pode gerenciar os anúncios do Google em <a href="https://adssettings.google.com/" rel="noopener" target="_blank">Minha Central de Anúncios</a>
+e apagar os cookies nas configurações do seu navegador.</p>
+
+<h2>4. Com quem os dados ficam</h2>
+<p>Usamos fornecedores para o serviço funcionar: Supabase (banco de dados e servidor), GitHub Pages (site), Cloudflare R2 (arquivos)
+e Google AdSense (anúncios, só com a sua permissão). Alguns ficam fora do Brasil. Não vendemos dados.</p>
+
+<h2>5. Seus direitos</h2>
+<p>Você e seu responsável podem ver, baixar, corrigir e apagar os dados da conta, retirar o consentimento e falar com o
+encarregado pelo contato acima. Também é possível reclamar na ANPD (Autoridade Nacional de Proteção de Dados).</p>
+
+<h2>6. Mudanças</h2>
+<p>Avisamos no site antes de mudanças importantes nesta página.</p>
+</main>
+<script>
+(function(){var KEY='levelup-anuncios',V=1,el=document.getElementById('estado');
+function ler(){try{var r=JSON.parse(localStorage.getItem(KEY)||'null');if(r&&r.v===V&&(r.c==='sim'||r.c==='nao'))return r.c}catch(e){}return null}
+function mostrar(){var c=ler();el.textContent=c==='sim'?'anúncios permitidos':c==='nao'?'anúncios não permitidos':'ainda não escolhida'}
+document.querySelectorAll('#escolha button').forEach(function(b){b.addEventListener('click',function(){var c=b.getAttribute('data-c');
+try{if(c)localStorage.setItem(KEY,JSON.stringify({c:c,v:V,em:new Date().toISOString().slice(0,10)}));else localStorage.removeItem(KEY)}catch(e){}mostrar()})});
+mostrar()})();
+</script>
+</body></html>
